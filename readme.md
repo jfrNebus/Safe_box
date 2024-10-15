@@ -13,5 +13,8 @@
 >
 > For english speakers [click here](#intro) 🇬🇧
 
+<br>
+
+<hr> 
 
 Info to be added
