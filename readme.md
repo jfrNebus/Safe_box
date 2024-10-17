@@ -78,16 +78,21 @@ Ya hemos hablado de esta parte anteriormente, es el encargado de bloquear o libe
 
 <br>
 
-Es por medio del teclado por el que se introduce la clave de acceso que será recogida por la placa para su evaluación. Si la clave es correcta, el perno electromagnético se activa. Resulta facil darse cuenta de que se trata de un teclado matricial en cuanto se observa la placa del teclado.
+A través del teclado se introduce la clave de acceso que será recogida por la placa para su evaluación. Si la clave es correcta, el perno electromagnético se activa. Resulta facil darse cuenta de que se trata de un teclado matricial en cuanto se observa la placa del teclado.
 
 <br>
 
 <p align="center">
- <img src="Images/keyboard_inside_front.jpg" width="463" height="347"/>
- <img src="Images/keyboard_inside_back.jpg" width="463" height="347"/> 
+ <img src="Images/keyboard_inside_front.jpg" width="370" height="278"/>
+ <img src="Images/keyboard_inside_back.jpg" width="370" height="278"/> 
+ <img src="Images/matix_keyboard.png" width="370" height="278"/> 
 </p>
 
 <br>
+
+
+
+
 
 
 
