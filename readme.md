@@ -78,16 +78,25 @@ Ya hemos hablado de esta parte anteriormente, es el encargado de bloquear o libe
 
 <br>
 
-A través del teclado se introduce la clave de acceso que será recogida por la placa para su evaluación. Si la clave es correcta, el perno electromagnético se activa. Resulta facil darse cuenta de que se trata de un teclado matricial en cuanto se observa la placa del teclado.
-
+A través del teclado se introduce la clave de acceso, que será recogida por la placa para su evaluación. Si la clave es correcta, el perno electromagnético se activa. 
 <br>
 
 <p align="center">
  <img src="Images/keyboard_inside_front.jpg" width="370" height="278"/>
  <img src="Images/keyboard_inside_back.jpg" width="370" height="278"/>
- <img src="Images/matix_keyboard.png" width="305" height="192"/>
- <img src="Images/actual_keyboard_layout.jpg"/>
 </p>
+
+Resulta facil darse cuenta de que se trata de un teclado matricial en cuanto se observa la placa sin la capa de los números. Este teclado está compuesto por un total de 12 pulsadores de membrana conductiva. Este tipo de pulsadores están formados por dos partes: la parte de los contactos impresos en la placa, las partes ovaladas con una línea en el medio; y la capa de números, una superficie de goma con un material conductor debajo de cada botón. Cuando se presiona dicho botón de silicona, la parte conductora debajo del mismo toca los dos lados del óvalo impreso en la placa, cerrando el circuito.
+
+<p align="center">
+ <img src="Images/matix_keyboard.png"/>
+</p>
+
+En un teclado matricial, el conexionado de los botones se realiza mediante filas y columnas; cada lado de cada botón esta conectado a una fila y a una columna. En la imagen anterior tenemos un modelo que he creado para explicar el concepto. El principio de funcionamiento se basa en alimentar uno de los lados de los pulsadores, y leer el valor de voltaje del otro lado. Es decir, podemos alimentar con un voltaje las columnas, por ejemplo, y realizar la lectura de voltaje presente en las filas.
+
+Empezamos alimentando con voltaje la columna 3, esta se conecta con el lado 1 del botón 1, con el lado 1 del botón 2 y con el lado 1 del botón 3, (SW1, SW2 y SW3). Acto seguido, le indicamos al sistema que lea el valor de voltaje presente en las filas 
+
+
 
 <br>
 
