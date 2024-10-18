@@ -88,9 +88,6 @@ A través del teclado se introduce la clave de acceso, que será recogida por la
 
 Resulta facil darse cuenta de que se trata de un teclado matricial en cuanto se observa la placa sin la capa de los números. Este teclado está compuesto por un total de 12 pulsadores de membrana conductiva. Este tipo de pulsadores están formados por dos partes: la parte de los contactos impresos en la placa, las partes ovaladas con una línea en el medio; y la capa de números, una superficie de goma con un material conductor debajo de cada botón. Cuando se presiona dicho botón de silicona, la parte conductora debajo del mismo toca los dos lados del óvalo impreso en la placa, cerrando el circuito.
 
-<p align="center">
- <img src="Images/matix_keyboard.png"/>
-</p>
 
 En un teclado matricial, el conexionado de los botones se realiza mediante filas y columnas; cada lado de cada botón esta conectado a una fila y a una columna. En la imagen anterior tenemos un modelo que he creado para explicar el concepto. El principio de funcionamiento se basa en alimentar uno de los lados de los pulsadores, y leer el valor de voltaje del otro lado. Es decir, podemos alimentar con un voltaje las columnas, por ejemplo, y realizar la lectura de voltaje presente en las filas.
 
