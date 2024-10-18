@@ -21,7 +21,7 @@ Este proyecto nace cuando, por necesidades laborales, se necesitó una caja fuer
 Estas cajas están pensadas para ser fijadas a una superficie debido a que el perno actúa por gravedad. Es decir, si la bobina del perno no tiene alimentación, el perno permanece en su posición por la acción de la gravedad, bloqueando la acción de la llave sobre la cerradura. Cuando se alimenta el circuito y se introduce la contraseña de forma correcta, el circuito alimenta la bobina del perno, atrayéndolo, liberando la acción de la llave.
 
 <p align="center">
- <img src="Images/bolt_work.png " width="576" height="432"/> 
+ <img src="Images/bolt_work.png" width="576" height="432"/> 
 </p>
 
 En la imagen anterior tenemos el interior del sistema de control. Lo primero que se observa es la placa de control implementada por mi; el perno electromagnético, la pieza de color amarillento en la que está escrito “12 Ohms”; y por último, el cierre y la cara interior de la cerradura. El cierre se mueve de izquierda a derecha en función de la acción de la llave. Las flechas dibujadas muestran el comportamiento del cierre y del perno en función de la alimentación que reciba la bobina. Si la bobina, la pieza rectangular amarillenta en la que está escrito “12 Ohms” recibe alimentación, el perno, la pieza cilíndrica ubicada justo debajo de la bobina, se verá atraída hacia la bobina, permitiendo el libre movimiento del cierre. Si la bobina no recibe alimentación, el perno cae por su propio peso, bloqueando el movimiento del cierre, impidiendo la acción de la llave.
