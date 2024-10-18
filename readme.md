@@ -84,8 +84,9 @@ A través del teclado se introduce la clave de acceso que será recogida por la 
 
 <p align="center">
  <img src="Images/keyboard_inside_front.jpg" width="370" height="278"/>
- <img src="Images/keyboard_inside_back.jpg" width="370" height="278"/> 
- <img src="Images/matix_keyboard.png" width="370" height="278"/> 
+ <img src="Images/keyboard_inside_back.jpg" width="370" height="278"/>
+ <img src="Images/matix_keyboard.png" width="305" height="192"/>
+ <img src="Images/actual_keyboard_layout.jpg"/>
 </p>
 
 <br>
