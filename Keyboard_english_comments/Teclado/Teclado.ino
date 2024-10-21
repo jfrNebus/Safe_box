@@ -35,7 +35,7 @@ overridden once we save the new password in the Eeprom memory.
 */
 byte passwordEepromAddress[] = {1, 2, 3, 4, 5, 6}; /*The positions in the Eeprom memory, of the
 password values that we will save. This means that we will save a group of 6 numbers, and each
-number will be save in a "slot" in Eeprom's memory, this array members are the positions of those
+number will be save in a "slot" in Eeprom's memory. This array members are the positions of those
 slots. First number of password will be save in the position 1 of the passwordEepromAddress array,
 which is 1; the second number of password will be save in the position 2; and so on.
 */
