@@ -16,9 +16,15 @@
 <br>
 
 <hr> 
+
+<br>
+
+### Introducción
+
 Este proyecto nace cuando, por necesidades laborales, se necesitó una caja fuerte donde poder almacenar una serie de bienes de valor. En un momento determinado, un departamento de mi empresa retiró, por sustitución, un modelo específico de caja fuerte de un cliente. Este modelo específico tiene asociado un retardo a la apertura de la puerta; es decir, aunque dispongas de la llave y la contraseña, la activación del perno electromagnético que libera la cerradura no se producirá, hasta pasado un determinado tiempo. Esto garantiza que, en caso de que el intruso intente coaccionar al responsable de la caja, esta no se abra hasta que el tiempo de retardo haya finalizado, lo que lo obliga a permanecer más tiempo en la instalación, arriesgándose a ser capturado. Esta caja fuerte fue depositada en el apartado de desechos para reciclar, era un modelo antiguo no óptimo para dicho cliente. Adicionalmente, se desconocía la contraseña.
 
 Estas cajas están pensadas para ser fijadas a una superficie debido a que el perno actúa por gravedad. Es decir, si la bobina del perno no tiene alimentación, el perno permanece en su posición por la acción de la gravedad, bloqueando la acción de la llave sobre la cerradura. Cuando se alimenta el circuito y se introduce la contraseña de forma correcta, el circuito alimenta la bobina del perno, atrayéndolo, liberando la acción de la llave.
+
 
 <p align="center">
  <img src="Images/bolt_work.png" width="576" height="432"/> 
