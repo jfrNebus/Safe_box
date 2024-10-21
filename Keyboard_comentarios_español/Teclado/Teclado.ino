@@ -32,15 +32,19 @@ debe a que el botón * se comportará de formas diferentes en función de si est
 byte password[] = {1, 1, 1, 2, 2, 2}; /*La contraseña por defecto cuando se carga el programa en la placa, 
 y el array que será sobrescrito cuando guardemos una nueva password en la memoria Eeprom.
 */
+byte passwordEepromAddress[] = {1, 2, 3, 4, 5, 6}; /*Los números de posición en la memoria Eeprom, donde se guardará
+cada número de la contraseña. Esto quiere decir que guardaremos un grupo de 6 números, y cada uno de esos números se guardará
+en un "slot", en una dirección de la la memoria Eeprom. Los números en este array son las direcciones de estos slots. El
+primer número de la contraseña se guardará en la dirección que aparezca en la primera posición del array
+passwordEepromAddress, la dirección 1; el segundo número de la contraseña se guardará en la posición 2; y así consecutivamente.
+*/
+
+
 
 //---------------VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ 
 
-byte passwordEepromAddress[] = {1, 2, 3, 4, 5, 6}; /*The positions in the Eeprom memory, of the
-password values that we will save. This means that we will save a group of 6 numbers, and each
-number will be save in a "slot" in Eeprom's memory, this array members are the positions of those
-slots. First number of password will be save in the position 1 of the passwordEepromAddress array,
-which is 1; the second number of password will be save in the position 2; and so on.
-*/
+
+
 byte newPasswordCounter = 0; //-TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK
 byte numberOfDigits = 6; /*Number of digits of our password. This variable will set the amount of
 iterations for each for loop action, this is reading / burning from Eeprom's memory, checking
