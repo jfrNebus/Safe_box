@@ -1,6 +1,6 @@
 #include <EEPROM.h>
 
-//----------- Matrix push buttons
+//----------- Matriz de pulsadores.
 int pin1 = 2;
 int pin2 = 3;
 int pin3 = 4;
@@ -8,31 +8,33 @@ int pin5 = 5;
 int pin6 = 6;
 int pin7 = 7;
 int pin8 = 8;
-//----------- No matrix push button, button *
+//----------- Pulsador fuera de la matriz, botón *
 int pin4 = 10;
 int pin9 = 9;
-//----------- Electromagnetic bolt
+//----------- Perno electromagnético
 int magnet1 = A1;
 //----------- Leds
 int positive = 11;
 int green = A5;
 int orange = A4;
 int red = A3;
-/*Leds will turn on if we set  pinMode(red, OUTPUT);, since all led are common positive pin, when we set
-their negative to output, since output sets a LOW value, conected to ground, we close the circuit.
+/* Los led se encenderán si establecemos pinMode(red, OUTPUT);, debido a que los led son positivo común, cuando
+establecemos su lado negativo como output, dado que output establece su valor a LOW, conectado a ground, se cierra
+el circuito.
+*/
+int keyColumn; //Establece el valor de la primera dimensión del array bidimensional.
+int keyRow; //Establece el valor de la segunda dimensión del array bidimensional.
+boolean keyDetected = false; //Boleano que se usará para conocer si se ha presionado alguna tecla.
+boolean insideNewPasswordMenu = false; /*Este booleano nos permitirá conocer en que parte del código
+se encuentra el proceso de ejecución. Sirve a su vez, para darle más de un uso al botón *. Esto se 
+debe a que el botón * se comportará de formas diferentes en función de si esta variable es true o false.
+*/
+byte password[] = {1, 1, 1, 2, 2, 2}; /*La contraseña por defecto cuando se carga el programa en la placa, 
+y el array que será sobrescrito cuando guardemos una nueva password en la memoria Eeprom.
 */
 
+//---------------VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ 
 
-int keyColumn; //Bound for first dimension in multidimensional array.
-int keyRow; //Bound for second dimension in multidimensional array.
-boolean keyDetected = false; //Boolean that we will use to know if we pressed any key.
-boolean insideNewPasswordMenu = false; /*This boolean will allow us to know in which part of the code we
-as well as to be able to make * button multipurpose. This is because * button will behave in different
-if insideNewPasswordMenu is true or false.
-*/
-byte password[] = {1, 1, 1, 2, 2, 2}; /*The default password, and the password array that will be
-overridden once we save the new password in the Eeprom memory.
-*/
 byte passwordEepromAddress[] = {1, 2, 3, 4, 5, 6}; /*The positions in the Eeprom memory, of the
 password values that we will save. This means that we will save a group of 6 numbers, and each
 number will be save in a "slot" in Eeprom's memory, this array members are the positions of those
