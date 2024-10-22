@@ -37,24 +37,21 @@ cada número de la contraseña. Esto quiere decir que guardaremos un grupo de 6 
 en un "slot", en una dirección de la la memoria Eeprom. Los números en este array son las direcciones de estos slots. El
 primer número de la contraseña se guardará en la dirección que aparezca en la primera posición del array
 passwordEepromAddress, la dirección 1; el segundo número de la contraseña se guardará en la posición 2; y así consecutivamente.
+
+Por comprobar: Elimina este array y en su lugar usa la propia variable del bucle for como dirección en la memoria eeprom. De
+esta forma, la primera posición sería la 0 y la última la 5.
+*/
+byte newPasswordCounter = 0; //-TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK ESTA LÍNEA FALTA POR DOCUMENTAR
+byte numberOfDigits = 6; /*Numero de dígitos de nuestra contraseña. Esta variable establece el número de iteraciones para cada loop for. 
+Estos bucles se utilizan a la hora de leer, imprimir o grabar la contraseña en desde / en la memoria Eeprom.
+*/
+const byte C = 4;//Número de columnas.
+const byte R = 3;//Número de filas.
+bool match = false; /*Booleano que permitirá controlar diferentes condicionales en función de si la contraseña es introducida es correcta
+o no.
 */
 
-
-
-//---------------VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ 
-
-
-
-byte newPasswordCounter = 0; //-TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK
-byte numberOfDigits = 6; /*Number of digits of our password. This variable will set the amount of
-iterations for each for loop action, this is reading / burning from Eeprom's memory, checking
-password, etc.
-*/
-const byte C = 4;//Columns
-const byte R = 3;//rows
-bool match = false; /*Boolean that will allow us to control diferent contionals in the code based
-on if we typed a correct password or not.
-*/
+//VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ 
 
 //Columns and rows store the pins according to the electronics schematic.
 int columns[C] = {pin5, pin6, pin7, pin8};
