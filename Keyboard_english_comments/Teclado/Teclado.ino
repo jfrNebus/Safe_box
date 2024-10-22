@@ -38,16 +38,19 @@ password values that we will save. This means that we will save a group of 6 num
 number will be save in a "slot" in Eeprom's memory. This array members are the positions of those
 slots. First number of password will be save in the position 1 of the passwordEepromAddress array,
 which is 1; the second number of password will be save in the position 2; and so on.
+
+To be tested: remove this array. Instead use the for loop variable as address. This way the first
+position would be 0, and the last one would be 5.
+
 */
 byte newPasswordCounter = 0; //-TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK
 byte numberOfDigits = 6; /*Number of digits of our password. This variable will set the amount of
-iterations for each for loop action, this is reading / burning from Eeprom's memory, checking
-password, etc.
+iterations for each for loop action. This is reading, printing or burning the password from / in Eeprom's memory.
 */
 const byte C = 4;//Columns
 const byte R = 3;//rows
-bool match = false; /*Boolean that will allow us to control diferent contionals in the code based
-on if we typed a correct password or not.
+bool match = false; /*Boolean that will allow to control different contionals in the code based
+on whether the entered password was correct or not.
 */
 
 //Columns and rows store the pins according to the electronics schematic.

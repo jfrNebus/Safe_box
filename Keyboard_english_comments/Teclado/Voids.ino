@@ -60,7 +60,7 @@ int getKeyPressedValue () {
   return result[keyColumn][keyRow];
 }
 void confirmation (byte password[], byte numberOfDigits, int array1[], int array2[]) {
-  /*This void will check if the password entered match the in Eeprom's memory.
+  /*This void will check if the password entered match the one in Eeprom's memory.
   First it starts blinking twice orange led to indicate that we are currently inside 
   confirmation void. Then we create a few variables/arrays.
   -newPasswordCounter will store the amount of iterations done over the main loop.
