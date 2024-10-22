@@ -39,14 +39,14 @@ este array son las direcciones de estos slots. El primer número de la contrase�
 que aparezca en la primera posición del array passwordEepromAddress, la dirección 1; el segundo número de 
 la contraseña se guardará en la posición 2; y así consecutivamente.
 
-Por comprobar: Elimina este array y en su lugar usa la propia variable del bucle for como dirección en la 
+POR COMPROBAR-----: Elimina este array y en su lugar usa la propia variable del bucle for como dirección en la 
 memoria eeprom. De esta forma, la primera posición sería la 0 y la última la 5.
 */
 byte newPasswordCounter = 0; //-TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK ESTA LÍNEA FALTA POR DOCUMENTAR
 
 byte numberOfDigits = 6; /*Numero de dígitos de nuestra contraseña. Esta variable establece el número de 
 iteraciones para cada loop for. Estos bucles se utilizan a la hora de leer, imprimir o grabar la contraseña
-en desde / en la memoria Eeprom.
+en desde/en la memoria Eeprom.
 */
 const byte C = 4;//Número de columnas.
 const byte R = 3;//Número de filas.
@@ -67,21 +67,23 @@ El botón * tiene varias funciones. Nos ayuda a abandonar el menú de password s
 la introducción de una secuencia de codigo en caso de que nos hayamos equivocado, o por cualquier razón. Se llega
 a estas condiciones cuando mainMenuVariable == LOW.
 */
-
-//VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ 
-
 void setup() {
-  //Leds
-  //We start setting positive pin as output and setting a power level by analogWrite.
+  /*Leds
+  Empezamos estableciendo el pin "positive" como pin de salida. Establecemos un valor valor bajo de alimentación.
+  por medio de analogWrite.
+
+  POR COMPROBAR-----: Analiza por qué lanzas analogWrite.
+  */
   pinMode(positive, OUTPUT);
   analogWrite(positive, 20);
-  /*No matrix push button, buttom equal to *.
-  We set one of the pin of the button as output low, and the other one as input high.
-  
-  THE BASIC WORKING IDEA is that through pin4 you send a low pulse, and you read it in pin 9
-  which is high. You set conditionals according to pin 9: if pin9 == to low, since it was high,
-  then do this.
+  /* El botón *, el que no forma parte de la matriz de botones. Establecemos uno de los pines como output low, y
+  el otro como input high. La idea es que a través del pin 4 enviamos un pulso con valor LOW, y se lee en el pin 9,
+  el cual es high. Se establece el condicional en función del pin 9, si pin9 == low, dado que era high originalmente
+  entonces haz X acción.
   */
+
+  //VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ 
+  
   pinMode(pin4, OUTPUT);
   digitalWrite(pin4, LOW);
   pinMode(pin9, INPUT);
