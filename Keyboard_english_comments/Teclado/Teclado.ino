@@ -68,7 +68,7 @@ any change, to cancel a wrong input, etc. This conditions will be met once mainM
 
 void setup() {
   //Leds
-  //We start setting positive pin as output and setting a power level by analogWrite.
+  //We start setting "positive" pin as output and setting a low power level by analogWrite.
   pinMode(positive, OUTPUT);
   analogWrite(positive, 20);
   /*No matrix push button, buttom equal to *.
