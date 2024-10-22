@@ -80,38 +80,38 @@ void setup() {
   el otro como input high. La idea es que a través del pin 4 enviamos un pulso con valor LOW, y se lee en el pin 9,
   el cual es high. Se establece el condicional en función del pin 9, si pin9 == low, dado que era high originalmente
   entonces haz X acción.
-  */
-
-  //VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ 
-  
+  */  
   pinMode(pin4, OUTPUT);
   digitalWrite(pin4, LOW);
   pinMode(pin9, INPUT);
   digitalWrite(pin9, HIGH);
-  //Magnet this is the pin that will trigger the gate of the mosfet transistor.
+  //magnet1 es el pin que activará el pin gate, del transistor mosfet.
   pinMode(magnet1, OUTPUT);
-  //We start the serial monitor to print some in proces messages.
+  //Inicializamos el monitor serial, para imprimir los mensajes de reporte de estado de la ejecución del sistema.
   Serial.begin(9600);
-  /*Now we set the values for each pin combination. According to the schematic, the conexion between
-  pin1 and pin 5 is equal to button number 1. Since columns array's members are pin5, pin6, pin7 and
-  pin8; and since rows array's members are pin1, pin2, and pin3; the conexion of pin5 and pin1, is equal
-  to the position result[first member in columns array = 0][first member in rows array = 0] = result[0][0]
-   = 1. Same way, according to schematic, button 2 is equal to pin2 and pin5, so same way we have that
-  result[first member in columns array = 0][second member in rows array = 1] = result[0][1] = 2. And so on.
-  result[3][2] = pin8 and pin3 is equal to # button, but, since we are working with int arrays, we represent
-  it with number 11. We are not using # key at all tho.
-  */
+  /*Ahora establecemos los valores de cada combinació de pines. De cacuerdo al esquema de conexiones del teclado,
+  la conexión entre el pin1 y pin5 corresponde al botón número 1. Dado que los elementos en el array colums son:
+  pin5, pin6, pin7 y pin8; y debido a que los elementos en el array filas son: pin1, pin2 y pin3; la conexión 
+  entre pin5 y pin1, es igual al valor almacenado en result[posición de pin5 en columns = 0][posición de pin1 en
+  rows = 0] => result[0][0] = 1. De la misma forma, de acuerdo al esquema, el botón dos es igual a la conexión
+  entre pin5 y pin2, result[posición de pin5 en columns = 0][posición de pin2 en rows = 0] => result[0][0] = 2.
+  Se continúa de esta forma. result[3][2] = pin 8 y pin 3, igual al botón #. Dado que estamos trabajando con 
+  un array de integers, representamos # como el número 11. No obstante, no se está usando el botón # para nada.*/
   result[0][0] = 1; result[0][1] = 2; result[0][2] = 3; result[1][0] = 4; result[1][1] = 5;
   result[1][2] = 6; result[2][0] = 7; result[2][1] = 8; result[2][2] = 9; result[3][1] = 0;
   result[3][2] = 11;
-  pinSetUp(columns, rows); //We load pinSetUp void, the one that will set up all pins. Check pinStUp void for
-  //deeper explanations.
-  readPasswordInEeprom(numberOfDigits); /*We read the actual values burnt in Eeprom memory. We need to load this
-  void as soon as system turns on because otherwise we password values would always be the defult ones.
+  pinSetUp(columns, rows); //Llamamos al método pinSetUp, el cual configurará todos los pines. Se aconseja revisar
+  //la infocmación comentada en dicho método para una explicación más detallada.
+  readPasswordInEeprom(numberOfDigits); /*Leemos los valores almacenados actualmente en la memoria Eeprom. Es necesario
+  llamar a este método tan pronto como se alimente el sistema, de lo contrario los valores de la contraseña serían 
+  siempre los valores por defecto.
   */
-  printPasswordInEeprom(numberOfDigits); //We print in serial monitor the Eeprom's current values.
-  startingLights(); //We load starting lights.
+  printPasswordInEeprom(numberOfDigits); //Imprimimos los valores actuales guardados en la Eeprom, en la consola serial.
+  startingLights(); //Cargamos la secuencia de luces inicial.
 }
+
+//VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ 
+
 void loop() {
   /*Main loop of the system is based on mainMenuVariable. This variable is the one that sets us inside password change
   menu or not. If this variable is equals to low, then we get in the menu to change password, otherwise we will just
