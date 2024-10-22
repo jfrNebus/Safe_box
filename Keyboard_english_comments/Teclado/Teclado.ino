@@ -56,11 +56,10 @@ on whether the entered password was correct or not.
 //Columns and rows store the pins according to the electronics schematic.
 int columns[C] = {pin5, pin6, pin7, pin8};
 int rows[R] = {pin1, pin2, pin3};
-int result[C][R]; /*In result multy dimensional array we will use columns and rows as inner arrays.
-Later, we will give a value to each one of the combination, and this will be the 0-9 and *
-representation. Short explanation: If pin 5 of columns gets connected with pin 2 of rows, we will
-get the value "2", that we will set later, so the conexion of pin5 and pin2 is equal to key 2 in
-the keyboard.
+int result[C][R]; /*In "result" multy dimensional array, we will use the number of columns and the number of rows
+as its dimensions. Later, we will give a value to each one of the combination, and this will be the 0-9 and *
+representation. Short explanation: if pin 5 of columns gets connected with pin 2 of rows, we will
+get the value "2", so the conexion of pin5 and pin2 is equal to key 2 in the keyboard.
 */
 int mainMenuVariable = HIGH; /*This variable is where we will store the reading of * button, default
 value is high. * button is multipurpose, it will help us to either leave password menu without making
