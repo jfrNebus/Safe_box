@@ -18,9 +18,9 @@ int positive = 11;
 int green = A5;
 int orange = A4;
 int red = A3;
-/* Los led se encenderán si establecemos pinMode(red, OUTPUT);, debido a que los led son positivo común, cuando
-establecemos su lado negativo como output, dado que output establece su valor a LOW, conectado a ground, se cierra
-el circuito.
+/* Los led se encenderán si establecemos pinMode(red, OUTPUT);, debido a que los led son positivo común, 
+cuando establecemos su lado negativo como output, dado que output establece su valor a LOW, conectado a 
+ground, se cierra el circuito.
 */
 int keyColumn; //Establece el valor de la primera dimensión del array bidimensional.
 int keyRow; //Establece el valor de la segunda dimensión del array bidimensional.
@@ -32,40 +32,43 @@ debe a que el botón * se comportará de formas diferentes en función de si est
 byte password[] = {1, 1, 1, 2, 2, 2}; /*La contraseña por defecto cuando se carga el programa en la placa, 
 y el array que será sobrescrito cuando guardemos una nueva password en la memoria Eeprom.
 */
-byte passwordEepromAddress[] = {1, 2, 3, 4, 5, 6}; /*Los números de posición en la memoria Eeprom, donde se guardará
-cada número de la contraseña. Esto quiere decir que guardaremos un grupo de 6 números, y cada uno de esos números se guardará
-en un "slot", en una dirección de la la memoria Eeprom. Los números en este array son las direcciones de estos slots. El
-primer número de la contraseña se guardará en la dirección que aparezca en la primera posición del array
-passwordEepromAddress, la dirección 1; el segundo número de la contraseña se guardará en la posición 2; y así consecutivamente.
+byte passwordEepromAddress[] = {1, 2, 3, 4, 5, 6}; /*Los números de posición en la memoria Eeprom, donde
+se guardará cada número de la contraseña. Esto quiere decir que guardaremos un grupo de 6 números, y cada 
+uno de esos números se guardará en un "slot", en una dirección de la la memoria Eeprom. Los números en 
+este array son las direcciones de estos slots. El primer número de la contraseña se guardará en la dirección
+que aparezca en la primera posición del array passwordEepromAddress, la dirección 1; el segundo número de 
+la contraseña se guardará en la posición 2; y así consecutivamente.
 
-Por comprobar: Elimina este array y en su lugar usa la propia variable del bucle for como dirección en la memoria eeprom. De
-esta forma, la primera posición sería la 0 y la última la 5.
+Por comprobar: Elimina este array y en su lugar usa la propia variable del bucle for como dirección en la 
+memoria eeprom. De esta forma, la primera posición sería la 0 y la última la 5.
 */
 byte newPasswordCounter = 0; //-TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK ESTA LÍNEA FALTA POR DOCUMENTAR
-byte numberOfDigits = 6; /*Numero de dígitos de nuestra contraseña. Esta variable establece el número de iteraciones para cada loop for. 
-Estos bucles se utilizan a la hora de leer, imprimir o grabar la contraseña en desde / en la memoria Eeprom.
+
+byte numberOfDigits = 6; /*Numero de dígitos de nuestra contraseña. Esta variable establece el número de 
+iteraciones para cada loop for. Estos bucles se utilizan a la hora de leer, imprimir o grabar la contraseña
+en desde / en la memoria Eeprom.
 */
 const byte C = 4;//Número de columnas.
 const byte R = 3;//Número de filas.
-bool match = false; /*Booleano que permitirá controlar diferentes condicionales en función de si la contraseña es introducida es correcta
+bool match = false; /*Booleano que permitirá controlar diferentes condicionales en función de si la contraseña
+es introducida es correcta
 o no.
+*/
+//Columns y rows almacenan los pines asociados a las columnas y a las filas, de acuerdo al esquema eléctrico.
+int columns[C] = {pin5, pin6, pin7, pin8};
+int rows[R] = {pin1, pin2, pin3};
+int result[C][R]; /* Usaremos el número de columnas y de filas como dimensiones del array bidimensional "result". 
+Más tarde le daremos un valor a cada una de las combinaciones. Serán estos valores los que representen cada tecla
+del teclado. Explicación breve: si el pin 5 del array columns, se conecta con el pin 2 de filas, obtendremos el
+valor "2", que corresponde con la tecla 2 del teclado.
+*/
+int mainMenuVariable = HIGH; /*En esta variable se guardara la lectura del botón *. El valor por defecto es HIGH.
+El botón * tiene varias funciones. Nos ayuda a abandonar el menú de password sin guardar ningún cambio, o a cancelar
+la introducción de una secuencia de codigo en caso de que nos hayamos equivocado, o por cualquier razón. Se llega
+a estas condiciones cuando mainMenuVariable == LOW.
 */
 
 //VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ 
-
-//Columns and rows store the pins according to the electronics schematic.
-int columns[C] = {pin5, pin6, pin7, pin8};
-int rows[R] = {pin1, pin2, pin3};
-int result[C][R]; /*In result multy dimensional array we will use columns and rows as inner arrays.
-Later, we will give a value to each one of the combination, and this will be the 0-9 and *
-representation. Short explanation: If pin 5 of columns gets connected with pin 2 of rows, we will
-get the value "2", that we will set later, so the conexion of pin5 and pin2 is equal to key 2 in
-the keyboard.
-*/
-int mainMenuVariable = HIGH; /*This variable is where we will store the reading of * button, default
-value is high. * button is multipurpose, it will help us to either leave password menu without making
-any change, to cancel a wrong input, etc. This conditions will be met once mainMenuVariable == LOW.
-*/
 
 void setup() {
   //Leds
