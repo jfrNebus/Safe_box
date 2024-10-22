@@ -73,7 +73,6 @@ void setup() {
   analogWrite(positive, 20);
   /*No matrix push button, buttom equal to *.
   We set one of the pin of the button as output low, and the other one as input high.
-  
   THE BASIC WORKING IDEA is that through pin4 you send a low pulse, and you read it in pin 9
   which is high. You set conditionals according to pin 9: if pin9 == to low, since it was high,
   then do this.
@@ -82,29 +81,30 @@ void setup() {
   digitalWrite(pin4, LOW);
   pinMode(pin9, INPUT);
   digitalWrite(pin9, HIGH);
-  //Magnet this is the pin that will trigger the gate of the mosfet transistor.
+  //magnet1 is the pin that will trigger the gate pin, of the mosfet transistor.
   pinMode(magnet1, OUTPUT);
-  //We start the serial monitor to print some in proces messages.
+  //We start the serial monitor, to print the in process messages.
   Serial.begin(9600);
-  /*Now we set the values for each pin combination. According to the schematic, the conexion between
-  pin1 and pin 5 is equal to button number 1. Since columns array's members are pin5, pin6, pin7 and
-  pin8; and since rows array's members are pin1, pin2, and pin3; the conexion of pin5 and pin1, is equal
-  to the position result[first member in columns array = 0][first member in rows array = 0] = result[0][0]
-   = 1. Same way, according to schematic, button 2 is equal to pin2 and pin5, so same way we have that
-  result[first member in columns array = 0][second member in rows array = 1] = result[0][1] = 2. And so on.
-  result[3][2] = pin8 and pin3 is equal to # button, but, since we are working with int arrays, we represent
-  it with number 11. We are not using # key at all tho.
+  /*Now we set the values for each pin combination. According to the keyboard connexions schematic, 
+  the conexion between pin1 and pin5 belongs to button number 1. Since columns array's members are: 
+  pin5, pin6, pin7 and pin8; and since rows array's members are: pin1, pin2, and pin3; the conexion 
+  between pin5 and pin1, is equal to the vaule stored in result[poisition of pin5 in columns = 0]
+  [position of pin 1 in rows = 0] => result[0][0] = 1. Same way, according to schematic, button 2 is
+  equal to pin5 and pin2, so same way we have that result[first member in columns array = 0][second
+  member in rows array = 1] = result[0][1] = 2. And so on. result[3][2] = pin8 and pin3 is equal to # 
+  button, but, since we are working with int arrays, we represent it with number 11. We are not using
+  # key at all tho.
   */
   result[0][0] = 1; result[0][1] = 2; result[0][2] = 3; result[1][0] = 4; result[1][1] = 5;
   result[1][2] = 6; result[2][0] = 7; result[2][1] = 8; result[2][2] = 9; result[3][1] = 0;
   result[3][2] = 11;
-  pinSetUp(columns, rows); //We load pinSetUp void, the one that will set up all pins. Check pinStUp void for
+  pinSetUp(columns, rows); //We call pinSetUp void, the one that will set up all pins. Check pinStUp void for
   //deeper explanations.
   readPasswordInEeprom(numberOfDigits); /*We read the actual values burnt in Eeprom memory. We need to load this
-  void as soon as system turns on because otherwise we password values would always be the defult ones.
+  void as soon as system turns on because otherwise the password values would always be the defult ones.
   */
   printPasswordInEeprom(numberOfDigits); //We print in serial monitor the Eeprom's current values.
-  startingLights(); //We load starting lights.
+  startingLights(); //We load starting lights sequence.
 }
 void loop() {
   /*Main loop of the system is based on mainMenuVariable. This variable is the one that sets us inside password change
