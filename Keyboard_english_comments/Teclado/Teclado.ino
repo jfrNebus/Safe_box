@@ -107,12 +107,12 @@ void setup() {
   startingLights(); //We load starting lights sequence.
 }
 void loop() {
-  /*Main loop of the system is based on mainMenuVariable. This variable is the one that sets us inside password change
+  /*Main loop of the system is based on mainMenuVariable. This variable is the one that sets us "inside password change"
   menu or not. If this variable is equals to low, then we get in the menu to change password, otherwise we will just
   load the confirmation void, and then the openClose void. Confirmation menu will check if what we typed is equal to
-  actual value of Eeprom memory, and if so, it will set match = true. openClose void will either send a high pulse
-  through A1 to the gate of mosfet and will trigger a green led for 2 seconds; or it will blink twice red light if
-  password typed was wrong.
+  actual value of Eeprom memory. If both passwords are equals, it will set match = true. openClose void will either send 
+  a high pulse through A1 to the gate of mosfet and will trigger a green led for 2 seconds; or it will blink twice red 
+  light if password typed was wrong, according to the value of "match" variable set by "confirmation".
   In the other hand we have the new password menu. If mainMenuVariable == LOW, we get in this menu. This means that
   confirmation menu was loaded at least once, and it detected that * key was pressed. Since * was pressed,
   mainMenuVariable changed from HIGH to LOW. Once inside this conditional we will start by turning on the red LED constantly
