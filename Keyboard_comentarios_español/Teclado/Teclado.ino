@@ -113,12 +113,21 @@ void setup() {
 //VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ 
 
 void loop() {
-  /*Main loop of the system is based on mainMenuVariable. This variable is the one that sets us inside password change
-  menu or not. If this variable is equals to low, then we get in the menu to change password, otherwise we will just
-  load the confirmation void, and then the openClose void. Confirmation menu will check if what we typed is equal to
-  actual value of Eeprom memory, and if so, it will set match = true. openClose void will either send a high pulse
-  through A1 to the gate of mosfet and will trigger a green led for 2 seconds; or it will blink twice red light if
-  password typed was wrong.
+  /*El loop principal del sistema se basa en la variable mainMenuVariable. Esta variable es la que nos situa, o no, dentro
+  del menú "inside password change". Si el valor de esta variable es low, entonces entramos en el menú de cambio de contraseña,
+  de lo contrario, lanzamos los métodos "confirmation" y "openClose".
+
+  POR MODIFICAR-----: Modifica confirmation para devuelva un booleano. Usa este booleano para lanzar o no openClose.
+
+  El menú "confirmation" evaluara si la contraseña que se introdujo es igual al valor actual de la memoria Eeprom. Si ambas 
+  contraseñas coinciden, se establecerá la variable match como true. El método openClose enviará un pulso alto al pin gate
+  del mosfet y activará el led verde, durante 2 segundos; o bien hará que el led rojo parpadee dos veces, si la contraseña
+  introducida es erronea, en función del resultado de la variable "match" reportada por "confirmation".
+
+  Por otro lado, tenemos el menú de contraseña nueva. Si mainMenuVariable es igual a LOW, entramos en este menu. Esto quiere 
+  decir que confirmation será lanzado al menos una vez,
+  */
+  /*
   In the other hand we have the new password menu. If mainMenuVariable == LOW, we get in this menu. This means that
   confirmation menu was loaded at least once, and it detected that * key was pressed. Since * was pressed,
   mainMenuVariable changed from HIGH to LOW. Once inside this conditional we will start by turning on the red LED constantly
