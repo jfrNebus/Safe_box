@@ -286,7 +286,7 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
       mainMenuVariable = digitalRead(pin9);
       if (mainMenuVariable == LOW) { 
         cancelled = true;
-        mainMenuVariable = HIGH;
+        mainMenuVariable = HIGH; //Check if this line is needed considering that it is sent in main if conditional in void loop
         insideNewPasswordMenu = false;
         readPasswordInEeprom(numberOfDigits);
         break;
