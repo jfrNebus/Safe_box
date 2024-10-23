@@ -117,36 +117,40 @@ void loop() {
   del menú "inside password change". Si el valor de esta variable es low, entonces entramos en el menú de cambio de contraseña,
   de lo contrario, lanzamos los métodos "confirmation" y "openClose".
 
-  POR MODIFICAR-----: Modifica confirmation para devuelva un booleano. Usa este booleano para lanzar o no openClose.
+  POR MODIFICAR-----: Modifica confirmation para devuelva un booleano. Usa este booleano para lanzar o no openClose. Revisa 
+  también si este boleano se podría usar en lugar de la siguiente parte de código, dentro del if principal del void loop.
+  
+  confirmation (password, numberOfDigits, columns, rows);
+    if (insideNewPasswordMenu)
 
-  El menú "confirmation" evaluara si la contraseña que se introdujo es igual al valor actual de la memoria Eeprom. Si ambas 
+  El menú "confirmation" evaluará si la contraseña que se introdujo, es igual al valor actual de la memoria Eeprom. Si ambas 
   contraseñas coinciden, se establecerá la variable match como true. El método openClose enviará un pulso alto al pin gate
   del mosfet y activará el led verde, durante 2 segundos; o bien hará que el led rojo parpadee dos veces, si la contraseña
   introducida es erronea, en función del resultado de la variable "match" reportada por "confirmation".
 
   Por otro lado, tenemos el menú de contraseña nueva. Si mainMenuVariable es igual a LOW, entramos en este menu. Esto quiere 
-  decir que confirmation será lanzado al menos una vez,
-  */
-  /*
-  In the other hand we have the new password menu. If mainMenuVariable == LOW, we get in this menu. This means that
-  confirmation menu was loaded at least once, and it detected that * key was pressed. Since * was pressed,
-  mainMenuVariable changed from HIGH to LOW. Once inside this conditional we will start by turning on the red LED constantly
-  till we leave this menu to help the user to know which part of the code is being executed all the time. Then we send
-  a message to serial monitor, and we set insideNewPasswordMenu as true, and mainMenuVariable to HIGH again. We will talk
-  deeply about insideNewPasswordMenu variable, in newPassword void.
-  We set mainMenuVariable again to HIGH because that way, if we leave the new password menu, we wont get again
-  inside this menu, we will get just in the main loop. Then, orange led blinks 2, visual purpose only.
-  New password menu will request the actual password with confirmation void. Confirmation void will set match to true or
-  false. After loading confirmation void, and if insideNewPassWord is still true, (it can change during confirmation
-  void), we load newPassword void. Once this void is over, we set red LED as input, and we leave new password menu.
-  */
+  decir que "confirmation" fue lanzado al menos una vez, y detectó que la botón * fue presionado. Dado que * fue presionado,
+  mainMenuVariable cambió de tener un valor HIGH a tener un valor LOW. Una vez dentro del condicional, encendemos el led rojo
+  de forma constante hasta que abandonemos este menu. Esto le sirve al usario para conocer, en todo momento, qué parte del 
+  código se está ejecutando. Depués, enviamos un mensaje al monitor serie, establecemos insideNewPasswordMenú como true, y
+  mainMenuVariable como HIGH de nuevo. Hablaremos más profundamente acerca de la variable insideNewPasswordMenu, en el método
+  newPassword. 
+  Establecemos mainManuVariable de nuevo como HIGH porque de esta forma, si abandonamos el menú new password, no volveremos
+  de nuevo a este condicional, volveremos al loop principal. A continuación, el led naranja parapadea dos veces. Sirve como 
+  indicativo visual únicamente. Para poder alcanzar el método newPassword, se debe registrar el ingreso de la contraseña de 
+  forma correcta, mediante el método confirmation. Este método establecerá match como true o false. Despues de lanzar el 
+  método confirmation, si insideNewPasswordMenu sigue siendo true, (su valor puede ser modificado en el interior del método 
+  confirmation), cargamos el método newPassword. Una vez este método finaliza, establecemos we el led rojo como input, y
+  abandonamos el menú new password.
 
-
+  POR MODIFICAR-----: Revisa lo de encender o apagar los led no usando digitalWrite, sino estableciendo los pines como 
+  inputs u outputs.
+  */
   Serial.println("Main Menu.");
   if (mainMenuVariable == LOW) {
     pinMode(red, OUTPUT);
     Serial.println("Inside new password conditional.");
-    mainMenuVariable = HIGH;
+    mainMenuVariable = HIGH; //Check if this line is really needed considering that it is being sent in confirmation.
     insideNewPasswordMenu = true;
     pinMode(orange, OUTPUT);
     delay(100);
