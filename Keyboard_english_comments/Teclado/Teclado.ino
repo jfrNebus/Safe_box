@@ -114,16 +114,16 @@ void loop() {
   a high pulse through A1 to the gate of mosfet and will trigger a green led for 2 seconds; or it will blink twice red 
   light if password typed was wrong, according to the value of "match" variable set by "confirmation".
   In the other hand we have the new password menu. If mainMenuVariable == LOW, we get in this menu. This means that
-  confirmation menu was loaded at least once, and it detected that * key was pressed. Since * was pressed,
-  mainMenuVariable changed from HIGH to LOW. Once inside this conditional we will start by turning on the red LED constantly
-  till we leave this menu to help the user to know which part of the code is being executed all the time. Then we send
-  a message to serial monitor, and we set insideNewPasswordMenu as true, and mainMenuVariable to HIGH again. We will talk
-  deeply about insideNewPasswordMenu variable, in newPassword void.
+  confirmation menu was loaded at least once, and it detected that * key was pressed. Since * was pressed, mainMenuVariable
+  changed from HIGH to LOW. Once inside this conditional, we will start by turning on the red LED constantly till we leave
+  this menu. This it meant to help the user to know which part of the code is being executed all the time. Then we send
+  a message to serial monitor, we set insideNewPasswordMenu as true, and mainMenuVariable to HIGH again. We will
+  talk deeply about insideNewPasswordMenu variable, in newPassword void.
   We set mainMenuVariable again to HIGH because that way, if we leave the new password menu, we wont get again
   inside this menu, we will get just in the main loop. Then, orange led blinks 2, visual purpose only.
-  New password menu will request the actual password with confirmation void. Confirmation void will set match to true or
-  false. After loading confirmation void, and if insideNewPassWord is still true, (it can change during confirmation
-  void), we load newPassword void. Once this void is over, we set red LED as input, and we leave new password menu.
+  In order to reach the "newPassword" void, a right password must be registered by "confirmation". Confirmation void will 
+  set match to true or false. After loading confirmation void, and if insideNewPasswordMenu is still true, (it can change during
+  confirmation void), we load newPassword void. Once this void is over, we set red LED as input, and we leave new password menu.
   */
 
 
