@@ -10,6 +10,7 @@ void pinSetUp (int array1[], int array2[]) {
     will be the ones that will read the values from pins in first array. They are HIGH,
     when we set the ones in first array as low while iterating over them, and later we
     read values in second array, the one low instead of high, will be our pressed key.
+    It is highly recommended to read "mainKeyCaptation" for a better understanding.
     */
     pinMode(array2[j], INPUT);
     digitalWrite(array2[j], HIGH);
