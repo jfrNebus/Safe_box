@@ -53,20 +53,13 @@ void mainKeyCaptation(int array1[], int array2[]) {
 boolean getKeyDetectedState() {
   return keyDetected;
 }
-
-
-
-
-
-
-
-
+/*Método getter para devolver el valor de la tecla almacenada en el array result, para el valor
+actual de keyColumn y keyRow.
+*/
 int getKeyPressedValue () {
-  /*We return the value of result[keyColumn][keyRow]. keyColumn and keyRow store the values of
-  of the pins of the key pressed.
-  */
   return result[keyColumn][keyRow];
 }
+
 void confirmation (byte password[], byte numberOfDigits, int array1[], int array2[]) {
   /*This void will check if the password entered match the in Eeprom's memory.
   First it starts blinking twice orange led to indicate that we are currently inside 
