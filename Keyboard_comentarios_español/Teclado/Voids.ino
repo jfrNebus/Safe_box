@@ -17,9 +17,10 @@ void pinSetUp (int array1[], int array2[]) {
     digitalWrite(array2[j], HIGH);
   }
 }
+//Este método establece el modo de comportamiento de los pines del teclado.
 void mainKeyCaptation(int array1[], int array2[]) {
-  /*We set as low, it was high previously, each value of first array to check if that value is read
-  as low in any of the members of array2.
+  /*Cambiamos el valor de cada elemento del primer array, de HIGH a LOW, secuencialmente, para 
+  evaluar si el valor LOW se lee en alguno de los elementos de array2.
   */
   int variable;
   for (int i = 0; i < 4; i++) {
@@ -28,11 +29,12 @@ void mainKeyCaptation(int array1[], int array2[]) {
     of first array.*/
     for (int j = 0; j < 3; j++) {
       variable = digitalRead(array2[j]);
-      /*If variable is equals to low, it means we pressed the key that connect both pins,
-      represented as a member in each array, so a low pulse from pin in array number one
-      is sent to pin in array number 2. If this happens we store the number of the iteration,
-      wich is actually the position in the array, the pin itself, for each array, and we set
-      as true the boolean that tell us that a key was pressed.
+      /*Si "variable" es igual a LOW, quiere decir que se presionó la tecla que conecta ambos
+      pines, representados como un miembro de cada array. Un pulso bajo de un pin en el array
+      2, es enviado a un pin del array 2. Si esto ocurre, guardamos el número de iteración de
+      cada bucle for, cada número será la posición de un elemento en cada array, los pines 
+      involucrados, y se establece como true el booleano keyDetected, que nos indica que una 
+      tecla fue presionada.
       */
       if (variable == LOW) {
         keyColumn = i;
@@ -41,19 +43,23 @@ void mainKeyCaptation(int array1[], int array2[]) {
         break;
       }
     }
-    /*Once the actual array1 iteration is over, we set the current pin in array1 as high again,
-    since that's the default behaviour. That way we will avoid problems.
+    /*Una vez la iteración actual de array1 se finaliza, se establece el pin actual de nuevo 
+    con valor HIGH, dado que es el estado por defecto.
     */
     digitalWrite(array1[i], HIGH);
   }
 }
-
+//El método getter de la variable keyDetected.
 boolean getKeyDetectedState() {
-  /*We return keyDetected boolean value. This will help us to set conditionals based in if 
-  any key was pressed.
-  */
   return keyDetected;
 }
+
+
+
+
+
+
+
 
 int getKeyPressedValue () {
   /*We return the value of result[keyColumn][keyRow]. keyColumn and keyRow store the values of
