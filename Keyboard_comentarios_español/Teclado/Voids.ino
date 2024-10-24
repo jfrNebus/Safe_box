@@ -17,7 +17,7 @@ void pinSetUp (int array1[], int array2[]) {
     digitalWrite(array2[j], HIGH);
   }
 }
-//Este método establece el modo de comportamiento de los pines del teclado.
+//Este método establece el modo de comportamiento de los pines del teclado. Commit test
 void mainKeyCaptation(int array1[], int array2[]) {
   /*Cambiamos el valor de cada elemento del primer array, de HIGH a LOW, secuencialmente, para 
   evaluar si el valor LOW se lee en alguno de los elementos de array2.
