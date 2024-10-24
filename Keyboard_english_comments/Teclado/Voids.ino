@@ -56,21 +56,18 @@ boolean getKeyDetectedState() {
 int getKeyPressedValue () {
   return result[keyColumn][keyRow];
 }
-//Method to check if the password entered match the one in Eeprom's memory.
+//Method to check if the password entered match the one in Eeprom memory.
 void confirmation (byte password[], byte numberOfDigits, int array1[], int array2[]) {
-
-
-  
-  /*This void will check if the password entered match the one in Eeprom's memory.
+  /*This void will check if the password entered match the one in Eeprom memory.
   First it starts blinking twice orange led to indicate that we are currently inside 
   confirmation void. Then we create a few variables/arrays.
   -newPasswordCounter will store the amount of iterations done over the main loop.
   -inputPassword[numberOfDigits] will store the numbers given by the buttoms pressed.
    Its size will be numberOfDigits, set at begging of code.
   -numberTyped will help us to set diferent states for the * button to operate.
-  -Cancelled will set if the part of the code which checks if the password entered
-   should, or should not be checked if it is right or not, according to if we pressed
-   cancel button.
+  -Cancelled will be used as condition to face the password in the Eeprom memory against
+  the entered password. If its value is equals to false, both passwords will be compared; 
+  if its value is true, it means that the * button, which is used to cancel, was pressed.
   Then we get into main While loop, which will iterate while newPasswordCounter is lower
   than numberOfDigits, which is one of the parameters of this void. 
   */
@@ -87,15 +84,15 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
   boolean numberTyped = false;
   boolean cancelled = false;
   while (newPasswordCounter < numberOfDigits) {
-    /*First we store in mainMenuVariable the value of reading pin9,
-    and, according to its value, we set some conditionals:
+    /*First we store in mainMenuVariable the value of reading pin9 and, 
+    according to its value, we set some conditionals:
     - If mainMenuVariable is equals to low, and at the same time, variable
       numberTyped or insideNewPasswordMenu are True, then we will change the
       value of some variables with the purpose of going back to main menu 
       cancelling all performed actions, and avoiding getting into password
-      change menu:
-      * We set cancelled as true, that way we won't get into the last 
-        conditional which checks if the typed password matchs the password 
+      change menu.
+      * We set cancelled as true. This way we won't get into the last 
+        conditional, which checks if the entered password matchs the password 
         stored inside password[]. We don't need it to be checked because *
         button is used as cancel action / password change menu request.
       * We set mainMenuVariable as HIGH again to avoid getting into password
@@ -162,7 +159,7 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
   /*Finally, if cancelled is still low once we left the while loop, we will get
     inside the conditional. This conditional will check if all values inside
     inputPassword[i] are equals to all values inside the password[i], which is 
-    burnt in EEPROM's memory. Each time both values in same position are equal, 
+    burnt in EEPROM memory. Each time both values in same position are equal, 
     match variable will be set as true, and if this for loop ends and match is
     equals to true, we will be able to perform the action that depends on if(match).
     As soon as inputPassword doesn't match a value in password, we won't get inside 
