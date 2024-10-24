@@ -1,3 +1,4 @@
+//This method sets the behaviour of each keyboard pin.
 void pinSetUp (int array1[], int array2[]) {
   for (int i = 0; i < 4; i++) {
     /*We set each pin in first array as output. These pins will be the ones sending
@@ -16,9 +17,10 @@ void pinSetUp (int array1[], int array2[]) {
     digitalWrite(array2[j], HIGH);
   }
 }
+//This method checks for a key pressed.
 void mainKeyCaptation(int array1[], int array2[]) {
-  /*We set as low, it was high previously, each value of first array to check if that value is read
-  as low in any of the members of array2.
+  /*We change each value of first array from HIGH to LOW, sequentially, to check if this
+  LOW value is read in any of the members of array2.
   */
   int variable;
   for (int i = 0; i < 4; i++) {
@@ -27,11 +29,11 @@ void mainKeyCaptation(int array1[], int array2[]) {
     of first array.*/
     for (int j = 0; j < 3; j++) {
       variable = digitalRead(array2[j]);
-      /*If variable is equals to low, it means we pressed the key that connect both pins,
-      represented as a member in each array, so a low pulse from pin in array number one
-      is sent to pin in array number 2. If this happens we store the number of the iteration,
-      wich is actually the position in the array, the pin itself, for each array, and we set
-      as true the boolean that tell us that a key was pressed.
+      /*If "variable" is equals to LOW, it means we pressed the key that connect both pins,
+      represented as a member in each array. A low pulse from pin in array number one
+      is sent to pin in array number 2. If this happens we store the number of the iteration 
+      for each for loop, which actually are the positions in the array, the pins involved, and 
+      we set as true the boolean "keyDetected", that tell us that a key was pressed.
       */
       if (variable == LOW) {
         keyColumn = i;
@@ -40,27 +42,23 @@ void mainKeyCaptation(int array1[], int array2[]) {
         break;
       }
     }
-    /*Once the actual array1 iteration is over, we set the current pin in array1 as high again,
-    since that's the default behaviour. That way we will avoid problems.
+    /*Once the actual array1 iteration is over, we set the current pin in array1 as HIGH again,
+    since that's the default behaviour.
     */
     digitalWrite(array1[i], HIGH);
   }
 }
-
+//keyDetected getter.
 boolean getKeyDetectedState() {
-  /*We return keyDetected boolean value. This will help us to set conditionals based in if 
-  any key was pressed.
-  */
   return keyDetected;
 }
-
+//Getter to return the key value for the current keyColumn and keyRow.
 int getKeyPressedValue () {
-  /*We return the value of result[keyColumn][keyRow]. keyColumn and keyRow store the values of
-  of the pins of the key pressed.
-  */
   return result[keyColumn][keyRow];
 }
+//Method to check if the password entered match the one in Eeprom's memory.
 void confirmation (byte password[], byte numberOfDigits, int array1[], int array2[]) {
+
   /*This void will check if the password entered match the one in Eeprom's memory.
   First it starts blinking twice orange led to indicate that we are currently inside 
   confirmation void. Then we create a few variables/arrays.
