@@ -59,6 +59,7 @@ int getKeyPressedValue () {
 //Method to check if the password entered match the one in Eeprom's memory.
 void confirmation (byte password[], byte numberOfDigits, int array1[], int array2[]) {
 
+  
   /*This void will check if the password entered match the one in Eeprom's memory.
   First it starts blinking twice orange led to indicate that we are currently inside 
   confirmation void. Then we create a few variables/arrays.
