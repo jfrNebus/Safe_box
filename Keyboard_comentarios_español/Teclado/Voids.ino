@@ -59,20 +59,24 @@ actual de keyColumn y keyRow.
 int getKeyPressedValue () {
   return result[keyColumn][keyRow];
 }
-
+/*Método para comprobar si la contraseña introducida coincide con la contraseña almacenada en la
+memoria Eeprom.
+*/
 void confirmation (byte password[], byte numberOfDigits, int array1[], int array2[]) {
-  /*This void will check if the password entered match the in Eeprom's memory.
-  First it starts blinking twice orange led to indicate that we are currently inside 
-  confirmation void. Then we create a few variables/arrays.
-  -newPasswordCounter will store the amount of iterations done over the main loop.
-  -inputPassword[numberOfDigits] will store the numbers given by the buttoms pressed.
-   Its size will be numberOfDigits, set at begging of code.
-  -numberTyped will help us to set diferent states for the * button to operate.
-  -Cancelled will set if the part of the code which checks if the password entered
-   should, or should not be checked if it is right or not, according to if we pressed
-   cancel button.
-  Then we get into main While loop, which will iterate while newPasswordCounter is lower
-  than numberOfDigits, which is one of the parameters of this void. 
+  /*El método empieza encendiendo y apagando el led dos veces para indicar que el código se 
+  encuentra actualmente dentro del método confirmation. A continuación, se crean una serie
+  de elementos.
+  -newPasswordCounter almacenará el número de iteraciones efecturado sobre el bucle principal.
+  -inputPassword[numberOfDigits] almacenará el valor numérico de los botones presionados. El tamaño
+  del array es numberOfDigits, establecido al inicio del código.
+  -numberTyped sirve para poder establecer diferentes estados para que el botón * tenga diferentes
+  funciónes.
+  -Cancelled será usado como condición para comprobar si la contraseña en la memoria eeprom y la 
+  contraseña introducide coinciden. Si el valor de esta variable es false, ambas contraseñas serán
+  comparadas; si el valor es true, quiere decir que el botón *, el que se usa para cancelar la
+  operación, fue presionado.
+  A continuación, entramos en el bucle while principal, que iterará mientras 
+  newPasswordCounter is menor que numberOfDigits.
   */
   pinMode(orange, OUTPUT);
   delay(100);
@@ -87,19 +91,21 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
   boolean numberTyped = false;
   boolean cancelled = false;
   while (newPasswordCounter < numberOfDigits) {
-    /*First we store in mainMenuVariable the value of reading pin9,
-    and, according to its value, we set some conditionals:
-    - If mainMenuVariable is equals to low, and at the same time, variable
-      numberTyped or insideNewPasswordMenu are True, then we will change the
-      value of some variables with the purpose of going back to main menu 
-      cancelling all performed actions, and avoiding getting into password
-      change menu:
-      * We set cancelled as true, that way we won't get into the last 
-        conditional which checks if the typed password matchs the password 
-        stored inside password[]. We don't need it to be checked because *
-        button is used as cancel action / password change menu request.
-      * We set mainMenuVariable as HIGH again to avoid getting into password
-        change menu, since it depends on a conditional if (mainMenuVariable = low).
+    /* Primero almacenamos en mainMenuVariable, el valor de la lectura del 
+    pin9 y, dependiendo de su valor, establecemos algunos bloques condicionales.
+    - Si mainMenuVariable es igual a low y, al mismo tiempo, alguna de las variables
+    numberTyped o insideNewPasswordMenu, son true, entonces se modificará el valor
+    de algunas variable con la intención de volver al menú principal, cancelando
+    todas las operaciones realizadas, evitando acceder al menú de cambio de 
+    contraseña.
+      * Se establece el valor de cancelled como true. De esta forma no se accederá
+      al último condicional, el cual comprueba si la contraseña introducida coincide
+      con la contraseña almacenada en password[]. No es necesario comprobar si coinciden
+      porque el botón * se usa para cancelar la acción / la petición de cambio de 
+      contraseña.
+      * Se establece mainMenuVariable como HIGH de nuevo, para evitar entrar en el menú
+      de cambio de contraseña, debido a que depende del condicional if (mainMenuVariable 
+      = low).
       * We set insideNewPasswordMenu as false. This variable is set to true when 
         we get in the new password menu, in order to be able to set an scenario where
         the code can know when we are inside new password menu or not. If we are 
