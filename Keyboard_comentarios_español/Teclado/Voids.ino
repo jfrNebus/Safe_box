@@ -12,7 +12,7 @@ void pinSetUp (int array1[], int array2[]) {
     después, leemos los valores del segundo array, aquellos que muestren un valor LOW en
     lugar de HIGH, serán los que hayan sido presionados. Se aconseja leer el método
     mainKeyCaptation para entender mejor el concepto.
-    */
+    */ 
     pinMode(array2[j], INPUT);
     digitalWrite(array2[j], HIGH);
   }
