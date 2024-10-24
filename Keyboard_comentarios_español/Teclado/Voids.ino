@@ -1,15 +1,17 @@
+//Este método establece el modo de comportamiento de los pines del teclado.
 void pinSetUp (int array1[], int array2[]) {
   for (int i = 0; i < 4; i++) {
-    /*We set each pin in first array as output. These pins will be the ones sending
-    the low signal that will be read by the second array.
-    */
+    /*Primero establecemos cada pin del primer array como output. Estos pines serán los
+    encargados de enviar el pulso bajo, que será leido por el segundo array.*/
     pinMode(array1[i], OUTPUT);
   }
   for (int j = 0; j < 3; j++) {
-    /*We set each pin in second array as input, and we write high on them. These pins
-    will be the ones that will read the values from pins in first array. They are HIGH,
-    when we set the ones in first array as low while iterating over them, and later we
-    read values in second array, the one low instead of high, will be our pressed key.
+    /*Establecemos el segundo array como input, y les asignamos un valor HIGH. Estos pines
+    serán los que lean los valores de los pines en el primer array. Se establecen como HIGH,
+    cuando establecesmos los del primer array como LOW mientras iteramos sobre ellos y, 
+    después, leemos los valores del segundo array, aquellos que muestren un valor LOW en
+    lugar de HIGH, serán los que hayan sido presionados. Se aconseja leer el método
+    mainKeyCaptation para entender mejor el concepto.
     */
     pinMode(array2[j], INPUT);
     digitalWrite(array2[j], HIGH);
