@@ -114,22 +114,23 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       LOW once the main loop checks if the new password menu conditional is true or not. 
       Since this conditional is if (mainMenuVariable == LOW), we will get inside of it.
     If none of these two conditionals is met, then we will call mainKeyCaptation(array1, 
-    array2);, which was explained previously, which will set keyDetected as true if a key
-    was pressed. After it we will get its vaule and if it is true, we will get inside
-    next conditional. Once we are inside next conditional we will perform some actions:
-    - We set numberTyped as true so, from now, if we press * key, code will understand that
-      we pressed a key and we need to cancel any action performed, so it will take us to 
-      main code loop according to the first conditional explained previously.
+    array2);, which was explained previously. This method will set keyDetected as true, if a
+    key was pressed. In case keyDetecte is equals to true, we will get inside
+    next conditional, where some actions will be performed:
+    - We set numberTyped as true. From now on, if we press * key, code will understand that
+      we pressed a key and we need to cancel any action performed. In such stage, it will take 
+      us to main code loop according to the first conditional explained previously.
     - We set keyDetected back to false, this way we won´t get inside this conditional until
       we press another key.
-    - We change orang pin to output for 300 milliseconds, and we change it back to input, to 
-      light up orange LED for that time showing to the user that a key was pressed.
+    - We change orang pin to output for 300 milliseconds, and we change it back to input. This
+      will turn on the LED for that time, showing to the user that a key was pressed.
     - We use newPasswordCounter as the position inside inputPassword[] array, where we will 
       store the value returned by getKeyPressedValue() void. This way, if we pressed the key 
       number 4 as the third number in our password, we will store in the inputPassword[] array
       in the third position the number 4.
     - Finally we newPasswordCounter++ to be able to record the number in the next position of
-      the password.
+      the password. Let's keep in mind that this variable is also used to control when the 
+      while loop of this method must stop.
     */
     mainMenuVariable = digitalRead(pin9);
     if ((mainMenuVariable == LOW) && (numberTyped || insideNewPasswordMenu)) {
