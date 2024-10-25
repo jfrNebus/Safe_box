@@ -106,7 +106,8 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       * Se establece mainMenuVariable como HIGH de nuevo, para evitar entrar en el menú
       de cambio de contraseña, debido a que depende del condicional if (mainMenuVariable 
       = low).
-      * We set insideNewPasswordMenu as false. This variable is set to true when 
+      * Establecemos insideNewPasswordMenu como false. Esta variable se estable se establece
+        como true cuando 
         we get in the new password menu, in order to be able to set an scenario where
         the code can know when we are inside new password menu or not. If we are 
         inside new password menú, this variable will be true, so if we press * button
