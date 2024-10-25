@@ -106,24 +106,26 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       * Se establece mainMenuVariable como HIGH de nuevo, para evitar entrar en el menú
       de cambio de contraseña, debido a que depende del condicional if (mainMenuVariable 
       = low).
-      * Establecemos insideNewPasswordMenu como false. Esta variable se estable se establece
-        como true cuando 
-        we get in the new password menu, in order to be able to set an scenario where
-        the code can know when we are inside new password menu or not. If we are 
-        inside new password menú, this variable will be true, so if we press * button
-        it means that we want to go back to main menu.
-     Finally, we break the main while loop of this void, leaving directly the whole void, and 
-     starting again the main loop of the code.
-    - If previous conditional is not met, then it means that numberTyped and 
-      insideNewPasswordMenu are false, so we still didn't press any number, and we are
-      not inside new password menu, so if * key is pressed, it means that we request 
-      the code to take us to new password Menu. In this situation we don't change back
-      mainMenuVariable's value, we set cancelled as true to avoid getting into the last 
-      conditional which checks if the typed password matchs the password 
-      stored inside password[], and we break the main while loop of this void. This way,
-      mainMenuVariable's value is still LOW once the main loop checks if the new password 
-      menu conditional is true or not, and, since this conditional is 
-      if (mainMenuVariable == LOW), we will get inside of it.
+      * Establecemos insideNewPasswordMenu como false. Esta variable se establece
+        como true cuando entramos en el menú new password. Si se presiona el botón *
+        mientras estamos dentro del menú new password, quiere decir que queremos volver
+        al menú principal, y por lo tanto no entramos dentro del condicional "if 
+        (insideNewPasswordMenu)" que viene a continuación del método confirmation.
+     Por último, rompemos el bucle while principal de este método, abandonando directamente
+     todo el método, empezando de nuevo el bucle main del código.
+    - Si la condición anterior no se cumple, quiere decir que numberTyped e
+      insideNewpasswordMenu son falsos, y por lo tanto aun no se presionó ningún número, 
+      y no nos encontramos dentro del menú de nueva contraseña. Por lo tanto, si se presiona
+      el botón *, quiere decir que estamos solicitando acceder al menú de nueva contraseña.
+      En esta situación, mainMenuVariable mantiene su nuevo valor LOW; se establece cancelled
+      como true, para evitar acceder al último condicional que evalúa si la contraseña 
+      introducida condicide con la contraseña presente en password[], y se rompe el bucle
+      while de este método. De esta forma, el valor de mainMenuVariable se mantiene como LOW
+      cuando el bucle principal del programa evalúa si la condición para acceder al menú
+      de nueva contraseña es true o false. Dado que esta condición es "if(mainMenuVariable 
+      == LOW)", acederemos al interior del mismo.
+
+      
     If none of these two conditionals is met, then we will call mainKeyCaptation(array1, 
     array2);, which was explained previously, which will set keyDetected as true if a key
     was pressed. After it we will get its vaule and if it is true, we will get inside
