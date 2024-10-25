@@ -124,25 +124,26 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       cuando el bucle principal del programa evalúa si la condición para acceder al menú
       de nueva contraseña es true o false. Dado que esta condición es "if(mainMenuVariable 
       == LOW)", acederemos al interior del mismo.
-
-      
-    If none of these two conditionals is met, then we will call mainKeyCaptation(array1, 
-    array2);, which was explained previously, which will set keyDetected as true if a key
-    was pressed. After it we will get its vaule and if it is true, we will get inside
-    next conditional. Once we are inside next conditional we will perform some actions:
-    - We set numberTyped as true so, from now, if we press * key, code will understand that
-      we pressed a key and we need to cancel any action performed, so it will take us to 
-      main code loop according to the first conditional explained previously.
-    - We set keyDetected back to false, this way we won´t get inside this conditional until
-      we press another key.
-    - We change orang pin to output for 300 milliseconds, and we change it back to input, to 
-      light up orange LED for that time showing to the user that a key was pressed.
-    - We use newPasswordCounter as the position inside inputPassword[] array, where we will 
-      store the value returned by getKeyPressedValue() void. This way, if we pressed the key 
-      number 4 as the third number in our password, we will store in the inputPassword[] array
-      in the third position the number 4.
-    - Finally we newPasswordCounter++ to be able to record the number in the next position of
-      the password.
+    Si no se cumple ninguna de estas dos condiciones, entonces llamamos al método 
+    "mainKeyCaptation(array1, array2);", que ya fue explicado previamente. Este método
+    establecerá keyDetected como true, si se presionó alguna tecla. En este caso, accedemos
+    al siguiente condicional, donde se realizarán una serie de acciones. 
+    - Se establece numberTyped como true. Desde ahora, si presionamos el botón *, el código
+      entenderá que presionamos un botón y que necesitamos cancelar cualquier acción. En
+      este caso concreto, nos devolvería al loop principal del codigo, de acuerdo con lo
+      explicado en el primer condicional de este método.
+    - Establecemos keyDetected de nuevo como false, de esta forma no volveremos a entrar en 
+      este condicional de nuevo, hasta que no se vuelva a presionar una tecla.
+    - Establecemos el pin del led naranja como salida durante 300 milisegundos y, a continuación,
+      volvemos a establecerlo como input. Esto encenderá el LED durante el tiempo el tiempo 
+      indicado, mostrandole al usario que se presionó una tecla.
+    - Usamos newPasswordCounter para establecer la posición dentro del array inputPassword[],
+      donde almacenaremos los valores reportados por getKetPressedValue(). De esta forma, si
+      presionamos el botón 4, como tercera posición de nuestra contraseña, se guardará el 
+      número 4 en la tercera posición del array. inputPassword[].
+    - Por último, incrementamos en una unidad el valor de newPasswordCounter, para obtener
+      la posición de la siguiente tecla presionada. Recordemos que esta variable también nos
+      sirve para controlar cuando ha de detenerse el bucle while de este método.
     */
     mainMenuVariable = digitalRead(pin9);
     if ((mainMenuVariable == LOW) && (numberTyped || insideNewPasswordMenu)) {
