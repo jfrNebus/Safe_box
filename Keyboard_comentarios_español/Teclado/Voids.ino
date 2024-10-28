@@ -196,14 +196,18 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
   }
   Serial.println("Leaving confirmation menu.");
 }
-
+//Método para grabar en la memoria eeprom la nueva contraseña.
 void burnPasswordInEeprom(byte numberOfDigits) {
-  /*For loop that will perform the action till i = numberOfDigits. We
-  will write in the eeprom memoty, each number of the current password. 
-  For that, we will tell the system that we want to save the i number in
-  password's array, in the i address of the eeprom bassed in the i 
-  number of the passwordEepromAddress array.
-   */
+  /*El bucle for realizará la acción mientras i sea igual a
+  numberOfDigits. Se escribirá en la memoria eeprom, cada número de
+  la contraseña actual. Para ello, le indicamos al sistema que queremos
+  salvar en la dirección de la memoria i, del array passwordEepromAddress,
+  el número en la posición i del array "password".
+
+  POR MODIFICAR-----: Comprueba si se puede sustituir el sistema de direción
+  passwordEepromAddres, simplemente por el valor de i, guardando en las 
+  direcciones 0 <> numberOfDigits - 1.
+  */
   for (int i = 0; i < numberOfDigits; i++) {
     EEPROM.write(passwordEepromAddress[i], password[i]);
   }
