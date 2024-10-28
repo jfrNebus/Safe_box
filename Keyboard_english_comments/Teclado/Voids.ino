@@ -220,30 +220,29 @@ void printPasswordInEeprom(byte numberOfDigits) {
     Serial.println(EEPROM.read(passwordEepromAddress[i]));
   }
 }
-
+/*This method will be called to get the keyboard typed by the user. It will be 
+the ona called by burnPasswordInEeprom, to save the password.
+*/
 void newPassword (byte password[], byte numberOfDigits, int array1[], int array2[]) {
-  /*This void will be the one who will get the new password entered by the user, 
-   and the one who will call the burnPasswordInEeprom void to save it in eeprom memory
-   When this void is loaded, we have already gone through a * key press with no 
-   numbers typed, so we broke the confirmation loop, and we came to main if in the 
-   loop of main code. Inside of it, we had to type a password that was requested by
-   confirmation void, and this one set match to true or false. Acording to match's 
-   value, we will perform different actions in this void. 
-   First we create a cancelled variable, and we set it to false. This variable will be
-   the one that will allow the code, or not, to burn in memory the actual value of 
-   password[i]. if cancelled == false, it will mean that key * was not pressed and, as
-   soon as the process of typing new password is over, if (cancelled == false) will
-   perform its action.
+  /*When this void is loaded, we have already gone through a * key press event, with no 
+   numbers typed. We broke the confirmation loop, and we came to the main conditional
+   in the void loop. Once inside the main conditional, we had to enter the current 
+   password, sicne it was requested by confirmation void; this one set match to true or 
+   false. Acording to match's value, we will perform different actions in this void. 
+   First we create a cancelled variable, and we set it to false. This variable will
+   be the one that will allow, or not, the code to burn in memory, the actual value of 
+   password[i]. If cancelled == false, it will mean that key * was not pressed and, as 
+   soon as the process of entering the new password is over, "if (cancelled == false)"
+   will perform its action.
    */
   Serial.println("Inside new password void");
   boolean cancelled = false;
   if (match) {
-    /*Once the user typed the current password correctly, we get inside this conditional. 
+    /*Once the user entered the current password correctly, we get inside this conditional. 
      We will start by sending a message to serial monitor, for developing purposes. Then
-     green light will light up for 250 milliseconds and will turn off after it. Then we 
-     make a new newPasswordCounter variable that will deal with the amount of times that
-     while loop will iterate, which will also be the amount of new numbers introduced by
-     the user for the new password. After it, we directly jump to the main while loop.
+     green LED will light for 250 milliseconds Then, a newPasswordCounter variable is
+     created, to deal with the amount of times that while loop will iterate, which will 
+     also be the amount of new numbers introduced by the user for the new password. After it, we directly jump to the main while loop.
      We will start by saving in mainMenuVariable the value read in the * key pin; then
      if mainMenuVariable is equals to low, it means that the user wants to stop the 
      process of recording new numbers for the password, so:
