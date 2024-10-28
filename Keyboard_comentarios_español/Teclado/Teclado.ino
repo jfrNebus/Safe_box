@@ -109,9 +109,6 @@ void setup() {
   printPasswordInEeprom(numberOfDigits); //Imprimimos los valores actuales guardados en la Eeprom, en la consola serial.
   startingLights(); //Cargamos la secuencia de luces inicial.
 }
-
-//VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ VAS POR AQUÍ 
-
 void loop() {
   /*El loop principal del sistema se basa en la variable mainMenuVariable. Esta variable es la que nos situa, o no, dentro
   del menú "inside password change". Si el valor de esta variable es low, entonces entramos en el menú de cambio de contraseña,
