@@ -212,31 +212,41 @@ void burnPasswordInEeprom(byte numberOfDigits) {
     EEPROM.write(passwordEepromAddress[i], password[i]);
   }
 }
+/*Método para establecer los valores del array password cada vez que
+se alimenta la placa.
+*/
 void readPasswordInEeprom(byte numberOfDigits) {
-  /*With this void we set the values of password array as the values of
-   of the password stored in the Eeprom. This way, when the system starts,
-   password is equal to the previous password save by the user, instead of
-   getting the default values when the system turn on. We start with a for
-   loop that will perform the action till i = numberOfDigits. We save in 
-   password's array, the values saved in the eeprom memory, in the positions
-   i, where i are the numbers inside passwordEepromAddress.
-   */
+  /*Se establecen los valores del array password, en función de los valores
+  almacenados en la memoria. De esta forma, cuando el sistema se inicia, la 
+  contraseña password[] es igual a la contraseña guardada anteriormente por 
+  el usuario, en lugar de tomar los valores por defecto.
+  Se empieza con un bucle for que realiza su acción mientras i = numberOfDigits.
+  Salvamos en el array password, los valores guardados en la memoria eeprom, 
+  en las posiciones i, donde i son los números almacenados en el array 
+  passwordEepromAddress.
+
+  POR MODIFICAR-----: Comprueba si se puede sustituir el sistema de direción
+  passwordEepromAddres, simplemente por el valor de i, guardando en las 
+  direcciones 0 <> numberOfDigits - 1.
+  */
   for (int i = 0; i < numberOfDigits; i++) {
     password[i] = EEPROM.read(passwordEepromAddress[i]);
   }
 }
+//Método para imprimir en la consola los valores almacenados en la memoria
+//eeprom.
 void printPasswordInEeprom(byte numberOfDigits) {
-  /*This void is not needed for the system to be able to work, but it is useful
-   for the developer to check what are the current values stored in the eeprom
-   memory. We iterate in a for loop till i = numberOfDigits. We will print in 
-   the serial window, the values in the eeprom memory, saved in the address 
-   passwordEepromAddress[i].
-   */
+  /* Este método no es necesario para que el sistema funcione, pero es útil 
+  para el desarrollador para comprobar los valores actuales guardados en la
+  memoria.
+  Se itera sobre el bucle for mientras i = numberOfDigit. Se imprime en la
+  consola serial, los valores de la memoria eeprom, guardados en las 
+  direcciones del array passwordEepromAddres[i].
+  */
   for (int i = 0; i < numberOfDigits; i++) {
     Serial.println(EEPROM.read(passwordEepromAddress[i]));
   }
 }
-
 void newPassword (byte password[], byte numberOfDigits, int array1[], int array2[]) {
   /*This void will be the one who will get the new password entered by the user, 
    and the one who will call the burnPasswordInEeprom void to save it in eeprom memory
