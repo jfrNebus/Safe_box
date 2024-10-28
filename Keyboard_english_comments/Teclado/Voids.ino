@@ -156,16 +156,16 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       newPasswordCounter++;
     }
   }
-  /*Finally, if cancelled is still low once we left the while loop, we will get
+  /*Finally, if cancelled is still false once we left the while loop, we will get
     inside the conditional. This conditional will check if all values inside
-    inputPassword[i] are equals to all values inside the password[i], which is 
-    burnt in EEPROM memory. Each time both values in same position are equal, 
-    match variable will be set as true, and if this for loop ends and match is
-    equals to true, we will be able to perform the action that depends on if(match).
-    As soon as inputPassword doesn't match a value in password, we won't get inside 
-    if conditional, and we will perform what's inside else, which is setting match 
-    as false, and breaking the for loop, denying the access to whatever action 
-    that depends on a if(match) conditional, and leaving back to main code loop.
+    inputPassword[i], are equals to all values inside the password[i]. Each time 
+    both values in same position are equal, "match" variable will be set as true. 
+    If this for loop ends, and match is equals to true, we will be able to 
+    perform any action depending on "if(match)". As soon as inputPassword 
+    doesn't match a value in password[], we won't get inside if conditional, and
+    we will perform what's inside else, which is setting match as false, and 
+    breaking the for loop, denying the access to whatever action that depends
+    on a if(match) conditional, and leaving back to main code loop.
    */
   if (cancelled == false) {
     Serial.println("Inside Password checking.");
@@ -260,18 +260,18 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
        chage process, we need to set password[] to its previous state. We achieve this 
        with this void, since at this point we still didn't burnt actual password[] values 
        in the Eeprom memory.
-     * Finally, we break the while loop and the if.
+     * Finally, we break the while loop.
      If the key * was not pressed, the code will keep being executed, and mainKeyCaptation
      will be loaded. This void will record which key was pressed, and will set keyDetected
      as true. If it is true we will get inside "if (getKeyDetectedState())" and the code
      inside will be loaded:
      * We set keyDetected back to false, that way we will get inside this conditional again
        only if another key was pressed.
-     * Orange light will light up for 1250 milliseconds. We set this much time in order to 
-       force the user to press keys slowly, this is helpfull to avoid missclicks which could 
+     * Orange LED will light for 1250 milliseconds. We set this much time in order to 
+       force the user to press keys slowly. This is helpfull to avoid missclicks, which could 
        lead to burning in eeprom memory undesired and unknown passwords. While the light is 
-       on, the code won't key new keys pressed.
-     * We save in the position newPasswordCounte in the array password[], the last key 
+       on, the code won't keep running.
+     * We save in the position newPasswordCounter in the array password[], the last key 
        pressed.
      * We do newPasswordCounter++ to jump to the next number of the password that must be 
        registered to be saved in password[].
@@ -301,7 +301,7 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
       }
     }
     if (cancelled == false) {
-      /*Once the while loop is over, if cancelled is still false, we will get in this 
+      /*Once the while loop is over, if "cancelled" is still false, we will get in this 
        conditional. We will send a message to serial monitor, for developing purposes.
        Then, green LED will light up for 1 second to show that the proccess of introducing
        the new password succeded. Then we will set newPasswordCounter back to 0. This is 
