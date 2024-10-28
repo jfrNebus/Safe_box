@@ -183,26 +183,27 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
   }
   Serial.println("Leaving confirmation menu.");
 }
-
+//Method to burn in the eeprom the new password.
 void burnPasswordInEeprom(byte numberOfDigits) {
-  /*For loop that will perform the action till i = numberOfDigits. We
-  will write in the eeprom memoty, each number of the current password. 
+  /*The next for loop will perform its action while i = numberOfDigits. We
+  will write in the eeprom memory, each number of the current password. 
   For that, we will tell the system that we want to save the i number in
-  password's array, in the i address of the eeprom bassed in the i 
+  password's array, in the i address of the eeprom, bassed in the i 
   number of the passwordEepromAddress array.
    */
   for (int i = 0; i < numberOfDigits; i++) {
     EEPROM.write(passwordEepromAddress[i], password[i]);
   }
 }
+//Method to set de values of password on each power on.
 void readPasswordInEeprom(byte numberOfDigits) {
-  /*With this void we set the values of password array as the values of
-   of the password stored in the Eeprom. This way, when the system starts,
-   password is equal to the previous password save by the user, instead of
-   getting the default values when the system turn on. We start with a for
-   loop that will perform the action till i = numberOfDigits. We save in 
-   password's array, the values saved in the eeprom memory, in the positions
-   i, where i are the numbers inside passwordEepromAddress.
+  /*The values of password array are set according to the values stored in the
+  eeprom memory. This way, when the system starts, password is equal to the 
+  previous password save by the user, instead of getting the default values 
+  when the system turn on. We start with a for loop that will perform the action
+  while i = numberOfDigits. We save in password's array, the values saved in the 
+  eeprom memory, in the positions i, where i are the numbers inside 
+  passwordEepromAddress.
    */
   for (int i = 0; i < numberOfDigits; i++) {
     password[i] = EEPROM.read(passwordEepromAddress[i]);
@@ -211,8 +212,8 @@ void readPasswordInEeprom(byte numberOfDigits) {
 void printPasswordInEeprom(byte numberOfDigits) {
   /*This void is not needed for the system to be able to work, but it is useful
    for the developer to check what are the current values stored in the eeprom
-   memory. We iterate in a for loop till i = numberOfDigits. We will print in 
-   the serial window, the values in the eeprom memory, saved in the address 
+   memory. We iterate over the for loop till i = numberOfDigits. We will print in 
+   the serial console, the values in the eeprom memory, saved in the address 
    passwordEepromAddress[i].
    */
   for (int i = 0; i < numberOfDigits; i++) {
