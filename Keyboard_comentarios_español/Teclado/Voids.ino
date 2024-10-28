@@ -274,22 +274,23 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
     variable llamada newPasswordCounter, para gestional el número de veces que iterará el
     bucle while, y para mantener la cuenta de la cantidad de nuevos números introducidos por 
     el usuario. Después de esto, saltamos al bucle while principal del método.
+    Empezamos guardando en mainMenuVariable, el valor de la lectura en el pin del botón *;
+    si "if mainMenuVariable" es igual a low, quiere decir que el usuario quiere detener el
+    proceso de recogida de números para la nueva contraseña, por lo tanto:
+    * Se establece cancelled como true, de esta forma en systema no llamará al método encaegado
+    de grabar en la memoria eeprom el valor actual de password[].
+    * Se establece mainMenuVaribale como HIGH, para reestablecer la funcionalidad de del botón *.
+    * Se establece insideNewPasswordMenu de nuevo como false. Esto evita que el condicional "if 
+    ((mainMenuVariable == LOW) && (numberTyped || insideNewPasswordMenu))", dentro del método
+    "confirmation" reporte un valor true siempre, puesto que de esta forma nunca podríamos 
+    entrar en el método newPassword de nuevo. (Se aconseja revisar la información del método
+    "confirmation" para recordar cómo funciona el condicional del botón *).
+    * Se llama al método readPasswordInEeprom porque, en este punto, algunos de los valores en
+    password[] podrían haber sido cambiados. Por lo que, dado que estamos cancelando el proceso
+    de cambio de contraseña, necesitamos establecer password[] con los valores que tenía en su
+    estado anterior. Esto se logra con este método puesto que, en este punto, aun no se han
+    grabado los valores actuales de password[] en la memoria eeprom.
     
-    
-     Then, a newnewPasswordCounter variable is
-     created, to deal with the amount of times that while loop will iterate, which will 
-     also be the amount of new numbers introduced by the user for the new password. After it, we directly jump to the main while loop.
-     We will start by saving in mainMenuVariable the value read in the * key pin; then
-     if mainMenuVariable is equals to low, it means that the user wants to stop the 
-     process of recording new numbers for the password, so:
-     - We will set cancelled as true, so the system won't load the part of the code that
-       burns in the eeprom the actual value of password[].
-     - We set mainMenuVariable back to high, to restart the functionality of * key.
-     - We set insideNewPasswordMenu variable back to false to avoid
-       "if ((mainMenuVariable == LOW) && (numberTyped || insideNewPasswordMenu))" 
-       conditional inside confirmation to be always true, since we could never get 
-       inside newPassword again, (check confirmation void explanation to recall how
-       * key conditionals work).
      - We load readPasswordInEeprom, because at this point, some of the values in 
        password[] might be already changed, so, since we are cancelling the new password
        chage process, we need to set password[] to its previous state. We achieve this 
