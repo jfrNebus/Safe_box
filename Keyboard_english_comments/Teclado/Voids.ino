@@ -242,37 +242,38 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
      We will start by sending a message to serial monitor, for developing purposes. Then
      green LED will light for 250 milliseconds Then, a newPasswordCounter variable is
      created, to deal with the amount of times that while loop will iterate, which will 
-     also be the amount of new numbers introduced by the user for the new password. After it, we directly jump to the main while loop.
-     We will start by saving in mainMenuVariable the value read in the * key pin; then
-     if mainMenuVariable is equals to low, it means that the user wants to stop the 
-     process of recording new numbers for the password, so:
-     - We will set cancelled as true, so the system won't load the part of the code that
+     also be the amount of new numbers introduced by the user for the new password. 
+     After it, we directly jump to the main while loop.
+     We will start by saving in mainMenuVariable, the value read in the * key pin; then
+     "if mainMenuVariable" is equals to low, it means that the user wants to stop the 
+     of new numbers for the password gathering, so:
+     * We will set cancelled as true, so the system won't load the part of the code that
        burns in the eeprom the actual value of password[].
-     - We set mainMenuVariable back to high, to restart the functionality of * key.
-     - We set insideNewPasswordMenu variable back to false to avoid
+     * We set mainMenuVariable back to high, to restart the functionality of * key.
+     * We set insideNewPasswordMenu variable back to false to avoid
        "if ((mainMenuVariable == LOW) && (numberTyped || insideNewPasswordMenu))" 
-       conditional inside confirmation to be always true, since we could never get 
-       inside newPassword again, (check confirmation void explanation to recall how
-       * key conditionals work).
-     - We load readPasswordInEeprom, because at this point, some of the values in 
-       password[] might be already changed, so, since we are cancelling the new password
+       conditional, inside the method "confirmation", to be always true, since we could 
+       never get inside newPassword again, (check confirmation void explanation to recall
+       how * key conditionals work).
+     * We call readPasswordInEeprom, because at this point, some of the values in 
+       password[] might be already changed. So, since we are cancelling the new password
        chage process, we need to set password[] to its previous state. We achieve this 
-       with this void since at this point we still didn't burnt actual password[] values 
+       with this void, since at this point we still didn't burnt actual password[] values 
        in the Eeprom memory.
-     - Finally, we break the while loop and the if.
+     * Finally, we break the while loop and the if.
      If the key * was not pressed, the code will keep being executed, and mainKeyCaptation
      will be loaded. This void will record which key was pressed, and will set keyDetected
      as true. If it is true we will get inside "if (getKeyDetectedState())" and the code
      inside will be loaded:
-     - We set keyDetected back to false, that way we will get inside this conditional again
+     * We set keyDetected back to false, that way we will get inside this conditional again
        only if another key was pressed.
-     - Orange light will light up for 1250 milliseconds. We set this much time in order to 
+     * Orange light will light up for 1250 milliseconds. We set this much time in order to 
        force the user to press keys slowly, this is helpfull to avoid missclicks which could 
        lead to burning in eeprom memory undesired and unknown passwords. While the light is 
        on, the code won't key new keys pressed.
-     - We save in the position newPasswordCounte in the array password[], the last key 
+     * We save in the position newPasswordCounte in the array password[], the last key 
        pressed.
-     - We do newPasswordCounter++ to jump to the next number of the password that must be 
+     * We do newPasswordCounter++ to jump to the next number of the password that must be 
        registered to be saved in password[].
      */
     Serial.println("New Password Menu.");
@@ -308,7 +309,7 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
        line has no meaning and this void could end and newPasswordCounter would be 
        automatically deleted, but i will leave it here till i can test the code behaviour
        just in case i am missing something.
-       Finally, we load burnPasswordInEeprom to burn the actual values of password[] in
+       Finally, we call burnPasswordInEeprom to burn the actual values of password[] in
        the eeprom memory.
      */
       Serial.println("Burning EEPROM.");
