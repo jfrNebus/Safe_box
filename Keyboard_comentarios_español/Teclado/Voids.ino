@@ -334,21 +334,17 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
     }
     if (cancelled == false) {
       /*Una vez que el bucle while ha finalizado, si "cancelled" sigue siendo false,
-      accederemos a este condicional. Se enviará un mensaje al monitor serial,
+      accederemos a este condicional. Se enviará un mensaje al monitor serial, únicamente 
+      con motivo de desarrollo. Se enciende el LED verde durante un segundo, para indicar
+      que el proceso de introducir una nueva contraseña ha finalizado correctamente.
+      Establecemos newPasswordCounter como 0.
 
-      
-      
-      Once the while loop is over, if cancelled is still false, we will get in this 
-       conditional. We will send a message to serial monitor, for developing purposes.
-       Then, green LED will light up for 1 second to show that the proccess of introducing
-       the new password succeded. Then we will set newPasswordCounter back to 0. This is 
-       100% not needed since it is a local variable that won't be used again, so this 
-       line has no meaning and this void could end and newPasswordCounter would be 
-       automatically deleted, but i will leave it here till i can test the code behaviour
-       just in case i am missing something.
-       Finally, we load burnPasswordInEeprom to burn the actual values of password[] in
-       the eeprom memory.
-     */
+      POR MODIFICAR-----: Elimina la línea "newPasswordCounter = 0;" dado que esa variable
+      es una variable local que no será usada de nuevo en el resto del método. Verificalo.
+
+      Finalmente, llamamos al método burnPasswordInEeprom para grabar los valores actuales
+      de password[] en la memoria eeprom.
+      */
       Serial.println("Burning EEPROM.");
       pinMode(green, OUTPUT);
       delay(1000);
@@ -358,11 +354,12 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
     }
   }
   else {
-    /*If match is false, it will mean that the user failed on typiing the current 
-     password, which means that the user has no access to the change password menu.
-     Because of this, if conditional will not be executed, and we will jump directly 
-     to this part of the code, were red LED will blink twice.
-     */
+    /*Si "match" es igual a false, quiere decir que el usuario no ingresó la 
+    contraseña de forma correcta, lo que quiere decir que el usuario no tiene acceso
+    al menú de cambio de contraseña. Debido a esto, el condicional if no será ejecutado, 
+    y se saltará directamente a esta parte del código, donde el led rojo parpadeará dos 
+    veces.
+    */
     pinMode(red, OUTPUT);
     delay(100);
     pinMode(red, INPUT);
@@ -372,8 +369,13 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
     pinMode(red, INPUT);
     delay(100);
   }
-  /*Finally, we set match back to false, incase user typed password correctly, 
-   to be sure that there's no chance for openClose void to get a false trigger. 
+  /*Por último, establecemos "match" como false. 
+
+  POR MODIFICAR-----: Mueve esta línea al interior del bloque "if (match)", dado que 
+  es el único contexto en el que match podría ser true.
+  
+  Cuando 
+  
    When we get inside main if conditional, in the main loop of the system, 
    we set insideNewPasswordMenu as true. By doing this we locate ourselves in the
    code, if this variable is equals to true we know we are inside new password 
