@@ -374,41 +374,41 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
   POR MODIFICAR-----: Mueve esta línea al interior del bloque "if (match)", dado que 
   es el único contexto en el que match podría ser true.
   
-  Cuando 
-  
-   When we get inside main if conditional, in the main loop of the system, 
-   we set insideNewPasswordMenu as true. By doing this we locate ourselves in the
-   code, if this variable is equals to true we know we are inside new password 
-   menu and newPassword void will be executed; but if we press the key * while
-   confirmation is being executed, "if (insideNewPasswordMenu)" will not even start.
-   This variable is set as false again at this point, or while the user is introducing
-   the new password, because if we don't set this variable back to false 
-   "if ((mainMenuVariable == LOW) && (numberTyped || insideNewPasswordMenu))" 
-   conditional inside confirmation would always be true, so we could never get 
-   inside newPassword again, (check confirmation void explanation to recall how
-   * key conditionals work).
-  
-   */
+  Se establece insideNewPasswordMenu como false. Cuando entramos en el condicional if
+  del bloque void loop, establecemos insideNewPasswordMenu como true. Al hacer esto
+  nos situamos dentro del código, si esta variable es igual a true, sabemos que nos
+  encontramos dentro del menu new password, y que se llamará al método newPassword.
+  El problema aparece cuando el programa se está ejecutando de forma normal, y el 
+  usuario necesita cambiar la contraseña. En este caso, el usuario presiona el botón
+  * con la intención de entrar en el condicional "if (mainMenuVariable == LOW) {", 
+  dentro del void loop. Si el valor de la variable "insideNewPasswordMenu" no es igual
+  a false una vez este método ha concluido, la siguiente vez que el usuario quiera 
+  entrar en el menú de nueva contraseña, cuando se presione el botón *, el condicional
+  "if ((mainMenuVariable == LOW) && (numberTyped || insideNewPasswordMenu))" será igual
+  a true, y por lo tanto, se ejecutará las acciones asociadas al mismo. Esto quiere decir
+  que "if (mainMenuVariable == LOW) {" será siempre falso. (Se aconseja revisar el método
+  "confirmation" para recordar como funciona el condicional del botón *).
+  */
   match = false;
   insideNewPasswordMenu = false;
   Serial.println("Leaving Password Menu.");
 }
+//Método usado para imprimir la contraseña actual no guardada en la memoria eeprom.
 void getNewPassword() {
-    /*This void is not needed for the system to be able to work, but it is useful
-   for the developer to check the current values of password[], the actual not in
-   eeprom memory password. We load a for loop that will print password[i], till i
-   = numberOfDigits. Then the code will wait for 2 seconds.
+    /*Este método no es necesario para el funcionamiento del sistema. Sirve únicamente para
+    propositos de desarrollo. Implementamos un bucle for que imprimirá "password[i]", hasta
+    que i sea igual a numberOfDigits. Entonces el código esperará 2 segundos.
    */
   for (int i = 0; i < numberOfDigits; i++) {
     Serial.print(password[i]);
   }
   delay(2000);
 }
+//Método usado para indicar el inicio del sistema.
 void startingLights() {
-  /*This code will be executed as soon as the system starts, in the void setup(),
-   right before the void loop(). This void is used just as visual indicator for 
-   the user. Red, orange and green lights will blink twice, with a delay of 100
-   milliseconds.
+  /*Este método será ejecutado tan pronto como se inicialice el sistema, en  el void setup(),
+  justo antes del void loop(). Este método se usa como indicador visual para el usuario. Los
+  LEDs rojo, naranja y verde, parpadearán dos veces, con un delay de 100 milisegundos.
    */
   pinMode(red, OUTPUT);
   pinMode(orange, OUTPUT);
@@ -427,18 +427,20 @@ void startingLights() {
   pinMode(green, INPUT);
   delay(100);
 }
+//Método para gestionar la activación del perno electromagnético.
 void openClose() {
-  /*This is the part of the code that deals with opening and closing the door of 
-   the safe box. Everything is based in match variable. If match is equals to true
-   we will write high signal in the pin called as magnet1, which is pin A1 and
-   a green light will light up for 2 seconds. After it, we will write low signal in
-   the pin magnet1, and we will turn of the green light. This way we will trigger 
-   the electromagnetic bolt for 2 seconds, allowing the user to use the key to open
-   the door.
-   If match is equal to false, then we won't get inside if(match), and else code will
-   be executed, which is blinking red light twice with a delay of 100 milliseconds.
-   This will indicate the user that the password typed to open the door was wrong.
-   Finally, we will set match as false again to respect match's functionality.
+  /*Todo está basado en la variable "match". Si la variable "match" es igual a true
+  enviaremos una señal HIGH por el pin llamado "magnet1", el pin A1, y el led verde
+  se encenderá, ambos durante 2 segundos. Después, enviaremos una señal LOW por el
+  pin "magnet1", y apagaremos el LED verde. De esta forma, activaremos el perno 
+  electromagnético por 2 segundos, permitiendo al usuario usar la llave para abrir 
+  la puerta.
+  Si "match" es igual a false, entonces no accederemos al condiconal "if(match), y 
+  se ejecutará el código del bloque else. El LED rojo parpadeara dos veces con un 
+  delay de 100 milisegundos. Esto le indicará al usuario que la contraseña
+  introducida es erronea.
+  Por último, establecemos el la variable "match" como false para llevar al sistema
+  a su modo default.
    */
   if (match) {
     digitalWrite(magnet1, HIGH);
