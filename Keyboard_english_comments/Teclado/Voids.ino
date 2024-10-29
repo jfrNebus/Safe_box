@@ -337,15 +337,15 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
   }
   /*Finally, we set "match" back to false, in case user typed password correctly, 
    to be sure that there's no chance for openClose void to get a false trigger. 
-   We set insideNewPasswordMenu back to false too. When we get inside main if 
-   conditional, in the main loop of the system, we set insideNewPasswordMenu as true.
-   By doing this we locate ourselves in the code, if this variable is equals to true 
-   we know we are inside new password menu and newPassword void will be executed. 
-   The problem comes when the program is executing the void loop normaly, and the user 
-   wants to change the password, in which case the user presses the * button in order 
-   to try to get inside the conditional "if (mainMenuVariable == LOW) {" inside void 
-   loop. If "insideNewPasswordMenu" is not equals to false at the end of this void, 
-   next time the user wants to get inside the new password menu, once * is triggered, the
+   We set insideNewPasswordMenu back to false too. When we get inside the if 
+   conditional, inside the void loop, we set insideNewPasswordMenu as true. By doing 
+   this we locate ourselves in the code, if this variable is equals to true we know 
+   we are inside new password menu, and newPassword void will be executed. The problem 
+   comes when the program is executing the void loop normaly, and the user wants to 
+   change the password. In this case the user presses the * button in order to to get 
+   inside the conditional "if (mainMenuVariable == LOW) {", inside void loop. If 
+   "insideNewPasswordMenu" is not equals to false once this void is over, next time 
+   the user wants to get inside the new password menu, once * is triggered, the
    conditional "if ((mainMenuVariable == LOW) && (numberTyped || insideNewPasswordMenu))"
    will be true, and therefor, the action on its inside will be perfomed. This means that
    "if (mainMenuVariable == LOW) {" will always be false. (check confirmation void 
@@ -355,21 +355,22 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
   insideNewPasswordMenu = false;
   Serial.println("Leaving Password Menu.");
 }
+//Void used to print the actual password not burnt in the eeprom memory.
 void getNewPassword() {
-    /*This void is not needed for the system to be able to work, but it is useful
-   for the developer to check the current values of password[], the actual not in
-   eeprom memory password. We load a for loop that will print password[i], till i
-   = numberOfDigits. Then the code will wait for 2 seconds.
+    /*This void is not needed for the system to be able to work. It is just for developing
+    purposes. We load a for loop that will print password[i], till i = numberOfDigits. Then
+    the code will wait for 2 seconds.
    */
   for (int i = 0; i < numberOfDigits; i++) {
     Serial.print(password[i]);
   }
   delay(2000);
 }
+//Method used to show the system initialization.
 void startingLights() {
-  /*This code will be executed as soon as the system starts, in the void setup(),
+  /*This void will be executed as soon as the system starts, in the void setup(),
    right before the void loop(). This void is used just as visual indicator for 
-   the user. Red, orange and green lights will blink twice, with a delay of 100
+   the user. Red, orange and green LEDs will blink twice, with a delay of 100
    milliseconds.
    */
   pinMode(red, OUTPUT);
@@ -389,18 +390,18 @@ void startingLights() {
   pinMode(green, INPUT);
   delay(100);
 }
+//Void to deal with the electromagnetic bolt triggering.
 void openClose() {
-  /*This is the part of the code that deals with opening and closing the door of 
-   the safe box. Everything is based in match variable. If match is equals to true
-   we will write high signal in the pin called as magnet1, which is pin A1 and
-   a green light will light up for 2 seconds. After it, we will write low signal in
-   the pin magnet1, and we will turn of the green light. This way we will trigger 
+  /*Everything is based in "match" variable. If "match" is equals to true we will write
+   HIGH signal in the pin called as "magnet1", which is pin A1, and the green LED will 
+   light, both of them for 2 seconds. After it, we will write LOW signal in
+   the pin "magnet1", and we will turn of the green LED. This way we will trigger 
    the electromagnetic bolt for 2 seconds, allowing the user to use the key to open
    the door.
-   If match is equal to false, then we won't get inside if(match), and else code will
-   be executed, which is blinking red light twice with a delay of 100 milliseconds.
-   This will indicate the user that the password typed to open the door was wrong.
-   Finally, we will set match as false again to respect match's functionality.
+   If "match" is equal to false, then we won't get inside "if(match)", and "else" code 
+   will be executed. The red LED will blink twice with a delay of 100 milliseconds.
+   This will indicate the user that the password entered was wrong.
+   Finally, we will set "match" as false again to take the system to its default mode.
    */
   if (match) {
     digitalWrite(magnet1, HIGH);
