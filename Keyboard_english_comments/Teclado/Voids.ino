@@ -321,7 +321,7 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
     }
   }
   else {
-    /*If match is false, it will mean that the user failed on typiing the current 
+    /*If "match" is false, it means that the user failed on entering the current 
      password, which means that the user has no access to the change password menu.
      Because of this, if conditional will not be executed, and we will jump directly 
      to this part of the code, were red LED will blink twice.
@@ -335,20 +335,21 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
     pinMode(red, INPUT);
     delay(100);
   }
-  /*Finally, we set match back to false, incase user typed password correctly, 
+  /*Finally, we set "match" back to false, in case user typed password correctly, 
    to be sure that there's no chance for openClose void to get a false trigger. 
-   When we get inside main if conditional, in the main loop of the system, 
-   we set insideNewPasswordMenu as true. By doing this we locate ourselves in the
-   code, if this variable is equals to true we know we are inside new password 
-   menu and newPassword void will be executed; but if we press the key * while
-   confirmation is being executed, "if (insideNewPasswordMenu)" will not even start.
-   This variable is set as false again at this point, or while the user is introducing
-   the new password, because if we don't set this variable back to false 
-   "if ((mainMenuVariable == LOW) && (numberTyped || insideNewPasswordMenu))" 
-   conditional inside confirmation would always be true, so we could never get 
-   inside newPassword again, (check confirmation void explanation to recall how
-   * key conditionals work).
-  
+   We set insideNewPasswordMenu back to false too. When we get inside main if 
+   conditional, in the main loop of the system, we set insideNewPasswordMenu as true.
+   By doing this we locate ourselves in the code, if this variable is equals to true 
+   we know we are inside new password menu and newPassword void will be executed. 
+   The problem comes when the program is executing the void loop normaly, and the user 
+   wants to change the password, in which case the user presses the * button in order 
+   to try to get inside the conditional "if (mainMenuVariable == LOW) {" inside void 
+   loop. If "insideNewPasswordMenu" is not equals to false at the end of this void, 
+   next time the user wants to get inside the new password menu, once * is triggered, the
+   conditional "if ((mainMenuVariable == LOW) && (numberTyped || insideNewPasswordMenu))"
+   will be true, and therefor, the action on its inside will be perfomed. This means that
+   "if (mainMenuVariable == LOW) {" will always be false. (check confirmation void 
+   explanation to recall how * key conditionals work).
    */
   match = false;
   insideNewPasswordMenu = false;
