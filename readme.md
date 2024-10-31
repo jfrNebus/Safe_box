@@ -127,9 +127,6 @@ Teniendo claro qué es, y cómo funciona un teclado matricial, podemos observar,
 Teniendo claro todo lo explicado anteriormente, solo queda leerse las comentarios escritos en el propio código para entender el funcionamiento completo del sistema. En un principio, escribí los comentarios en inglés, y tiempo más tarde traduje mis comentarios del inglés al español. En el proceso detecté varios fallos de programación, para los que hice notas en medio de la explicación, para poder revisar dichos fallos en un futuro. Así mismo, también detecté fallos al expresarme en inglés, tambien los corregí, pero seguro que habrá más.
 
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/trufflesecurity/trufflehog/v3)](https://goreportcard.com/report/github.com/trufflesecurity/trufflehog/v3)
-[![Ver Documentación](https://img.shields.io/badge/docs-verde.svg)](Keyboard_comentarios_español/Teclado)
-
 
 
 
