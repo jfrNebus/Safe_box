@@ -128,6 +128,7 @@ Teniendo claro todo lo explicado anteriormente, solo queda leerse las comentario
 
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/trufflesecurity/trufflehog/v3)](https://goreportcard.com/report/github.com/trufflesecurity/trufflehog/v3)
+[![Ver Documentación](https://img.shields.io/badge/docs-verde.svg)](Keyboard_comentarios_español/Teclado)
 
 
 
