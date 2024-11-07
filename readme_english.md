@@ -105,7 +105,7 @@ Now that we know what a matrix keyboard is, and how it works, we can see in the 
 <br>
 <br>
 
-Teniendo claro todo lo explicado anteriormente, solo queda leerse las comentarios escritos en el propio código para entender el funcionamiento completo del sistema. En un principio, escribí los comentarios en inglés, y tiempo más tarde traduje mis comentarios del inglés al español. En el proceso detecté varios fallos de programación, para los que hice notas en medio de la explicación, para poder revisar dichos fallos en un futuro.
+Once everything about the way a matrix keyboard works is understood, we can read all the documentation written as comments in the code. While translating the comments I wrote in english to spanish, I could notice few parts of the code that must be fixed, replaced or removed. Those parts are marked in the spanish version for me to replace them in future.
 
 
 
