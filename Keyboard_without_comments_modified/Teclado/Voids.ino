@@ -1,4 +1,4 @@
-void pinSetUp (int array1[], int array2[]) {
+void pinSetUp(int array1[], int array2[]) {
   for (int i = 0; i < 4; i++) {
     pinMode(array1[i], OUTPUT);
   }
@@ -28,18 +28,17 @@ boolean getKeyDetectedState() {
   return keyDetected;
 }
 
-int getKeyPressedValue () {
+int getKeyPressedValue() {
   return result[keyColumn][keyRaw];
 }
-void confirmation (byte password[], byte numberOfDigits, int array1[], int array2[]) {
-  pinMode(orange, OUTPUT);
+void confirmation(byte password[], byte numberOfDigits, int array1[], int array2[]) {
+  analogWrite(orange, 255);
   delay(100);
-  pinMode(orange, INPUT);
+  analogWrite(orange, 0);
   delay(100);
-  pinMode(orange, OUTPUT);
+  analogWrite(orange, 255);
   delay(100);
-  pinMode(orange, INPUT);
-  delay(100);
+  analogWrite(orange, 0);
   int newPasswordCounter = 0;
   int inputPassword[numberOfDigits];
   boolean numberTyped = false;
@@ -52,8 +51,7 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       mainMenuVariable = HIGH;
       insideNewPasswordMenu = false;
       break;
-    }
-    else if (mainMenuVariable == LOW) {
+    } else if (mainMenuVariable == LOW) {
       Serial.println("Requesting new password menu.");
       cancelled = true;
       break;
@@ -62,9 +60,9 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
     if (getKeyDetectedState()) {
       numberTyped = true;
       keyDetected = false;
-      pinMode(orange, OUTPUT);
+      analogWrite(orange, 255);
       delay(300);
-      pinMode(orange, INPUT);
+      analogWrite(orange, 0);
       inputPassword[newPasswordCounter] = getKeyPressedValue();
       Serial.println("Pressed key = " + String(inputPassword[newPasswordCounter]));
       newPasswordCounter++;
@@ -77,8 +75,7 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       if (inputPassword[i] == password[i]) {
         Serial.println("Match!");
         match = true;
-      }
-      else {
+      } else {
         Serial.println("No match!");
         match = false;
         break;
@@ -104,18 +101,18 @@ void printPasswordInEeprom(byte numberOfDigits) {
   }
 }
 
-void newPassword (byte password[], byte numberOfDigits, int array1[], int array2[]) {
+void newPassword(byte password[], byte numberOfDigits, int array1[], int array2[]) {
   Serial.println("Inside new password void");
   boolean cancelled = false;
   if (match) {
     Serial.println("New Password Menu.");
-    pinMode(green, OUTPUT);
+    analogWrite(green, 255);
     delay(250);
-    pinMode(green, INPUT);
+    analogWrite(green, 0);
     int newPasswordCounter = 0;
     while (newPasswordCounter < numberOfDigits) {
       mainMenuVariable = digitalRead(pin9);
-      if (mainMenuVariable == LOW) { 
+      if (mainMenuVariable == LOW) {
         cancelled = true;
         mainMenuVariable = HIGH;
         insideNewPasswordMenu = false;
@@ -125,30 +122,29 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
       mainKeyCaptation(array1, array2);
       if (getKeyDetectedState()) {
         keyDetected = false;
-        pinMode(orange, OUTPUT);
+        analogWrite(orange, 255);
         delay(1250);
-        pinMode(orange, INPUT);
+        analogWrite(orange, 0);
         password[newPasswordCounter] = getKeyPressedValue();
         newPasswordCounter++;
       }
     }
     if (cancelled == false) {
       Serial.println("Burning EEPROM.");
-      pinMode(green, OUTPUT);
+      analogWrite(green, 255);
       delay(1000);
-      pinMode(green, INPUT);
+      analogWrite(green, 0);
       newPasswordCounter = 0;
       burnPasswordInEeprom(numberOfDigits);
     }
-  }
-  else {
-    pinMode(red, OUTPUT);
+  } else {
+    analogWrite(red, 255);
     delay(100);
-    pinMode(red, INPUT);
+    analogWrite(red, 0);
     delay(100);
-    pinMode(red, OUTPUT);
+    analogWrite(red, 255);
     delay(100);
-    pinMode(red, INPUT);
+    analogWrite(red, 0);
     delay(100);
   }
   match = false;
@@ -162,39 +158,37 @@ void getNewPassword() {
   delay(2000);
 }
 void startingLights() {
-  pinMode(red, OUTPUT);
-  pinMode(orange, OUTPUT);
-  pinMode(green, OUTPUT);
+  analogWrite(red, 255);
+  analogWrite(orange, 255);
+  analogWrite(green, 255);
   delay(100);
-  pinMode(red, INPUT);
-  pinMode(orange, INPUT);
-  pinMode(green, INPUT);
+  analogWrite(red, 0);
+  analogWrite(orange, 0);
+  analogWrite(green, 0);
   delay(100);
-  pinMode(red, OUTPUT);
-  pinMode(orange, OUTPUT);
-  pinMode(green, OUTPUT);
+  analogWrite(red, 255);
+  analogWrite(orange, 255);
+  analogWrite(green, 255);
   delay(100);
-  pinMode(red, INPUT);
-  pinMode(orange, INPUT);
-  pinMode(green, INPUT);
-  delay(100);
+  analogWrite(red, 0);
+  analogWrite(orange, 0);
+  analogWrite(green, 0);
 }
 void openClose() {
   if (match) {
-    digitalWrite(magnet1, HIGH);
-    pinMode(green, OUTPUT);
+    analogWrite(magnet1, 255);
+    analogWrite(green, 255);
     delay(2000);
-    digitalWrite(magnet1, LOW);
-    pinMode(green, INPUT);
-  }
-  else {
-    pinMode(red, OUTPUT);
+    analogWrite(magnet1, 0);
+    analogWrite(green, 0);
+  } else {
+    analogWrite(red, 255);
     delay(100);
-    pinMode(red, INPUT);
+    analogWrite(red, 0);
     delay(100);
-    pinMode(red, OUTPUT);
+    analogWrite(red, 255);
     delay(100);
-    pinMode(red, INPUT);
+    analogWrite(red, 0);
     delay(100);
   }
   match = false;
