@@ -11,11 +11,11 @@ int pin7 = 6;
 int pin8 = 5;
 int pin9 = 4;  //No matrix push button, button *
 //----------- Electromagnetic bolt
-int magnet1 = A2;
+int magnet1 = A5;
 //----------- Leds
-int green = A5;
-int orange = A4;
-int red = A3;
+int green = A4;
+int orange = A3;
+int red = A2;
 
 int keyColumn;
 int keyRaw;
