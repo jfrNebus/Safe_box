@@ -1,39 +1,35 @@
 #include <EEPROM.h>
 
 //----------- Matrix push buttons
-int pin1 = 2;
-int pin2 = 3;#include <EEPROM.h>
-
-//----------- Matrix push buttons
 int pin1 = 12;
 int pin2 = 11;
 int pin3 = 10;
-int pin4 = 9;  //No matrix push button, button *
+int pin4 = 9;  //<<< No matrix push button, button *
 int pin5 = 8;
 int pin6 = 7;
 int pin7 = 6;
 int pin8 = 5;
-int pin9 = 4;  //No matrix push button, button *
+int pin9 = 4;  //<<< No matrix push button, button *
 //----------- Electromagnetic bolt
-int magnet1 = A5;
-//----------- 
+int bolt = A5;
+//-----------
 //Leds. Each one of these pins are connected to a transistor on its base, to control each
 //LED individually.
 int green = A4;
 int orange = A3;
 int red = A2;
 //-----------
-int keyColumn; //Bound for first dimension in multidimensional array.
-int keyRow; //Bound for second dimension in multidimensional array.
-boolean keyDetected = false; //Boolean that we will use to know if we pressed any key.
-boolean insideNewPasswordMenu = false; /*This boolean will allow us to know in which part of the code we
+int keyColumn;                                       //Bound for first dimension in multidimensional array.
+int keyRow;                                          //Bound for second dimension in multidimensional array.
+boolean keyDetected = false;                         //Boolean that we will use to know if we pressed any key.
+boolean insideNewPasswordMenu = false;               /*This boolean will allow us to know in which part of the code we
 as well as to be able to make * button multipurpose. This is because * button will behave in different
 if insideNewPasswordMenu is true or false.
 */
-byte password[] = {1, 1, 1, 2, 2, 2}; /*The default password, and the password array that will be
+byte password[] = { 1, 1, 1, 2, 2, 2 };              /*The default password, and the password array that will be
 overridden once we save the new password in the Eeprom memory.
 */
-byte passwordEepromAddress[] = {1, 2, 3, 4, 5, 6}; /*The positions in the Eeprom memory, of the
+byte passwordEepromAddress[] = { 1, 2, 3, 4, 5, 6 }; /*The positions in the Eeprom memory, of the
 password values that we will save. This means that we will save a group of 6 numbers, and each
 number will be save in a "slot" in Eeprom's memory. This array members are the positions of those
 slots. First number of password will be save in the position 1 of the passwordEepromAddress array,
@@ -42,19 +38,19 @@ which is 1; the second number of password will be save in the position 2; and so
 To be tested: remove this array. Instead use the for loop variable as address. This way the first
 position would be 0, and the last one would be 5.
 */
-byte newPasswordCounter = 0; //-TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK
-byte numberOfDigits = 6; /*Number of digits of our password. This variable will set the amount of
+byte newPasswordCounter = 0;                         //-TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK
+byte numberOfDigits = 6;                             /*Number of digits of our password. This variable will set the amount of
 iterations for each for loop action. This is reading, printing or burning the password from / in Eeprom's memory.
 */
-const byte C = 4;//Columns
-const byte R = 3;//rows
-bool match = false; /*Boolean that will allow to control different contionals in the code based
+const byte C = 4;                                    //Columns
+const byte R = 3;                                    //rows
+bool match = false;                                  /*Boolean that will allow to control different contionals in the code based
 on whether the entered password was correct or not.
 */
 //Columns and rows store the pins according to the electronics schematic.
-int columns[C] = {pin5, pin6, pin7, pin8};
-int rows[R] = {pin1, pin2, pin3};
-int result[C][R]; /*In "result" multy dimensional array, we will use the number of columns and the number of rows
+int columns[C] = { pin5, pin6, pin7, pin8 };
+int rows[R] = { pin1, pin2, pin3 };
+int result[C][R];            /*In "result" multy dimensional array, we will use the number of columns and the number of rows
 as its dimensions. Later, we will give a value to each one of the combination, and this will be the 0-9 and *
 representation. Short explanation: if pin 5 of columns gets connected with pin 2 of rows, we will
 get the value "2", so the conexion of pin5 and pin2 is equal to key 2 in the keyboard.
@@ -70,7 +66,7 @@ void setup() {
   pinMode(pin9, INPUT);
   digitalWrite(pin9, HIGH);
   //----------- Pin setup for all the transistors.
-  pinMode(magnet1, OUTPUT);
+  pinMode(bolt, OUTPUT);
   pinMode(green, OUTPUT);
   pinMode(orange, OUTPUT);
   pinMode(red, OUTPUT);
@@ -97,13 +93,13 @@ void setup() {
   result[2][2] = 9;
   result[3][1] = 0;
   result[3][2] = 11;
-  pinSetUp(columns, rows); //We call pinSetUp void, the one that will set up all pins. Check pinStUp void for
+  pinSetUp(columns, rows);  //We call pinSetUp void, the one that will set up all pins. Check pinStUp void for
   //deeper explanations.
-  readPasswordInEeprom(numberOfDigits); /*We read the actual values burnt in Eeprom memory. We need to load this
+  readPasswordInEeprom(numberOfDigits);   /*We read the actual values burnt in Eeprom memory. We need to load this
   void as soon as system turns on because otherwise the password values would always be the defult ones.
   */
-  printPasswordInEeprom(numberOfDigits); //We print in serial monitor the Eeprom's current values.
-  startingLights(); //We load starting lights sequence.
+  printPasswordInEeprom(numberOfDigits);  //We print in serial monitor the Eeprom's current values.
+  startingLights();                       //We load starting lights sequence.
 }
 void loop() {
   /*Main loop of the system is based on mainMenuVariable. This variable is the one that sets us "inside password change"
@@ -137,15 +133,14 @@ void loop() {
     analogWrite(orange, 0);
     delay(100);
     analogWrite(orange, 255);
-    delay(1000);
+    delay(100);
     analogWrite(orange, 0);
-    confirmation (password, numberOfDigits, columns, rows);
+    confirmation(password, numberOfDigits, columns, rows);
     if (insideNewPasswordMenu)
-      newPassword (password, numberOfDigits, columns, rows);
+      newPassword(password, numberOfDigits, columns, rows);
     analogWrite(red, 0);
-  }
-  else {
-    confirmation (password, numberOfDigits, columns, rows);
+  } else {
+    confirmation(password, numberOfDigits, columns, rows);
     openClose();
   }
 }

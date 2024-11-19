@@ -71,14 +71,13 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
   Then we get into main While loop, which will iterate while newPasswordCounter is lower
   than numberOfDigits, which is one of the parameters of this void. 
   */
-  pinMode(orange, OUTPUT);
+  analogWrite(orange, 255);
   delay(100);
-  pinMode(orange, INPUT);
+  analogWrite(orange, 0);
   delay(100);
-  pinMode(orange, OUTPUT);
+  analogWrite(orange, 255);
   delay(100);
-  pinMode(orange, INPUT);
-  delay(100);
+  analogWrite(orange, 0);
   int newPasswordCounter = 0;
   int inputPassword[numberOfDigits];
   boolean numberTyped = false;
@@ -122,7 +121,7 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       us to main code loop according to the first conditional explained previously.
     - We set keyDetected back to false, this way we won´t get inside this conditional until
       we press another key.
-    - We change orang pin to output for 300 milliseconds, and we change it back to input. This
+    - Orang pin is turned on for 300 milliseconds, and then it is set back to off state. This
       will turn on the LED for that time, showing to the user that a key was pressed.
     - We use newPasswordCounter as the position inside inputPassword[] array, where we will 
       store the value returned by getKeyPressedValue() void. This way, if we pressed the key 
@@ -149,9 +148,9 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
     if (getKeyDetectedState()) {
       numberTyped = true;
       keyDetected = false;
-      pinMode(orange, OUTPUT);
+      analogWrite(orange, 255);
       delay(300);
-      pinMode(orange, INPUT);
+      analogWrite(orange, 0);
       inputPassword[newPasswordCounter] = getKeyPressedValue();
       newPasswordCounter++;
     }
@@ -240,7 +239,7 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
   if (match) {
     /*Once the user entered the current password correctly, we get inside this conditional. 
      We will start by sending a message to serial monitor, for developing purposes. Then
-     green LED will light for 250 milliseconds Then, a newPasswordCounter variable is
+     green LED will light for 250 milliseconds. Then, a newPasswordCounter variable is
      created, to deal with the amount of times that while loop will iterate, which will 
      also be the amount of new numbers introduced by the user for the new password. 
      After it, we directly jump to the main while loop.
@@ -269,7 +268,7 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
        only if another key was pressed.
      * Orange LED will light for 1250 milliseconds. We set this much time in order to 
        force the user to press keys slowly. This is helpfull to avoid missclicks, which could 
-       lead to burning in eeprom memory undesired and unknown passwords. While the light is 
+       lead to burning in eeprom memory, undesired and unknown passwords. While the light is 
        on, the code won't keep running.
      * We save in the position newPasswordCounter in the array password[], the last key 
        pressed.
@@ -277,9 +276,9 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
        registered to be saved in password[].
      */
     Serial.println("New Password Menu.");
-    pinMode(green, OUTPUT);
+    analogWrite(green, 255);
     delay(250);
-    pinMode(green, INPUT);
+    analogWrite(green, 0);
     int newPasswordCounter = 0;
     while (newPasswordCounter < numberOfDigits) {
       mainMenuVariable = digitalRead(pin9);
@@ -293,9 +292,9 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
       mainKeyCaptation(array1, array2);
       if (getKeyDetectedState()) {
         keyDetected = false;
-        pinMode(orange, OUTPUT);
+        analogWrite(orange, 255);
         delay(1250);
-        pinMode(orange, INPUT);
+        analogWrite(orange, 0);
         password[newPasswordCounter] = getKeyPressedValue();
         newPasswordCounter++;
       }
@@ -303,19 +302,15 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
     if (cancelled == false) {
       /*Once the while loop is over, if "cancelled" is still false, we will get in this 
        conditional. We will send a message to serial monitor, for developing purposes.
-       Then, green LED will light up for 1 second to show that the proccess of introducing
-       the new password succeded. Then we will set newPasswordCounter back to 0. This is 
-       100% not needed since it is a local variable that won't be used again, so this 
-       line has no meaning and this void could end and newPasswordCounter would be 
-       automatically deleted, but i will leave it here till i can test the code behaviour
-       just in case i am missing something.
+       Then, green LED will light for 1 second to show that the proccess of introducing
+       the new password succeded. Then we will set newPasswordCounter back to 0.
        Finally, we call burnPasswordInEeprom to burn the actual values of password[] in
        the eeprom memory.
      */
       Serial.println("Burning EEPROM.");
-      pinMode(green, OUTPUT);
+      analogWrite(green, 255);
       delay(1000);
-      pinMode(green, INPUT);
+      analogWrite(green, 0);
       newPasswordCounter = 0;
       burnPasswordInEeprom(numberOfDigits);
     }
@@ -323,17 +318,16 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
   else {
     /*If "match" is false, it means that the user failed on entering the current 
      password, which means that the user has no access to the change password menu.
-     Because of this, if conditional will not be executed, and we will jump directly 
+     Because of this, the conditional will not be executed, and we will jump directly 
      to this part of the code, were red LED will blink twice.
      */
-    pinMode(red, OUTPUT);
+    analogWrite(red, 255);
     delay(100);
-    pinMode(red, INPUT);
+    analogWrite(red, 0);
     delay(100);
-    pinMode(red, OUTPUT);
+    analogWrite(red, 255);
     delay(100);
-    pinMode(red, INPUT);
-    delay(100);
+    analogWrite(red, 0);
   }
   /*Finally, we set "match" back to false, in case user typed password correctly, 
    to be sure that there's no chance for openClose void to get a false trigger. 
@@ -373,29 +367,28 @@ void startingLights() {
    the user. Red, orange and green LEDs will blink twice, with a delay of 100
    milliseconds.
    */
-  pinMode(red, OUTPUT);
-  pinMode(orange, OUTPUT);
-  pinMode(green, OUTPUT);
+  analogWrite(red, 255);
+  analogWrite(orange, 255);
+  analogWrite(green, 255);
   delay(100);
-  pinMode(red, INPUT);
-  pinMode(orange, INPUT);
-  pinMode(green, INPUT);
+  analogWrite(red, 0);
+  analogWrite(orange, 0);
+  analogWrite(green, 0);
   delay(100);
-  pinMode(red, OUTPUT);
-  pinMode(orange, OUTPUT);
-  pinMode(green, OUTPUT);
+  analogWrite(red, 255);
+  analogWrite(orange, 255);
+  analogWrite(green, 255);
   delay(100);
-  pinMode(red, INPUT);
-  pinMode(orange, INPUT);
-  pinMode(green, INPUT);
-  delay(100);
+  analogWrite(red, 0);
+  analogWrite(orange, 0);
+  analogWrite(green, 0);
 }
 //Void to deal with the electromagnetic bolt triggering.
 void openClose() {
   /*Everything is based in "match" variable. If "match" is equals to true we will write
-   HIGH signal in the pin called as "magnet1", which is pin A1, and the green LED will 
+   HIGH signal in the pin called as "bolt", which is pin A5, and the green LED will 
    light, both of them for 2 seconds. After it, we will write LOW signal in
-   the pin "magnet1", and we will turn of the green LED. This way we will trigger 
+   the pin "bolt", and we will turn of the green LED. This way we will trigger 
    the electromagnetic bolt for 2 seconds, allowing the user to use the key to open
    the door.
    If "match" is equal to false, then we won't get inside "if(match)", and "else" code 
@@ -404,21 +397,20 @@ void openClose() {
    Finally, we will set "match" as false again to take the system to its default mode.
    */
   if (match) {
-    digitalWrite(magnet1, HIGH);
-    pinMode(green, OUTPUT);
+    analogWrite(bolt, 255);
+    analogWrite(green, 255);
     delay(2000);
-    digitalWrite(magnet1, LOW);
-    pinMode(green, INPUT);
+    analogWrite(bolt, 0);
+    analogWrite(green, 0);
   }
   else {
-    pinMode(red, OUTPUT);
+    analogWrite(red, 255);
     delay(100);
-    pinMode(red, INPUT);
+    analogWrite(red, 0);
     delay(100);
-    pinMode(red, OUTPUT);
+    analogWrite(red, 255);
     delay(100);
-    pinMode(red, INPUT);
-    delay(100);
+    analogWrite(red, 0);
   }
   match = false;
 }

@@ -144,8 +144,7 @@ void newPassword(byte password[], byte numberOfDigits, int array1[], int array2[
     delay(100);
     analogWrite(red, 255);
     delay(100);
-    analogWrite(red, 0);
-    delay(100);
+    analogWrite(red, 0)
   }
   match = false;
   insideNewPasswordMenu = false;
@@ -176,10 +175,10 @@ void startingLights() {
 }
 void openClose() {
   if (match) {
-    analogWrite(magnet1, 255);
+    analogWrite(bolt, 255);
     analogWrite(green, 255);
     delay(2000);
-    analogWrite(magnet1, 0);
+    analogWrite(bolt, 0);
     analogWrite(green, 0);
   } else {
     analogWrite(red, 255);
@@ -189,7 +188,6 @@ void openClose() {
     analogWrite(red, 255);
     delay(100);
     analogWrite(red, 0);
-    delay(100);
   }
   match = false;
 }

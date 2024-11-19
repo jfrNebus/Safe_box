@@ -1,5 +1,12 @@
 #include <EEPROM.h>
 
+
+
+Agregaste el pinMode de A5 A4 A3 A2 en el void setup
+
+
+
+
 int pin1 = 12;
 int pin2 = 11;
 int pin3 = 10;
@@ -9,7 +16,7 @@ int pin6 = 7;
 int pin7 = 6;
 int pin8 = 5;
 int pin9 = 4;
-int magnet1 = A5;
+int bolt = A5;
 int green = A4;
 int orange = A3;
 int red = A2;
@@ -35,7 +42,7 @@ void setup() {
   digitalWrite(pin4, LOW);
   pinMode(pin9, INPUT);
   digitalWrite(pin9, HIGH);
-  pinMode(magnet1, OUTPUT);
+  pinMode(bolt, OUTPUT);
   pinMode(green, OUTPUT);
   pinMode(orange, OUTPUT);
   pinMode(red, OUTPUT);
@@ -68,7 +75,7 @@ void loop() {
     analogWrite(orange, 0);
     delay(100);
     analogWrite(orange, 255);
-    delay(1000);
+    delay(100);
     analogWrite(orange, 0);
     confirmation(password, numberOfDigits, columns, raws);
     if (insideNewPasswordMenu)
