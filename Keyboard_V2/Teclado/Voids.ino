@@ -134,9 +134,9 @@ void newPassword(byte password[], byte numberOfDigits, int array1[], int array2[
       analogWrite(green, 255);
       delay(1000);
       analogWrite(green, 0);
-      newPasswordCounter = 0;
       burnPasswordInEeprom(numberOfDigits);
     }
+    match = false;
   } else {
     analogWrite(red, 255);
     delay(100);
@@ -144,9 +144,8 @@ void newPassword(byte password[], byte numberOfDigits, int array1[], int array2[
     delay(100);
     analogWrite(red, 255);
     delay(100);
-    analogWrite(red, 0)
+    analogWrite(red, 0);
   }
-  match = false;
   insideNewPasswordMenu = false;
   Serial.println("Leaving Password Menu.");
 }
@@ -180,6 +179,7 @@ void openClose() {
     delay(2000);
     analogWrite(bolt, 0);
     analogWrite(green, 0);
+    match = false;
   } else {
     analogWrite(red, 255);
     delay(100);
@@ -189,5 +189,4 @@ void openClose() {
     delay(100);
     analogWrite(red, 0);
   }
-  match = false;
 }

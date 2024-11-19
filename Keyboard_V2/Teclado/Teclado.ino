@@ -19,7 +19,6 @@ int keyRaw;
 boolean keyDetected = false;
 boolean insideNewPasswordMenu = false;
 byte password[] = { 1, 1, 1, 2, 2, 2 };
-byte newPasswordCounter = 0;
 byte numberOfDigits = 6;
 const byte C = 4;
 const byte R = 3;
@@ -51,9 +50,8 @@ void setup() {
   result[3][1] = 0;
   result[3][2] = 11;
   pinSetUp(columns, raws);
-  readPasswordInEeprom(numberOfDigits);
-  printPasswordInEeprom(numberOfDigits);
   startingLights();
+  printPasswordInEeprom(numberOfDigits);
 }
 void loop() {
   Serial.println("Main Menu.");
