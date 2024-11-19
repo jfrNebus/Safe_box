@@ -19,9 +19,6 @@ int keyRaw;
 boolean keyDetected = false;
 boolean insideNewPasswordMenu = false;
 byte password[] = { 1, 1, 1, 2, 2, 2 };
-
-byte passwordEepromAddress[] = { 1, 2, 3, 4, 5, 6 };
-
 byte newPasswordCounter = 0;
 byte numberOfDigits = 6;
 const byte C = 4;

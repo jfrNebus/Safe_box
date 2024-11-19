@@ -87,17 +87,17 @@ void confirmation(byte password[], byte numberOfDigits, int array1[], int array2
 
 void burnPasswordInEeprom(byte numberOfDigits) {
   for (int i = 0; i < numberOfDigits; i++) {
-    EEPROM.write(passwordEepromAddress[i], password[i]);
+    EEPROM.write(i, password[i]);
   }
 }
 void readPasswordInEeprom(byte numberOfDigits) {
   for (int i = 0; i < numberOfDigits; i++) {
-    password[i] = EEPROM.read(passwordEepromAddress[i]);
+    password[i] = EEPROM.read(i);
   }
 }
 void printPasswordInEeprom(byte numberOfDigits) {
   for (int i = 0; i < numberOfDigits; i++) {
-    Serial.println("i = " + String(i) + "; " + EEPROM.read(passwordEepromAddress[i]));
+    Serial.println("i = " + String(i) + "; " + EEPROM.read(i));
   }
 }
 
