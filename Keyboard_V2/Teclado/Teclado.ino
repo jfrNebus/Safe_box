@@ -1,12 +1,5 @@
 #include <EEPROM.h>
 
-
-
-Agregaste el pinMode de A5 A4 A3 A2 en el void setup
-
-
-
-
 int pin1 = 12;
 int pin2 = 11;
 int pin3 = 10;
@@ -26,7 +19,9 @@ int keyRaw;
 boolean keyDetected = false;
 boolean insideNewPasswordMenu = false;
 byte password[] = { 1, 1, 1, 2, 2, 2 };
+
 byte passwordEepromAddress[] = { 1, 2, 3, 4, 5, 6 };
+
 byte newPasswordCounter = 0;
 byte numberOfDigits = 6;
 const byte C = 4;
