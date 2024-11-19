@@ -1,18 +1,15 @@
 #include <EEPROM.h>
 
-//----------- Matrix push buttons
 int pin1 = 12;
 int pin2 = 11;
 int pin3 = 10;
-int pin4 = 9;  //No matrix push button, button *
+int pin4 = 9;
 int pin5 = 8;
 int pin6 = 7;
 int pin7 = 6;
 int pin8 = 5;
-int pin9 = 4;  //No matrix push button, button *
-//----------- Electromagnetic bolt
+int pin9 = 4;
 int magnet1 = A5;
-//----------- Leds
 int green = A4;
 int orange = A3;
 int red = A2;
@@ -25,8 +22,8 @@ byte password[] = { 1, 1, 1, 2, 2, 2 };
 byte passwordEepromAddress[] = { 1, 2, 3, 4, 5, 6 };
 byte newPasswordCounter = 0;
 byte numberOfDigits = 6;
-const byte C = 4;  //Columns
-const byte R = 3;  //Raws
+const byte C = 4;
+const byte R = 3;
 bool match = false;
 int columns[C] = { pin5, pin6, pin7, pin8 };
 int raws[R] = { pin1, pin2, pin3 };
@@ -38,6 +35,10 @@ void setup() {
   digitalWrite(pin4, LOW);
   pinMode(pin9, INPUT);
   digitalWrite(pin9, HIGH);
+  pinMode(magnet1, OUTPUT);
+  pinMode(green, OUTPUT);
+  pinMode(orange, OUTPUT);
+  pinMode(red, OUTPUT);
   Serial.begin(9600);
   result[0][0] = 1;
   result[0][1] = 2;
@@ -54,7 +55,6 @@ void setup() {
   readPasswordInEeprom(numberOfDigits);
   printPasswordInEeprom(numberOfDigits);
   startingLights();
-  Serial.println("Setup");
 }
 void loop() {
   Serial.println("Main Menu.");
