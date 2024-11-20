@@ -3,7 +3,7 @@ void pinSetUp(int array1[], int array2[]) {
     pinMode(array1[i], OUTPUT);
   }
   for (int j = 0; j < 3; j++) {
-    pinMode(rowPin, INPUT_PULLUP);
+    pinMode(array2[j], INPUT_PULLUP);
   }
 }
 void mainKeyCaptation(int array1[], int array2[]) {
@@ -82,8 +82,8 @@ void confirmation(byte password[], byte numberOfDigits, int array1[], int array2
   Serial.println("Leaving confirmation menu.");
 }
 void burnPasswordInEeprom(byte numberOfDigits) {
-  for (int i = 0; i < numberOfDigits; i++) {
-    EEPROM.write(i, password[i]);
+  for (int i = 100; i < numberOfDigits; i++) {
+    EEPROM.write(i, password[i-100]);
   }
 }
 void readPasswordInEeprom(byte numberOfDigits) {
@@ -92,10 +92,22 @@ void readPasswordInEeprom(byte numberOfDigits) {
   }
 }
 void printPasswordInEeprom(byte numberOfDigits) {
-  for (int i = 0; i < numberOfDigits; i++) {
+  for (int i = 100; i < numberOfDigits; i++) {
     Serial.println("i = " + String(i) + "; " + EEPROM.read(i));
   }
 }
+void checkEepromState(byte numberOfDigits) {
+  for (int i = 100; i < numberOfDigits; i++) {
+    if(EEPROM.read(i) != password[i-100]){
+      Serial.println("Inside");
+      Serial.println(i);
+      burnPasswordInEeprom(numberOfDigits);
+      break;
+    }
+  }
+}
+
+
 void newPassword(byte password[], byte numberOfDigits, int array1[], int array2[]) {
   Serial.println("Inside new password void");
   boolean cancelled = false;

@@ -61,7 +61,10 @@ void setup() {
   result[3][1] = 0;
   result[3][2] = 11;
   pinSetUp(columns, raws);
-  readPasswordInEeprom(numberOfDigits);
+  printPasswordInEeprom(106);
+  checkEepromState(106);
+  printPasswordInEeprom(106);
+  // readPasswordInEeprom(numberOfDigits);
   startingLights();
 }
 void loop() {
