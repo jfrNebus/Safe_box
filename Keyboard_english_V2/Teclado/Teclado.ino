@@ -29,16 +29,6 @@ if insideNewPasswordMenu is true or false.
 byte password[] = { 1, 1, 1, 2, 2, 2 };              /*The default password, and the password array that will be
 overridden once we save the new password in the Eeprom memory.
 */
-byte passwordEepromAddress[] = { 1, 2, 3, 4, 5, 6 }; /*The positions in the Eeprom memory, of the
-password values that we will save. This means that we will save a group of 6 numbers, and each
-number will be save in a "slot" in Eeprom's memory. This array members are the positions of those
-slots. First number of password will be save in the position 1 of the passwordEepromAddress array,
-which is 1; the second number of password will be save in the position 2; and so on.
-
-To be tested: remove this array. Instead use the for loop variable as address. This way the first
-position would be 0, and the last one would be 5.
-*/
-byte newPasswordCounter = 0;                         //-TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK
 byte numberOfDigits = 6;                             /*Number of digits of our password. This variable will set the amount of
 iterations for each for loop action. This is reading, printing or burning the password from / in Eeprom's memory.
 */
@@ -98,7 +88,6 @@ void setup() {
   readPasswordInEeprom(numberOfDigits);   /*We read the actual values burnt in Eeprom memory. We need to load this
   void as soon as system turns on because otherwise the password values would always be the defult ones.
   */
-  printPasswordInEeprom(numberOfDigits);  //We print in serial monitor the Eeprom's current values.
   startingLights();                       //We load starting lights sequence.
 }
 void loop() {

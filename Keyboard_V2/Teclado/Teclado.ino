@@ -50,8 +50,8 @@ void setup() {
   result[3][1] = 0;
   result[3][2] = 11;
   pinSetUp(columns, raws);
+  readPasswordInEeprom(numberOfDigits);
   startingLights();
-  printPasswordInEeprom(numberOfDigits);
 }
 void loop() {
   Serial.println("Main Menu.");

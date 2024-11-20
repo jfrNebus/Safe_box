@@ -184,14 +184,13 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
 }
 //Method to burn in the eeprom the new password.
 void burnPasswordInEeprom(byte numberOfDigits) {
-  /*The next for loop will perform its action while i = numberOfDigits. We
+  /*The next for loop will perform its action while i < numberOfDigits. We
   will write in the eeprom memory, each number of the current password. 
   For that, we will tell the system that we want to save the i number in
-  password's array, in the i address of the eeprom, bassed in the i 
-  number of the passwordEepromAddress array.
+  password's array, in the i address of the eeprom.
    */
   for (int i = 0; i < numberOfDigits; i++) {
-    EEPROM.write(passwordEepromAddress[i], password[i]);
+    EEPROM.write(i, password[i]);
   }
 }
 //Method to set de values of password on each power on.
@@ -200,23 +199,21 @@ void readPasswordInEeprom(byte numberOfDigits) {
   eeprom memory. This way, when the system starts, password is equal to the 
   previous password save by the user, instead of getting the default values 
   when the system turn on. We start with a for loop that will perform the action
-  while i = numberOfDigits. We save in password's array, the values saved in the 
-  eeprom memory, in the positions i, where i are the numbers inside 
-  passwordEepromAddress.
+  while i < numberOfDigits. We save in password's array, the values saved in the 
+  eeprom memory, in the positions i.
    */
   for (int i = 0; i < numberOfDigits; i++) {
-    password[i] = EEPROM.read(passwordEepromAddress[i]);
+    password[i] = EEPROM.read(i);
   }
 }
 void printPasswordInEeprom(byte numberOfDigits) {
-  /*This void is not needed for the system to be able to work, but it is useful
-   for the developer to check what are the current values stored in the eeprom
-   memory. We iterate over the for loop till i = numberOfDigits. We will print in 
-   the serial console, the values in the eeprom memory, saved in the address 
-   passwordEepromAddress[i].
+  /*This void is not needed for the system to work, but it is useful for the developer 
+   to check which are the current values stored in the eeprom memory. We iterate over
+  the for loop till i = numberOfDigits. We will print in the serial console, the values
+  in the eeprom memory, saved in the address i.
    */
   for (int i = 0; i < numberOfDigits; i++) {
-    Serial.println(EEPROM.read(passwordEepromAddress[i]));
+    Serial.println("i = " + String(i) + "; " + EEPROM.read(i));
   }
 }
 /*This method will be called to get the keyboard typed by the user. It will be 
@@ -314,6 +311,7 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
       newPasswordCounter = 0;
       burnPasswordInEeprom(numberOfDigits);
     }
+    match = false;
   }
   else {
     /*If "match" is false, it means that the user failed on entering the current 
@@ -345,7 +343,6 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
    "if (mainMenuVariable == LOW) {" will always be false. (check confirmation void 
    explanation to recall how * key conditionals work).
    */
-  match = false;
   insideNewPasswordMenu = false;
   Serial.println("Leaving Password Menu.");
 }
@@ -402,6 +399,7 @@ void openClose() {
     delay(2000);
     analogWrite(bolt, 0);
     analogWrite(green, 0);
+    match = false;
   }
   else {
     analogWrite(red, 255);
@@ -412,5 +410,4 @@ void openClose() {
     delay(100);
     analogWrite(red, 0);
   }
-  match = false;
 }
