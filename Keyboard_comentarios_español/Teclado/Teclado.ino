@@ -39,10 +39,10 @@ este array son las direcciones de estos slots. El primer número de la contrase�
 que aparezca en la primera posición del array passwordEepromAddress, la dirección 1; el segundo número de 
 la contraseña se guardará en la posición 2; y así consecutivamente.
 
-POR COMPROBAR-----: Elimina este array y en su lugar usa la propia variable del bucle for como dirección en la 
+HECHO  <>  POR COMPROBAR-----: Elimina este array y en su lugar usa la propia variable del bucle for como dirección en la 
 memoria eeprom. De esta forma, la primera posición sería la 0 y la última la 5.
 */
-byte newPasswordCounter = 0; //-TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK ESTA LÍNEA FALTA POR DOCUMENTAR
+byte newPasswordCounter = 0; //HECHO  <>  -TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK TOCHECK ESTA LÍNEA FALTA POR DOCUMENTAR
 
 byte numberOfDigits = 6; /*Numero de dígitos de nuestra contraseña. Esta variable establece el número de 
 iteraciones para cada loop for. Estos bucles se utilizan a la hora de leer, imprimir o grabar la contraseña
@@ -72,7 +72,7 @@ void setup() {
   Empezamos estableciendo el pin "positive" como pin de salida. Establecemos un valor valor bajo de alimentación.
   por medio de analogWrite.
 
-  POR COMPROBAR-----: Analiza por qué lanzas analogWrite.
+  HECHO  <>  POR COMPROBAR-----: Analiza por qué lanzas analogWrite.
   */
   pinMode(positive, OUTPUT);
   analogWrite(positive, 20);
@@ -140,7 +140,7 @@ void loop() {
   confirmation), cargamos el método newPassword. Una vez este método finaliza, establecemos we el led rojo como input, y
   abandonamos el menú new password.
 
-  POR MODIFICAR-----: Revisa lo de encender o apagar los led no usando digitalWrite, sino estableciendo los pines como 
+  HECHO  <>  POR MODIFICAR-----: Revisa lo de encender o apagar los led no usando digitalWrite, sino estableciendo los pines como 
   inputs u outputs.
   */
   Serial.println("Main Menu.");

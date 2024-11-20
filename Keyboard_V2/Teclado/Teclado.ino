@@ -1,5 +1,16 @@
 #include <EEPROM.h>
 
+
+/*
+
+News:
+* Removed: line 150 in teclado> mainMenuVariable = HIGH;
+* Removed: line 6 in voids> pinMode(array2[j], INPUT); Arduino default all the pins as input.
+* Modification: the pinSetUp is been changed 
+
+*/
+
+
 int pin1 = 12;
 int pin2 = 11;
 int pin3 = 10;
@@ -58,7 +69,6 @@ void loop() {
   if (mainMenuVariable == LOW) {
     analogWrite(red, 255);
     Serial.println("Inside new password conditional.");
-    mainMenuVariable = HIGH;
     insideNewPasswordMenu = true;
     analogWrite(orange, 255);
     delay(100);

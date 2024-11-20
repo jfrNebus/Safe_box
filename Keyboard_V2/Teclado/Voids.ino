@@ -3,8 +3,7 @@ void pinSetUp(int array1[], int array2[]) {
     pinMode(array1[i], OUTPUT);
   }
   for (int j = 0; j < 3; j++) {
-    pinMode(array2[j], INPUT);
-    digitalWrite(array2[j], HIGH);
+    pinMode(rowPin, INPUT_PULLUP);
   }
 }
 void mainKeyCaptation(int array1[], int array2[]) {
@@ -23,11 +22,9 @@ void mainKeyCaptation(int array1[], int array2[]) {
     digitalWrite(array1[i], HIGH);
   }
 }
-
 boolean getKeyDetectedState() {
   return keyDetected;
 }
-
 int getKeyPressedValue() {
   return result[keyColumn][keyRaw];
 }
@@ -84,7 +81,6 @@ void confirmation(byte password[], byte numberOfDigits, int array1[], int array2
   }
   Serial.println("Leaving confirmation menu.");
 }
-
 void burnPasswordInEeprom(byte numberOfDigits) {
   for (int i = 0; i < numberOfDigits; i++) {
     EEPROM.write(i, password[i]);
@@ -100,7 +96,6 @@ void printPasswordInEeprom(byte numberOfDigits) {
     Serial.println("i = " + String(i) + "; " + EEPROM.read(i));
   }
 }
-
 void newPassword(byte password[], byte numberOfDigits, int array1[], int array2[]) {
   Serial.println("Inside new password void");
   boolean cancelled = false;

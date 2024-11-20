@@ -114,8 +114,8 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
      Por último, rompemos el bucle while principal de este método, abandonando directamente
      todo el método, empezando de nuevo el bucle main del código.
     - Si la condición anterior no se cumple, quiere decir que numberTyped e
-      insideNewpasswordMenu son falsos, y por lo tanto aun no se presionó ningún número, 
-      y no nos encontramos dentro del menú de nueva contraseña. Por lo tanto, si se presiona
+      insideNewpasswordMenu son falsos, aun no se presionó ningún número, y no nos encontramos
+      dentro del menú de nueva contraseña. Por lo tanto, si se presiona
       el botón *, quiere decir que estamos solicitando acceder al menú de nueva contraseña.
       En esta situación, mainMenuVariable mantiene su nuevo valor LOW; se establece cancelled
       como true, para evitar acceder al último condicional que evalúa si la contraseña 
@@ -134,13 +134,12 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       explicado en el primer condicional de este método.
     - Establecemos keyDetected de nuevo como false, de esta forma no volveremos a entrar en 
       este condicional de nuevo, hasta que no se vuelva a presionar una tecla.
-    - Establecemos el pin del led naranja como salida durante 300 milisegundos y, a continuación,
-      volvemos a establecerlo como input. Esto encenderá el LED durante el tiempo el tiempo 
-      indicado, mostrandole al usario que se presionó una tecla.
+    - Alimentamos el pin del transistor del led naranja durante 300 milisegundos. Esto le 
+      muestra al usario que se presionó una tecla.
     - Usamos newPasswordCounter para establecer la posición dentro del array inputPassword[],
       donde almacenaremos los valores reportados por getKetPressedValue(). De esta forma, si
       presionamos el botón 4, como tercera posición de nuestra contraseña, se guardará el 
-      número 4 en la tercera posición del array. inputPassword[].
+      número 4 en la tercera posición del array inputPassword[].
     - Por último, incrementamos en una unidad el valor de newPasswordCounter, para obtener
       la posición de la siguiente tecla presionada. Recordemos que esta variable también nos
       sirve para controlar cuando ha de detenerse el bucle while de este método.
@@ -205,7 +204,7 @@ void burnPasswordInEeprom(byte numberOfDigits) {
   salvar en la dirección de la memoria i, del array passwordEepromAddress,
   el número en la posición i del array "password".
 
-  POR MODIFICAR-----: Comprueba si se puede sustituir el sistema de direción
+  HECHO  <>  POR MODIFICAR-----: Comprueba si se puede sustituir el sistema de direción
   passwordEepromAddres, simplemente por el valor de i, guardando en las 
   direcciones 0 <> numberOfDigits - 1.
   */
@@ -226,7 +225,7 @@ void readPasswordInEeprom(byte numberOfDigits) {
   en las posiciones i, donde i son los números almacenados en el array 
   passwordEepromAddress.
 
-  POR MODIFICAR-----: Comprueba si se puede sustituir el sistema de direción
+  HECHO  <>  POR MODIFICAR-----: Comprueba si se puede sustituir el sistema de direción
   passwordEepromAddres, simplemente por el valor de i, guardando en las 
   direcciones 0 <> numberOfDigits - 1.
   */
@@ -317,7 +316,7 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
       mainMenuVariable = digitalRead(pin9);
       if (mainMenuVariable == LOW) { 
         cancelled = true;
-        mainMenuVariable = HIGH; //Check if this line is needed considering that it is sent in main if conditional in void loop
+        mainMenuVariable = HIGH; //HECHO  <Por comprobar, se ha modificado en el Void loop>  Check if this line is needed considering that it is sent in main if conditional in void loop
         insideNewPasswordMenu = false;
         readPasswordInEeprom(numberOfDigits);
         break;
@@ -339,7 +338,7 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
       que el proceso de introducir una nueva contraseña ha finalizado correctamente.
       Establecemos newPasswordCounter como 0.
 
-      POR MODIFICAR-----: Elimina la línea "newPasswordCounter = 0;" dado que esa variable
+      HECHO  <>  POR MODIFICAR-----: Elimina la línea "newPasswordCounter = 0;" dado que esa variable
       es una variable local que no será usada de nuevo en el resto del método. Verificalo.
 
       Finalmente, llamamos al método burnPasswordInEeprom para grabar los valores actuales
@@ -371,7 +370,7 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
   }
   /*Por último, establecemos "match" como false. 
 
-  POR MODIFICAR-----: Mueve esta línea al interior del bloque "if (match)", dado que 
+  HECHO  <>  POR MODIFICAR-----: Mueve esta línea al interior del bloque "if (match)", dado que 
   es el único contexto en el que match podría ser true.
   
   Se establece insideNewPasswordMenu como false. Cuando entramos en el condicional if
