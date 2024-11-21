@@ -38,7 +38,6 @@ int columns[C] = { pin5, pin6, pin7, pin8 };
 int raws[R] = { pin1, pin2, pin3 };
 int result[C][R];
 int mainMenuVariable = HIGH;
-
 void setup() {
   pinMode(pin4, OUTPUT);
   digitalWrite(pin4, LOW);
@@ -61,10 +60,11 @@ void setup() {
   result[3][1] = 0;
   result[3][2] = 11;
   pinSetUp(columns, raws);
-  printPasswordInEeprom(106);
-  checkEepromState(106);
-  printPasswordInEeprom(106);
-  // readPasswordInEeprom(numberOfDigits);
+  printPasswordInEeprom(166);
+  delay(2000);
+  checkEepromState(166);
+  delay(2000);
+  printPasswordInEeprom(166);
   startingLights();
 }
 void loop() {
