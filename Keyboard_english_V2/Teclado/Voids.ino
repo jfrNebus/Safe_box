@@ -1,5 +1,5 @@
 //This method sets the behaviour of each keyboard pin.
-void pinSetUp (int array1[], int array2[]) {
+void pinSetUp(int array1[], int array2[]) {
   for (int i = 0; i < 4; i++) {
     /*We set each pin in first array as output. These pins will be the ones sending
     the low signal that will be read by the second array.
@@ -7,14 +7,29 @@ void pinSetUp (int array1[], int array2[]) {
     pinMode(array1[i], OUTPUT);
   }
   for (int j = 0; j < 3; j++) {
-    /*We set each pin in second array as input, and we write high on them. These pins
-    will be the ones that will read the values from pins in first array. They are HIGH,
-    when we set the ones in first array as low while iterating over them, and later we
-    read values in second array, the one low instead of high, will be our pressed key.
-    It is highly recommended to read "mainKeyCaptation" for a better understanding.
+    /*We set each pin in the second array as INPUT_PULLUP, this will set each pin in a
+    HIGH state. These pins will be the ones reading the values from pins in first array. 
+    They are HIGH, when we set the ones in first array as low while iterating over them, 
+    and later we read values in second array, the one low instead of high, will be our 
+    pressed key. It is highly recommended to read "mainKeyCaptation" for a better understanding.
+
+    Pullup resistor connection:
+    * Vcc = internal arduino power connection to vcc.
+    * ~~ = internal arduino resistance connected to the pin.
+    * | = the pin in array2 set as INPUT_PULLUP.
+    * || = the pin in array1 set as output.
+    * __ = The internal connection between elements
+    * _._._._ = External connection between elements.
+    * // = push button.
+    
+
+    VCC___~~___|_._._._//_._._._||___GND
+
+    When the push button in the matrix keyboard is pressed, the pin set as INPUT_PULLUP, which is
+    in a HIGH state, gets connected to the pin set as output, which is connected to GND. This way
+    the circuit is closed and the state read in the pin INPUT_PULLUP is LOW.
     */
-    pinMode(array2[j], INPUT);
-    digitalWrite(array2[j], HIGH);
+    pinMode(array2[j], INPUT_PULLUP);
   }
 }
 //This method checks for a key pressed.
@@ -53,14 +68,14 @@ boolean getKeyDetectedState() {
   return keyDetected;
 }
 //Getter to return the key value for the current keyColumn and keyRow.
-int getKeyPressedValue () {
+int getKeyPressedValue() {
   return result[keyColumn][keyRow];
 }
 //Method to check if the password entered match the one in Eeprom memory.
-void confirmation (byte password[], byte numberOfDigits, int array1[], int array2[]) {
-  /*This void will check if the password entered match the one in Eeprom memory.
-  First it starts blinking twice orange led to indicate that we are currently inside 
-  confirmation void. Then we create a few variables/arrays.
+void confirmation(byte password[], byte numberOfDigits, int array1[], int array2[]) {
+  /*This void will check if the password entered matches the one in Eeprom memory.
+  First, orange led blinks twice to indicate that we are currently inside confirmation 
+  void. Then we create a few variables/arrays.
   -newPasswordCounter will store the amount of iterations done over the main loop.
   -inputPassword[numberOfDigits] will store the numbers given by the buttoms pressed.
    Its size will be numberOfDigits, set at begging of code.
@@ -87,8 +102,8 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
     according to its value, we set some conditionals:
     - If mainMenuVariable is equals to low, and at the same time, variable
       numberTyped or insideNewPasswordMenu are True, then we will change the
-      value of some variables with the purpose of going back to main menu 
-      cancelling all performed actions, and avoiding getting into password
+      value of some variables with the purpose of going back to main menu, 
+      cancelling all performed actions, while avoiding getting into password
       change menu.
       * We set cancelled as true. This way we won't get into the last 
         conditional, which checks if the entered password matchs the password 
@@ -101,20 +116,20 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
         new password menu, it means that we want to go back to main menu, and therefor
         we skip the "if (insideNewPasswordMenu)" conditional that comes next to
         confirmation.
-     Finally, we break the main while loop of this void, leaving directly the whole void, 
-     and starting again the main loop of the code.
+      Finally, we break the main while loop of this void, leaving directly the whole void, 
+      and starting again the main loop of the code.
     - If previous conditional is not met, then it means that numberTyped and 
       insideNewPasswordMenu are false, so we still didn't press any number, and we are
       not inside new password menu. So, if * key is pressed, it means that we request 
       the code to take us to new password Menu. In this situation, mainMenuVariable keeps 
-      its new low value, we set cancelled as true to avoid getting into the last conditional
-      which checks if the typed password matchs the password stored inside password[], and we 
+      its new low value, we set cancelled as true to avoid getting in the last conditional
+      which checks if the typed password matches the password stored inside password[], and we 
       break the main while loop of this void. This way, mainMenuVariable's value is still 
       LOW once the main loop checks if the new password menu conditional is true or not. 
       Since this conditional is if (mainMenuVariable == LOW), we will get inside of it.
     If none of these two conditionals is met, then we will call mainKeyCaptation(array1, 
     array2);, which was explained previously. This method will set keyDetected as true, if a
-    key was pressed. In case keyDetecte is equals to true, we will get inside
+    key was pressed. In case keyDetected is equals to true, we will get inside
     next conditional, where some actions will be performed:
     - We set numberTyped as true. From now on, if we press * key, code will understand that
       we pressed a key and we need to cancel any action performed. In such stage, it will take 
@@ -138,8 +153,7 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       mainMenuVariable = HIGH;
       insideNewPasswordMenu = false;
       break;
-    }
-    else if (mainMenuVariable == LOW) {
+    } else if (mainMenuVariable == LOW) {
       Serial.println("Requesting new password menu.");
       cancelled = true;
       break;
@@ -172,8 +186,7 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       if (inputPassword[i] == password[i]) {
         Serial.println("Match!");
         match = true;
-      }
-      else {
+      } else {
         Serial.println("No match!");
         match = false;
         break;
@@ -189,6 +202,7 @@ void burnPasswordInEeprom(byte numberOfDigits) {
   For that, we will tell the system that we want to save the i number in
   password's array, in the i address of the eeprom.
    */
+  Serial.println("Burning in eeprom the values of password[]");
   for (int i = 0; i < numberOfDigits; i++) {
     EEPROM.write(i, password[i]);
   }
@@ -202,6 +216,7 @@ void readPasswordInEeprom(byte numberOfDigits) {
   while i < numberOfDigits. We save in password's array, the values saved in the 
   eeprom memory, in the positions i.
    */
+  Serial.println("Setting eeprom values as password[] values.");
   for (int i = 0; i < numberOfDigits; i++) {
     password[i] = EEPROM.read(i);
   }
@@ -216,10 +231,33 @@ void printPasswordInEeprom(byte numberOfDigits) {
     Serial.println("i = " + String(i) + "; " + EEPROM.read(i));
   }
 }
+/*This method checks the EEPROM memory state. This is needed because when the program is loaded 
+for the first time in the arduino board, the memory slots may have 255 as values, or any other 
+random values. This method will burn the default password in the memory if any eeprom value is 
+greater than 9, since each slot is a number of the password and they have to be a number between
+0 and 9.*/
+void checkEepromState(byte numberOfDigits) {
+  /*
+  We iterate over the eeprom values. If one this values is greater than 9, the method burnPasswordInEeprom
+  will be called, and the for loop void will get broken. If the for loop reaches the last stage, the
+  numberOfDigits - 1, it means that all the eeprom values are lower than 9, which means that they all
+  are right values. In such case, readPasswordInEeprom is called to set the Eeprom values as the password[]
+  values.
+  */
+  for (int i = 0; i < numberOfDigits; i++) {
+    if (EEPROM.read(i) > 9) {
+      Serial.println("A value over 9 has been detected in the memory position: " + String(i) + ".");
+      burnPasswordInEeprom(numberOfDigits);
+      break;
+    } else if (i = numberOfDigits - 1) {
+      readPasswordInEeprom(numberOfDigits);
+    }
+  }
+}
 /*This method will be called to get the keyboard typed by the user. It will be 
 the ona called by burnPasswordInEeprom, to save the password.
 */
-void newPassword (byte password[], byte numberOfDigits, int array1[], int array2[]) {
+void newPassword(byte password[], byte numberOfDigits, int array1[], int array2[]) {
   /*When this void is loaded, we have already gone through a * key press event, with no 
    numbers typed. We broke the confirmation loop, and we came to the main conditional
    in the void loop. Once inside the main conditional, we had to enter the current 
@@ -271,6 +309,7 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
        pressed.
      * We do newPasswordCounter++ to jump to the next number of the password that must be 
        registered to be saved in password[].
+     Finally, before leaving this conditional, if(match), we set match back to false.
      */
     Serial.println("New Password Menu.");
     analogWrite(green, 255);
@@ -279,7 +318,7 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
     int newPasswordCounter = 0;
     while (newPasswordCounter < numberOfDigits) {
       mainMenuVariable = digitalRead(pin9);
-      if (mainMenuVariable == LOW) { 
+      if (mainMenuVariable == LOW) {
         cancelled = true;
         mainMenuVariable = HIGH;
         insideNewPasswordMenu = false;
@@ -300,20 +339,17 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
       /*Once the while loop is over, if "cancelled" is still false, we will get in this 
        conditional. We will send a message to serial monitor, for developing purposes.
        Then, green LED will light for 1 second to show that the proccess of introducing
-       the new password succeded. Then we will set newPasswordCounter back to 0.
-       Finally, we call burnPasswordInEeprom to burn the actual values of password[] in
-       the eeprom memory.
+       the new password succeded. Finally, we call burnPasswordInEeprom to burn the 
+       actual values of password[] in the eeprom memory.
      */
       Serial.println("Burning EEPROM.");
       analogWrite(green, 255);
       delay(1000);
       analogWrite(green, 0);
-      newPasswordCounter = 0;
       burnPasswordInEeprom(numberOfDigits);
     }
     match = false;
-  }
-  else {
+  } else {
     /*If "match" is false, it means that the user failed on entering the current 
      password, which means that the user has no access to the change password menu.
      Because of this, the conditional will not be executed, and we will jump directly 
@@ -348,14 +384,12 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
 }
 //Void used to print the actual password not burnt in the eeprom memory.
 void getNewPassword() {
-    /*This void is not needed for the system to be able to work. It is just for developing
-    purposes. We load a for loop that will print password[i], till i = numberOfDigits. Then
-    the code will wait for 2 seconds.
+  /*This void is not needed for the system to be able to work. It is just for developing
+    purposes. We load a for loop that will print password[i], till i = numberOfDigits.
    */
   for (int i = 0; i < numberOfDigits; i++) {
     Serial.print(password[i]);
   }
-  delay(2000);
 }
 //Method used to show the system initialization.
 void startingLights() {
@@ -400,8 +434,7 @@ void openClose() {
     analogWrite(bolt, 0);
     analogWrite(green, 0);
     match = false;
-  }
-  else {
+  } else {
     analogWrite(red, 255);
     delay(100);
     analogWrite(red, 0);

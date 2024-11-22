@@ -2,13 +2,21 @@
 
 
 /*
+To be tested 
 
-News:
-* Removed: line 150 in teclado> mainMenuVariable = HIGH;
-* Removed: line 6 in voids> pinMode(array2[j], INPUT); Arduino default all the pins as input.
-* Modification: the pinSetUp is been changed 
+Line 52
+Removed:
+  pinMode(pin9, INPUT);
+  digitalWrite(pin9, HIGH);
+Added:
+  pinMode(pin9, INPUT_PULLUP);
+
+
 
 */
+
+
+
 
 
 int pin1 = 12;
@@ -41,8 +49,7 @@ int mainMenuVariable = HIGH;
 void setup() {
   pinMode(pin4, OUTPUT);
   digitalWrite(pin4, LOW);
-  pinMode(pin9, INPUT);
-  digitalWrite(pin9, HIGH);
+  pinMode(pin9, INPUT_PULLUP);
   pinMode(bolt, OUTPUT);
   pinMode(green, OUTPUT);
   pinMode(orange, OUTPUT);
@@ -60,11 +67,8 @@ void setup() {
   result[3][1] = 0;
   result[3][2] = 11;
   pinSetUp(columns, raws);
-  printPasswordInEeprom(166);
-  delay(2000);
-  checkEepromState(166);
-  delay(2000);
-  printPasswordInEeprom(166);
+  checkEepromState(numberOfDigits);
+  printPasswordInEeprom(numberOfDigits);
   startingLights();
 }
 void loop() {

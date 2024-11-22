@@ -82,34 +82,33 @@ void confirmation(byte password[], byte numberOfDigits, int array1[], int array2
   Serial.println("Leaving confirmation menu.");
 }
 void burnPasswordInEeprom(byte numberOfDigits) {
-  for (int i = 160; i < numberOfDigits; i++) {
-    EEPROM.write(i, password[i-160]);
+  Serial.println("Burning in eeprom the values of password[]");
+  for (int i = 0; i < numberOfDigits; i++) {
+    EEPROM.write(i, password[i]);
   }
 }
 void readPasswordInEeprom(byte numberOfDigits) {
+  Serial.println("Setting eeprom values as password[] values.");
   for (int i = 0; i < numberOfDigits; i++) {
     password[i] = EEPROM.read(i);
   }
 }
 void printPasswordInEeprom(byte numberOfDigits) {
-  for (int i = 160; i < numberOfDigits; i++) {
+  for (int i = 0; i < numberOfDigits; i++) {
     Serial.println("i = " + String(i) + "; " + EEPROM.read(i));
   }
 }
 void checkEepromState(byte numberOfDigits) {
-    for (int i = 160; i < numberOfDigits; i++) {
+    for (int i = 0; i < numberOfDigits; i++) {
     if(EEPROM.read(i) > 9){
-      Serial.println("Inside if");
+      Serial.println("A value over 9 has been detected in the memory position: " + String(i) + ".");
       burnPasswordInEeprom(numberOfDigits);
       break;
-    } else if (i < numberOfDigits - 1){
-      Serial.println("Inside else if");
+    } else if (i = numberOfDigits - 1){
       readPasswordInEeprom(numberOfDigits);
     }
   }
 }
-
-
 void newPassword(byte password[], byte numberOfDigits, int array1[], int array2[]) {
   Serial.println("Inside new password void");
   boolean cancelled = false;

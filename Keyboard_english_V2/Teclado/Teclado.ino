@@ -51,10 +51,15 @@ any change, to cancel a wrong input, etc. This conditions will be met once mainM
 */
 void setup() {
   //----------- Pin setup for * button.
+  /*
+  The button * is not conected to the push button matrix. We set one of its pins to an output pin
+  in the arduino board set as LOW. The other one is connected to an input pin set as HIGH. When we send a
+  LOW state through the pin number 4, and this signal is read in the pin number 9, which is HIGH by default, 
+  the value read will be LOW. There's a deeper explanation about this subject in the void pinSetUp.
+  */
   pinMode(pin4, OUTPUT);
   digitalWrite(pin4, LOW);
-  pinMode(pin9, INPUT);
-  digitalWrite(pin9, HIGH);
+  pinMode(pin9, INPUT_PULLUP);
   //----------- Pin setup for all the transistors.
   pinMode(bolt, OUTPUT);
   pinMode(green, OUTPUT);
@@ -85,9 +90,11 @@ void setup() {
   result[3][2] = 11;
   pinSetUp(columns, rows);  //We call pinSetUp void, the one that will set up all pins. Check pinStUp void for
   //deeper explanations.
-  readPasswordInEeprom(numberOfDigits);   /*We read the actual values burnt in Eeprom memory. We need to load this
-  void as soon as system turns on because otherwise the password values would always be the defult ones.
+  checkEepromState(numberOfDigits); 
+  /*The Eeprom memory must be checked to be able to update password[] with the right values. According to the 
+  eeprom values, this method will perform different acctions.
   */
+  printPasswordInEeprom(numberOfDigits); //The eeprom values are printed in the console. Developer purposes.
   startingLights();                       //We load starting lights sequence.
 }
 void loop() {
@@ -101,21 +108,15 @@ void loop() {
   confirmation menu was loaded at least once, and it detected that * key was pressed. Since * was pressed, mainMenuVariable
   changed from HIGH to LOW. Once inside this conditional, we will start by turning on the red LED constantly till we leave
   this menu. This is meant to help the user to know which part of the code is being executed all the time. Then we send
-  a message to serial monitor, we set insideNewPasswordMenu as true, and mainMenuVariable to HIGH again. We will
-  talk deeply about insideNewPasswordMenu variable, in newPassword void.
-  We set mainMenuVariable again to HIGH because that way, if we leave the new password menu, we wont get again
-  inside this menu, we will just get in the main loop. Then, orange led blinks 2, visual purpose only.
+  a message to serial monitor and we set insideNewPasswordMenu as true. Orange led blinks 2, visual purpose only.
   In order to reach the "newPassword" void, a right password must be registered by "confirmation". Confirmation void will 
   set match to true or false. After loading confirmation void, and if insideNewPasswordMenu is still true, (it can change during
   confirmation void), we load newPassword void. Once this void is over, we turn off red LED, and we leave new password menu.
   */
-
-
   Serial.println("Main Menu.");
   if (mainMenuVariable == LOW) {
     analogWrite(red, 255);
     Serial.println("Inside new password conditional.");
-    mainMenuVariable = HIGH;
     insideNewPasswordMenu = true;
     analogWrite(orange, 255);
     delay(100);
