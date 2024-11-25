@@ -162,7 +162,6 @@ RBE = VB / IB
   
   Este factor se usa para incrementar la intensidad en base, esto garantiza que el transistor entre en saturación profunda y funcione como un interruptor.
 
-
 <hr>
 
 <br>
@@ -237,6 +236,8 @@ A continuación se muestra el esquema eléctrico, el diseño de la PCB, y el mod
 
 <br>
 
+
+
 De izquierda a derecha: capa superior, ubicación de los elementos; capa inferior, routeo de los elementos; capa de drill, mapa de perforación de los pad de los elementos.
 
 <br>
@@ -251,7 +252,7 @@ De izquierda a derecha: capa superior, ubicación de los elementos; capa inferio
 
 <br>
 
-De izquierda a derecha: 
+De izquierda a derecha: capa superior, capa mixta, capa inferior.
 
 <p align="center"> 
  <img src="Images/3D_PCB_front_view.png" width="432" height="524"/>
@@ -260,3 +261,5 @@ De izquierda a derecha:
  &nbsp;
  <img src="Images/3D_PCB_back_view.png" width="432" height="549"/>
 </p>
+
+
