@@ -240,6 +240,15 @@ Haciendo clic en el siguiente [enlace](Images/Esquema_electrónico.png), podemos
 
 Para este proyecto tuve que crear un nuevo elemento, el conector hembra de 13 pines. O bien no lo encontré entre las librerías pero existe, o bien no existe. Para su creación tomé como referencia uno de menor número de pines.
 
+<br>
+
+<p align="center"> 
+ <img src="Images/female_header_13pin_device.png"/>
+ <img src="Images/female_header_13pin_footprint.png"/>
+</p>
+
+<br>
+
 
 De izquierda a derecha: capa superior, ubicación de los elementos; capa inferior, routeo de los elementos; capa de drill, mapa de perforación de los pad de los elementos.
 
@@ -265,4 +274,6 @@ De izquierda a derecha: capa superior, capa mixta, capa inferior.
  <img src="Images/3D_PCB_back_view.png" width="432" height="549"/>
 </p>
 
+**Nota:** El diseño 3D del arduino seleccionado presenta un error, se observa un integrado atravesando el arduino. 
 
+Algunos de los elementos seleccionados no tienen archivo 3D. En este proyecto no se ha prestado atención al elemento concreto seleccionado en la librería. La placa se solicitó sin los elementos incluidos ya que se iban a usar elementos própios.
