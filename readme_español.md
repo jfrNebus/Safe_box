@@ -2,10 +2,17 @@
 
 # Introducción 🇪🇦
 
-Este proyecto nace cuando, por necesidades laborales, se necesitó una caja fuerte donde poder almacenar una serie de bienes de valor. En un momento determinado, un departamento de mi empresa retiró, por sustitución, un modelo específico de caja fuerte de un cliente. Este modelo específico tiene asociado un retardo a la apertura de la puerta; es decir, aunque dispongas de la llave y la contraseña, la activación del perno electromagnético que libera la cerradura no se producirá, hasta pasado un determinado tiempo. Esto garantiza que, en caso de que el intruso intente coaccionar al responsable de la caja, esta no se abra hasta que el tiempo de retardo haya finalizado, lo que lo obliga a permanecer más tiempo en la instalación, arriesgándose a ser capturado. Esta caja fuerte fue depositada en el apartado de desechos para reciclar, era un modelo antiguo no óptimo para dicho cliente. Adicionalmente, se desconocía la contraseña.
+Este proyecto nace cuando, por necesidades laborales, se necesitó una caja fuerte donde poder almacenar una serie de bienes de valor. En un momento determinado, un departamento de mi empresa retiró, por sustitución, un modelo específico de caja fuerte de un cliente. Este modelo específico tiene asociado un retardo a la apertura de la puerta; es decir, aunque dispongas de la llave y la contraseña, la activación del perno electromagnético que libera la cerradura no se producirá hasta pasado un determinado tiempo. Esto garantiza que, en caso de que el intruso intente coaccionar al responsable de la caja, esta no se abra hasta que el tiempo de retardo haya finalizado, lo que lo obliga a permanecer más tiempo en la instalación, arriesgándose a ser capturado. Esta caja fuerte fue depositada en el apartado de desechos para reciclar, era un modelo antiguo no óptimo para dicho cliente. Adicionalmente, se desconocía la contraseña.
 
 Estas cajas están pensadas para ser fijadas a una superficie debido a que el perno actúa por gravedad. Es decir, si la bobina del perno no tiene alimentación, el perno permanece en su posición por la acción de la gravedad, bloqueando la acción de la llave sobre la cerradura. Cuando se alimenta el circuito y se introduce la contraseña de forma correcta, el circuito alimenta la bobina del perno, atrayéndolo, liberando la acción de la llave.
 
+<br>
+<br>
+
+## Funcionamiento 🧰
+
+<br>
+<br>
 
 <p align="center">
  <img src="Images/bolt_work.png" width="576" height="432"/> 
@@ -105,13 +112,22 @@ Entender el funcionamiento de un teclado matricial es vital para la optimizació
 <br>
 
 Teniendo claro qué es, y cómo funciona un teclado matricial, podemos observar, en la imagen anterior, que el teclado de la caja fuerte también es un teclado matricial. En la imagen se observan dos figuras bastante más complejas que la del primer ejemplo. Ambas figuras representan el conexionado real del teclado. En la figura de la izquierda vemos una serie de pulsadores, colocados en dos filas y orientados de forma vertical, junto a los tres diodos LED de colores. Algunas de los tramos de ciertas pistas de conexión son de color azul, representan las partes de las pistas que están impresas por la cara trasera de la placa; las pistas de color vino, representan las pistas impresas en la cara frontal de la placa. El recorrido de algunas de las pistas varía ligeramente respecto a las pistas impresas en la placa, no obstante es una representación clara. La figura de la derecha mantiene el conexionado real entre pulsadores y pines, pero he organizado todo de forma que resulte más fácil percibir la union de las columnas y las filas, con los pulsadores. Las pistas de color amarillo representan las columnas, y las pistas de color verde representan las filas. El boton * se conecta a dos pines de forma independiente, porque así lo creyó oportuno el desarrollador que diseñó la placa del circuito.
+Teniendo claro todo lo explicado anteriormente, solo queda leerse las comentarios escritos en el propio código para entender el funcionamiento completo del sistema. 
 
 
+<br>
+
+
+
+
+<p align="center">
+    <a href="Keyboard_español_V2/Teclado/Teclado.ino"><img src="https://img.shields.io/badge/Archivo%20Teclado-773dd2?style=plastic"/></a>
+    <a href="Keyboard_español_V2/Teclado/Voids.ino"><img src="https://img.shields.io/badge/Archivo%20Voids-44cb11?style=plastic"/></a>
+</p>
 
 <br>
 <br>
 
-Teniendo claro todo lo explicado anteriormente, solo queda leerse las comentarios escritos en el propio código para entender el funcionamiento completo del sistema. En un principio, escribí los comentarios en inglés, y tiempo más tarde traduje mis comentarios del inglés al español. En el proceso detecté varios fallos de programación, para los que hice notas en medio de la explicación, para poder revisar dichos fallos en un futuro.
 
 
 
