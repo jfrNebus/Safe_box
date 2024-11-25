@@ -97,8 +97,6 @@ void setup() {
   diferentes acciones de acuerdo a los valores presentes en la eeprom.
   */
   checkEepromState(numberOfDigits); 
-  //Se imprimen en la consola los valores guardados en la memoria eeprom, con fines de desarrollo únicamente.
-  printPasswordInEeprom(numberOfDigits);
   startingLights();                       //Cargamos la secuencia de luces inicial.
 }
 void loop() {

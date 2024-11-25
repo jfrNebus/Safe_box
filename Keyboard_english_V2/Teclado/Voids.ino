@@ -9,19 +9,21 @@ void pinSetUp(int array1[], int array2[]) {
   for (int j = 0; j < 3; j++) {
     /*We set each pin in the second array as INPUT_PULLUP, this will set each pin in a
     HIGH state. These pins will be the ones reading the values from pins in first array. 
-    They are HIGH, when we set the ones in first array as low while iterating over them, 
-    and later we read values in second array, the one low instead of high, will be our 
-    pressed key. It is highly recommended to read "mainKeyCaptation" for a better understanding.
+    The pins in the second array are HIGH, when we set the ones in first array as low while 
+    iterating over them, and later we read values in second array, the one low instead of high,
+    will be our pressed key. It is highly recommended to read "mainKeyCaptation" for a better
+    understanding.
 
-    Pullup resistor connection:
+    Pullup resistor input connection:
     * Vcc = internal arduino power connection to vcc.
-    * ~~ = internal arduino resistance connected to the pin.
+    * ~~ = internal arduino resistance connected to the INPUT_PULLUP pin.
     * | = the pin in array2 set as INPUT_PULLUP.
     * || = the pin in array1 set as output.
-    * __ = The internal connection between elements
+    * __ = The internal connection between elements inside arduino.
     * _._._._ = External connection between elements.
     * // = push button.
-    
+
+    Full connection schematic:
 
     VCC___~~___|_._._._//_._._._||___GND
 
@@ -233,13 +235,13 @@ void printPasswordInEeprom(byte numberOfDigits) {
 }
 /*This method checks the EEPROM memory state. This is needed because when the program is loaded 
 for the first time in the arduino board, the memory slots may have 255 as values, or any other 
-random values. This method will burn the default password in the memory if any eeprom value is 
-greater than 9, since each slot is a number of the password and they have to be a number between
-0 and 9.*/
+values. This method will burn the default password in the memory if any eeprom value is greater
+than 9, Each slot is a number of the password, therefor they have to be a number between 0 and 9.
+*/
 void checkEepromState(byte numberOfDigits) {
   /*
   We iterate over the eeprom values. If one this values is greater than 9, the method burnPasswordInEeprom
-  will be called, and the for loop void will get broken. If the for loop reaches the last stage, the
+  will be called and the for loop void will get broken. If the for loop reaches its last iteration, the
   numberOfDigits - 1, it means that all the eeprom values are lower than 9, which means that they all
   are right values. In such case, readPasswordInEeprom is called to set the Eeprom values as the password[]
   values.
@@ -418,10 +420,9 @@ void startingLights() {
 void openClose() {
   /*Everything is based in "match" variable. If "match" is equals to true we will write
    HIGH signal in the pin called as "bolt", which is pin A5, and the green LED will 
-   light, both of them for 2 seconds. After it, we will write LOW signal in
-   the pin "bolt", and we will turn of the green LED. This way we will trigger 
-   the electromagnetic bolt for 2 seconds, allowing the user to use the key to open
-   the door.
+   light, both of them for 2 seconds. After it, we will write LOW in both pins. This way
+   we will trigger the electromagnetic bolt for 2 seconds, allowing the user to use the
+   key to open the door.
    If "match" is equal to false, then we won't get inside "if(match)", and "else" code 
    will be executed. The red LED will blink twice with a delay of 100 milliseconds.
    This will indicate the user that the password entered was wrong.

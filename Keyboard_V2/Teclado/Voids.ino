@@ -68,7 +68,6 @@ void confirmation(byte password[], byte numberOfDigits, int array1[], int array2
   if (cancelled == false) {
     Serial.println("Inside Password checking.");
     for (int i = 0; i < numberOfDigits; i++) {
-      Serial.println("Input = " + String(inputPassword[i]) + "; password = " + String(password[i]));
       if (inputPassword[i] == password[i]) {
         Serial.println("Match!");
         match = true;

@@ -1,20 +1,37 @@
 //Este método establece el modo de comportamiento de los pines del teclado.
-void pinSetUp (int array1[], int array2[]) {
+void pinSetUp(int array1[], int array2[]) {
   for (int i = 0; i < 4; i++) {
     /*Primero establecemos cada pin del primer array como output. Estos pines serán los
-    encargados de enviar el pulso bajo, que será leido por el segundo array.*/
+    encargados de enviar el pulso bajo que será leido por el segundo array.*/
     pinMode(array1[i], OUTPUT);
   }
   for (int j = 0; j < 3; j++) {
-    /*Establecemos el segundo array como input, y les asignamos un valor HIGH. Estos pines
-    serán los que lean los valores de los pines en el primer array. Se establecen como HIGH,
-    cuando establecesmos los del primer array como LOW mientras iteramos sobre ellos y, 
-    después, leemos los valores del segundo array, aquellos que muestren un valor LOW en
-    lugar de HIGH, serán los que hayan sido presionados. Se aconseja leer el método
-    mainKeyCaptation para entender mejor el concepto.
-    */ 
-    pinMode(array2[j], INPUT);
-    digitalWrite(array2[j], HIGH);
+    /*Establecemos cada pin en el segundo array como INPUT_PULLUP, esto establece cada pin en 
+    un estado HIGH. Estos pines serán los encargados de leer los valores enviados a traves de
+    de los pines del primer array. Los pines en el segundo array tienen un valor HIGH, cuando
+    establecemos uno de los pines como low en el primer array mientras iteramos sobre ellos y,
+    a continuación, leemos los valores en el segundo array, el que tenga un valor LOW en lugar
+    de HIGH, corresponderá con el botón presionado. Se recomienda leer "mainKeyCaptation" para
+    entender el funcionamiento más claramente.
+
+    Conexionado de las entradas de tipo INPUT_PULLUP:
+    * Vcc = la conexión interna de vcc en el arduino..
+    * ~~ = la resistencia interna del arduino conectada al pin de tipo INPUT_PULLUP.
+    * | = el pin en el array2 establecido como INPUT_PULLUP.
+    * || = el pin en el array1 establecido como output.
+    * __ = la conexión interna entre elementos dentro del arduino.
+    * _._._._ = la conexión externa de elementos.
+    * // = el pulsador del teclado.
+
+    Esquema completo del conexionado:
+
+    VCC___~~___|_._._._//_._._._||___GND
+
+    Cuando se presiona un pulsador en el teclado matricial, el pin establecido como INPUT_PULLUP, el
+    cual está en estado HIGH, se connecta con un pin establecido como output, el cual está connectado a
+    GND. En este escenario, se cierra el circuito y la lectura en el pin INPUT_PULLUP es LOW.
+    */
+    pinMode(array2[j], INPUT_PULLUP);
   }
 }
 //Este método establece el modo de comportamiento de los pines del teclado. Commit test
@@ -56,13 +73,13 @@ boolean getKeyDetectedState() {
 /*Método getter para devolver el valor de la tecla almacenada en el array result, para el valor
 actual de keyColumn y keyRow.
 */
-int getKeyPressedValue () {
+int getKeyPressedValue() {
   return result[keyColumn][keyRow];
 }
 /*Método para comprobar si la contraseña introducida coincide con la contraseña almacenada en la
 memoria Eeprom.
 */
-void confirmation (byte password[], byte numberOfDigits, int array1[], int array2[]) {
+void confirmation(byte password[], byte numberOfDigits, int array1[], int array2[]) {
   /*El método empieza encendiendo y apagando el led dos veces para indicar que el código se 
   encuentra actualmente dentro del método confirmation. A continuación, se crean una serie
   de elementos.
@@ -78,14 +95,13 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
   A continuación, entramos en el bucle while principal, que iterará mientras 
   newPasswordCounter is menor que numberOfDigits.
   */
-  pinMode(orange, OUTPUT);
+  analogWrite(orange, 255);
   delay(100);
-  pinMode(orange, INPUT);
+  analogWrite(orange, 0);
   delay(100);
-  pinMode(orange, OUTPUT);
+  analogWrite(orange, 255);
   delay(100);
-  pinMode(orange, INPUT);
-  delay(100);
+  analogWrite(orange, 0);
   int newPasswordCounter = 0;
   int inputPassword[numberOfDigits];
   boolean numberTyped = false;
@@ -151,8 +167,7 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       mainMenuVariable = HIGH;
       insideNewPasswordMenu = false;
       break;
-    }
-    else if (mainMenuVariable == LOW) {
+    } else if (mainMenuVariable == LOW) {
       Serial.println("Requesting new password menu.");
       cancelled = true;
       break;
@@ -161,9 +176,9 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
     if (getKeyDetectedState()) {
       numberTyped = true;
       keyDetected = false;
-      pinMode(orange, OUTPUT);
+      analogWrite(orange, 255);
       delay(300);
-      pinMode(orange, INPUT);
+      analogWrite(orange, 0);
       inputPassword[newPasswordCounter] = getKeyPressedValue();
       newPasswordCounter++;
     }
@@ -186,8 +201,7 @@ void confirmation (byte password[], byte numberOfDigits, int array1[], int array
       if (inputPassword[i] == password[i]) {
         Serial.println("Match!");
         match = true;
-      }
-      else {
+      } else {
         Serial.println("No match!");
         match = false;
         break;
@@ -201,15 +215,12 @@ void burnPasswordInEeprom(byte numberOfDigits) {
   /*El bucle for realizará la acción mientras i sea igual a
   numberOfDigits. Se escribirá en la memoria eeprom, cada número de
   la contraseña actual. Para ello, le indicamos al sistema que queremos
-  salvar en la dirección de la memoria i, del array passwordEepromAddress,
-  el número en la posición i del array "password".
-
-  HECHO  <>  POR MODIFICAR-----: Comprueba si se puede sustituir el sistema de direción
-  passwordEepromAddres, simplemente por el valor de i, guardando en las 
-  direcciones 0 <> numberOfDigits - 1.
+  salvar en la dirección de la memoria i el número en la posición i 
+  del array "password".
   */
+  Serial.println("Burning in eeprom the values of password[]");
   for (int i = 0; i < numberOfDigits; i++) {
-    EEPROM.write(passwordEepromAddress[i], password[i]);
+    EEPROM.write(i, password[i]);
   }
 }
 /*Método para establecer los valores del array password cada vez que
@@ -222,15 +233,11 @@ void readPasswordInEeprom(byte numberOfDigits) {
   el usuario, en lugar de tomar los valores por defecto.
   Se empieza con un bucle for que realiza su acción mientras i = numberOfDigits.
   Salvamos en el array password, los valores guardados en la memoria eeprom, 
-  en las posiciones i, donde i son los números almacenados en el array 
-  passwordEepromAddress.
-
-  HECHO  <>  POR MODIFICAR-----: Comprueba si se puede sustituir el sistema de direción
-  passwordEepromAddres, simplemente por el valor de i, guardando en las 
-  direcciones 0 <> numberOfDigits - 1.
+  en las posiciones i.
   */
+  Serial.println("Setting eeprom values as password[] values.");
   for (int i = 0; i < numberOfDigits; i++) {
-    password[i] = EEPROM.read(passwordEepromAddress[i]);
+    password[i] = EEPROM.read(i);
   }
 }
 //Método para imprimir en la consola los valores almacenados en la memoria
@@ -241,16 +248,40 @@ void printPasswordInEeprom(byte numberOfDigits) {
   memoria.
   Se itera sobre el bucle for mientras i = numberOfDigit. Se imprime en la
   consola serial, los valores de la memoria eeprom, guardados en las 
-  direcciones del array passwordEepromAddres[i].
+  direcciones i.
   */
   for (int i = 0; i < numberOfDigits; i++) {
-    Serial.println(EEPROM.read(passwordEepromAddress[i]));
+    Serial.println("i = " + String(i) + "; " + EEPROM.read(i));
+  }
+}
+/*Este método comprueba el estado de la memoria EEPROM. Se necesita comprobar el estado de la
+la memoria porque cuando se carga el programa en arduino por primera vez, las bloques de memoria
+pueden contener su valor por defecto, el cual es 255, o algún otro valor. Este método grabará en
+la memoria, la contraseña por defecto si alguno de sus valores es mayor de 9. Dado que cada
+bloque en la memoria corresponde con un dígito de la contraseña, estos han de estar en el rango de
+0 and 9.*/
+void checkEepromState(byte numberOfDigits) {
+  /*
+  Se itera sobre los valores presentes en la eeprom. Si alguno de estos valores es mayor que 9, se
+  llamará al método burnPasswordInEeprom y se detendrá el bucle for. Si el bucle for llega a su última
+  iteración, numberOfDigits - 1, quiere decir que todos los valores en la memoria son menor que 9, lo 
+  que implica que todos valores son válidos. En este caso, se llama al método readPasswordInEeprom 
+  para grabar en la memoria los valores de password[].
+  */
+  for (int i = 0; i < numberOfDigits; i++) {
+    if (EEPROM.read(i) > 9) {
+      Serial.println("A value over 9 has been detected in the memory position: " + String(i) + ".");
+      burnPasswordInEeprom(numberOfDigits);
+      break;
+    } else if (i = numberOfDigits - 1) {
+      readPasswordInEeprom(numberOfDigits);
+    }
   }
 }
 /*Este método se usará para obtener la contraseña ingresada por el usuario.
 Será el método que burnPasswordInEeprom llamará para guardar la contraseña.
 */
-void newPassword (byte password[], byte numberOfDigits, int array1[], int array2[]) {
+void newPassword(byte password[], byte numberOfDigits, int array1[], int array2[]) {
   /*Se llama a este método cuando ya se ha pasado por un evento de presionar el
   botón *, sin que se hubiese presionado ningún número previamente. Se rompió el loop
   "confirmation", y se entró en el condicional if principal. Una vez dentro del
@@ -297,26 +328,26 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
     y se ejecutará el código en su interior.
     * Se establece keyDetected como false, de esta forma accederemos de nuevo a este condicional
       si se vuelve a presionar un  nuevo botón.
-    * El LED naranja se encenderá durante 1250 milisegundos. Se establece esta prolongada cantidad 
-      de tiempo, para forzar al usario a presionar los botones de forma pausada. Esto ayudará a 
-      evitar que se presionen botones por error, lo cual podría terminar ocasionar que se grabase
-      en la memoria eeprom, números desconocidos o no deseados. Mientras el LED está encendido, el
-      código no seguirá ejecutandose.
+    * El LED naranja se encenderá durante 1250 milisegundos. Se establece esta cantidad de tiempo, 
+      para forzar al usario a presionar los botones de forma pausada. Esto ayudará a evitar que se 
+      presionen botones por error, lo cual podría ocasionar que se grabase en la memoria eeprom
+      números desconocidos o no deseados. Mientras el LED está encendido, el código no seguirá
+      ejecutandose.
     * Se guarda en la posición newPasswordCounter, en el array password[], el último botón 
       presionado.
     * Incrementamos en una unidad el valor de newPasswordCounter, para saltar al siguiente registro
       de nnúmero que tiene que ser guardado en password[].
     */
     Serial.println("New Password Menu.");
-    pinMode(green, OUTPUT);
+    analogWrite(green, 255);
     delay(250);
-    pinMode(green, INPUT);
+    analogWrite(green, 0);
     int newPasswordCounter = 0;
     while (newPasswordCounter < numberOfDigits) {
       mainMenuVariable = digitalRead(pin9);
-      if (mainMenuVariable == LOW) { 
+      if (mainMenuVariable == LOW) {
         cancelled = true;
-        mainMenuVariable = HIGH; //HECHO  <Por comprobar, se ha modificado en el Void loop>  Check if this line is needed considering that it is sent in main if conditional in void loop
+        mainMenuVariable = HIGH;
         insideNewPasswordMenu = false;
         readPasswordInEeprom(numberOfDigits);
         break;
@@ -324,9 +355,9 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
       mainKeyCaptation(array1, array2);
       if (getKeyDetectedState()) {
         keyDetected = false;
-        pinMode(orange, OUTPUT);
+        analogWrite(orange, 255);
         delay(1250);
-        pinMode(orange, INPUT);
+        analogWrite(orange, 0);
         password[newPasswordCounter] = getKeyPressedValue();
         newPasswordCounter++;
       }
@@ -336,47 +367,36 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
       accederemos a este condicional. Se enviará un mensaje al monitor serial, únicamente 
       con motivo de desarrollo. Se enciende el LED verde durante un segundo, para indicar
       que el proceso de introducir una nueva contraseña ha finalizado correctamente.
-      Establecemos newPasswordCounter como 0.
-
-      HECHO  <>  POR MODIFICAR-----: Elimina la línea "newPasswordCounter = 0;" dado que esa variable
-      es una variable local que no será usada de nuevo en el resto del método. Verificalo.
-
       Finalmente, llamamos al método burnPasswordInEeprom para grabar los valores actuales
       de password[] en la memoria eeprom.
       */
       Serial.println("Burning EEPROM.");
-      pinMode(green, OUTPUT);
+      analogWrite(green, 255);
       delay(1000);
-      pinMode(green, INPUT);
-      newPasswordCounter = 0;
+      analogWrite(green, 0);
       burnPasswordInEeprom(numberOfDigits);
     }
-  }
-  else {
+    match = false;
+  } else {
     /*Si "match" es igual a false, quiere decir que el usuario no ingresó la 
     contraseña de forma correcta, lo que quiere decir que el usuario no tiene acceso
     al menú de cambio de contraseña. Debido a esto, el condicional if no será ejecutado, 
     y se saltará directamente a esta parte del código, donde el led rojo parpadeará dos 
     veces.
     */
-    pinMode(red, OUTPUT);
+    analogWrite(red, 255);
     delay(100);
-    pinMode(red, INPUT);
+    analogWrite(red, 0);
     delay(100);
-    pinMode(red, OUTPUT);
+    analogWrite(red, 255);
     delay(100);
-    pinMode(red, INPUT);
-    delay(100);
+    analogWrite(red, 0);
   }
-  /*Por último, establecemos "match" como false. 
-
-  HECHO  <>  POR MODIFICAR-----: Mueve esta línea al interior del bloque "if (match)", dado que 
-  es el único contexto en el que match podría ser true.
-  
-  Se establece insideNewPasswordMenu como false. Cuando entramos en el condicional if
-  del bloque void loop, establecemos insideNewPasswordMenu como true. Al hacer esto
-  nos situamos dentro del código, si esta variable es igual a true, sabemos que nos
-  encontramos dentro del menu new password, y que se llamará al método newPassword.
+  /*Por último, establecemos "match" como false. Se establece insideNewPasswordMenu 
+  como false. Cuando entramos en el condicional if del bloque void loop, establecemos
+  insideNewPasswordMenu como true. Al hacer esto nos situamos dentro del código, si
+  esta variable es igual a true, sabemos que nos encontramos dentro del menu new password, 
+  y que se llamará al método newPassword.
   El problema aparece cuando el programa se está ejecutando de forma normal, y el 
   usuario necesita cambiar la contraseña. En este caso, el usuario presiona el botón
   * con la intención de entrar en el condicional "if (mainMenuVariable == LOW) {", 
@@ -388,20 +408,19 @@ void newPassword (byte password[], byte numberOfDigits, int array1[], int array2
   que "if (mainMenuVariable == LOW) {" será siempre falso. (Se aconseja revisar el método
   "confirmation" para recordar como funciona el condicional del botón *).
   */
-  match = false;
+
   insideNewPasswordMenu = false;
   Serial.println("Leaving Password Menu.");
 }
 //Método usado para imprimir la contraseña actual no guardada en la memoria eeprom.
 void getNewPassword() {
-    /*Este método no es necesario para el funcionamiento del sistema. Sirve únicamente para
+  /*Este método no es necesario para el funcionamiento del sistema. Sirve únicamente para
     propositos de desarrollo. Implementamos un bucle for que imprimirá "password[i]", hasta
     que i sea igual a numberOfDigits. Entonces el código esperará 2 segundos.
    */
   for (int i = 0; i < numberOfDigits; i++) {
     Serial.print(password[i]);
   }
-  delay(2000);
 }
 //Método usado para indicar el inicio del sistema.
 void startingLights() {
@@ -409,54 +428,49 @@ void startingLights() {
   justo antes del void loop(). Este método se usa como indicador visual para el usuario. Los
   LEDs rojo, naranja y verde, parpadearán dos veces, con un delay de 100 milisegundos.
    */
-  pinMode(red, OUTPUT);
-  pinMode(orange, OUTPUT);
-  pinMode(green, OUTPUT);
+  analogWrite(red, 255);
+  analogWrite(orange, 255);
+  analogWrite(green, 255);
   delay(100);
-  pinMode(red, INPUT);
-  pinMode(orange, INPUT);
-  pinMode(green, INPUT);
+  analogWrite(red, 0);
+  analogWrite(orange, 0);
+  analogWrite(green, 0);
   delay(100);
-  pinMode(red, OUTPUT);
-  pinMode(orange, OUTPUT);
-  pinMode(green, OUTPUT);
+  analogWrite(red, 255);
+  analogWrite(orange, 255);
+  analogWrite(green, 255);
   delay(100);
-  pinMode(red, INPUT);
-  pinMode(orange, INPUT);
-  pinMode(green, INPUT);
-  delay(100);
+  analogWrite(red, 0);
+  analogWrite(orange, 0);
+  analogWrite(green, 0);
 }
 //Método para gestionar la activación del perno electromagnético.
 void openClose() {
   /*Todo está basado en la variable "match". Si la variable "match" es igual a true
-  enviaremos una señal HIGH por el pin llamado "magnet1", el pin A1, y el led verde
-  se encenderá, ambos durante 2 segundos. Después, enviaremos una señal LOW por el
-  pin "magnet1", y apagaremos el LED verde. De esta forma, activaremos el perno 
-  electromagnético por 2 segundos, permitiendo al usuario usar la llave para abrir 
-  la puerta.
+  enviaremos una señal HIGH por el pin llamado "bolt", el pin A4, y el led verde
+  se encenderá, ambos durante 2 segundos. Después, enviaremos una señal LOW por ambos
+  pines. De esta forma, activaremos el perno electromagnético por 2 segundos, permitiendo 
+  al usuario usar la llave para abrir la puerta. Por último, reestablecemos el valor de 
+  match como false para llevar al sistema a su modo default.
   Si "match" es igual a false, entonces no accederemos al condiconal "if(match), y 
   se ejecutará el código del bloque else. El LED rojo parpadeara dos veces con un 
   delay de 100 milisegundos. Esto le indicará al usuario que la contraseña
   introducida es erronea.
-  Por último, establecemos el la variable "match" como false para llevar al sistema
-  a su modo default.
    */
   if (match) {
-    digitalWrite(magnet1, HIGH);
-    pinMode(green, OUTPUT);
+    analogWrite(bolt, 255);
+    analogWrite(green, 255);
     delay(2000);
-    digitalWrite(magnet1, LOW);
-    pinMode(green, INPUT);
+    analogWrite(bolt, 0);
+    analogWrite(green, 0);
+    match = false;
+  } else {
+    analogWrite(red, 255);
+    delay(100);
+    analogWrite(red, 0);
+    delay(100);
+    analogWrite(red, 255);
+    delay(100);
+    analogWrite(red, 0);
   }
-  else {
-    pinMode(red, OUTPUT);
-    delay(100);
-    pinMode(red, INPUT);
-    delay(100);
-    pinMode(red, OUTPUT);
-    delay(100);
-    pinMode(red, INPUT);
-    delay(100);
-  }
-  match = false;
 }

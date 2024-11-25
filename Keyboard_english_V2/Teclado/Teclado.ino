@@ -94,7 +94,6 @@ void setup() {
   /*The Eeprom memory must be checked to be able to update password[] with the right values. According to the 
   eeprom values, this method will perform different acctions.
   */
-  printPasswordInEeprom(numberOfDigits); //The eeprom values are printed in the console. Developer purposes.
   startingLights();                       //We load starting lights sequence.
 }
 void loop() {
