@@ -256,7 +256,7 @@ De izquierda a derecha:
 <p align="center"> 
  <img src="Images/3D_PCB_front_view.png" width="432" height="524"/>
  &nbsp;
- <img src="Images/3D_PCB_front_view.png" width="432" height="524"/>
+ <img src="Images/3D_PCB_mixed_view.png" width="432" height="524"/>
  &nbsp;
  <img src="Images/3D_PCB_back_view.png" width="432" height="549"/>
 </p>
