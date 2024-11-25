@@ -87,7 +87,7 @@ Resulta facil darse cuenta de que se trata de un teclado matricial en cuanto se 
 <br>
 
 <p align="center">
- <img src="Images/matix_keyboard.png" width="767" height="432"/>
+ <img src="schematics/matix_keyboard.png" width="767" height="432"/>
 </p>
 
 <br>
@@ -105,7 +105,7 @@ Entender el funcionamiento de un teclado matricial es vital para la optimizació
 <br>
 
 <p align="center">
- <img src="Images/actual_keyboard_layout.jpg"/>
+ <img src="schematics/actual_keyboard_layout.jpg"/>
 </p>
 
 <br>
@@ -228,5 +228,35 @@ Se usa un valor de resistencia común de 5,6k.
 
 A continuación se muestra el esquema eléctrico, el diseño de la PCB, y el modelo 3D de la misma.
 
+<br>
+<br>
 
+<p align="center"> 
+ <img src="schematics/board_schematic.jpg"/>
+</p>
 
+<br>
+
+De izquierda a derecha: capa superior, ubicación de los elementos; capa inferior, routeo de los elementos; capa de drill, mapa de perforación de los pad de los elementos.
+
+<br>
+
+<p align="center"> 
+ <img src="schematics/pcb_design_1.jpg" width="289" height="360"/>
+ &nbsp;
+ <img src="schematics/pcb_design_2.jpg" width="289" height="360"/>
+ &nbsp;
+ <img src="schematics/pcb_design_3.jpg" width="289" height="360"/>
+</p>
+
+<br>
+
+De izquierda a derecha: 
+
+<p align="center"> 
+ <img src="Images/3D_PCB_front_view.png" width="432" height="524"/>
+ &nbsp;
+ <img src="Images/3D_PCB_front_view.png" width="432" height="524"/>
+ &nbsp;
+ <img src="Images/3D_PCB_back_view.png" width="432" height="549"/>
+</p>
