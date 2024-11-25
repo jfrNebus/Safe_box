@@ -23,7 +23,7 @@ Lo primero que hice fue descubrir la forma de abrir la caja. Por suerte la llave
 
 <br>
 
-**Placa original**: 
+### **Placa original**: 
 
 <br>
 
@@ -49,7 +49,7 @@ Esta es la placa original de la caja. Se observan un par de elementos de interé
 
 <br>
 
-**Perno electromagnético**
+### **Perno electromagnético**:
 
 <br>
 
@@ -63,7 +63,7 @@ Ya hemos hablado de esta parte anteriormente. Es el encargado de bloquear o libe
 
 <br>
 
-**Teclado**
+### **Teclado**:
 
 <br>
 
@@ -133,15 +133,100 @@ Teniendo claro todo lo explicado anteriormente, solo queda leerse las comentario
  <img src="Images/custom_back.jpg" width="417" height="313"/> 
 </p>
 
+El proyecto se encuentra actualmente en la versión dos. Al igual que se han modificado varios bloques de código para corregir ciertas prácticas de programación, y para incorporar nuevos elementos de electrónica, se ha corregido y rediseñado la propia placa. En las anteriores fotos se pueden observar ambas caras de la placa correspondiente a la versión uno.
+
+<br>
+
+En un origen usé un mosfet IRFP150 para el control del perno electromagnético, porque era lo que tenía más a mano en mi taller, no obstante este mosfet esta sobredimensionado para este circuito. Recientemente, a la hora de rediseñar la placa, encontré un transistor TIP31 en el taller, el cual es más acorde a las necesidades del circuito. Donde el mosfet aguanta valores en drain-source de hasta 100V de tensión y 44A de corriente, el tip31 aguanta en colector-emisor de hasta 40V de tensión y 3A de corriente.
+
+En la versión uno del circuito, la gestión de los led se lograba por medio de un tipo de lógica de programación erronea; actualmente esa lógica se ha corregido y se han implementado 3 transistores para el control de los led. El transistor usado es el 2N3904, cuyos valores máximos en colector-emisor son 40V y 200mA, valores de sobra para controlar leds que trabajan en torno a los 2V y 20 miliamperios.
+
+<br>
+
+### **Calculo de resistencias** 
+
+<br>
+
+A continuación, se muestran todos los cálculos necesarios para el cálculo de resistencias en base de los transistores de la placa.
+
+<hr>
+
+RBE = VB / IB
+β = IC / IB  >> IB = IC / β
+
+•	Sin aplicar el factor de protección sobre Ib:
+  RBE = (Voltaje en base - 0.7) / (IC / β (También conocido como hFE) 
+
+•	Con factor de protección sobre Ib:
+  RBE = (Voltaje en base - 0.7) / 3 * (IC / β (También conocido como hFE))
+  
+  Este factor se usa para incrementar la intensidad en base, esto garantiza que el transistor entre en saturación profunda y funcione como un interruptor.
 
 
+<hr>
 
+<br>
 
+#### - Resistencia base-emisor TIP31
 
+<br>
 
+β mínima según datasheet = 25
+β mínima según polímetro = 25
 
+•	Sin aplicar el factor de protección sobre Ib:
+RBE = (5 – 0.7) / (1 / 25) = 107,51
 
+•	Con factor de protección sobre Ib:
+RBE = (5 – 0.7) / 3 * (1 / 25) = 35,8
 
+Al final se usa el cálculo con factor de protección para garantizar la saturación del transistor en su uso como interruptor. Se usa un valor de resistencia común de 22Ω.
+
+<br>
+
+#### - Resistencia base-emisor 2N3904 y resistencias de protección para los led.
+
+<br>
+
+**Resistencias de protección para los LEDs**
+
+Se trata de 3 led de 3mm.
+<br>
+•	Rojo: 20mA, 1.9-2.1V.
+<br>
+•	Amarillo: 20mA, 2V.
+<br>
+•	Verde: 20mA, 2.2-2.4V
+
+Calculo de la resistencia en serie para proteger el led:
+
+R = (Vfuente – VLED) / I
+
+•	Rojo y amarillo:
+R = (12 – 1.9) / 0.02 = 505 Ohms
+•	Verde:
+R = (12 – 2.2) / 0.02 = 490 Ohms
+
+Finalmente se usan resistencias de 560Ω. Esto es debido a que el otro valor estándar inmediato es de 470Ω. Es preferible exceder el valor, antes que quedarse corto y forzar los leds. No obstante, el daño ocasionado por una resistencia de 470Ω sería prácticamente nulo.
+
+<br>
+
+**Resistencias base-emisor**
+
+β según data sheet = 100
+<br>
+β según multímetro = 151
+
+•	β según data sheet: 
+  RBE = (5-0.7) / (3*(0.02/100)) = 4,3 / (3 * 0.0002) = 4,3 / 0.0006  = 7166,66
+
+Se usa un valor de resistencia común de 5,6k.
+
+<br>
+
+### **Desarrollo de la placa**
+
+A continuación se muestra el esquema eléctrico, el diseño de la PCB, y el modelo 3D de la misma.
 
 
 
