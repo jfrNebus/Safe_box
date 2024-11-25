@@ -236,7 +236,9 @@ A continuación se muestra el esquema eléctrico, el diseño de la PCB, y el mod
 
 <br>
 
-Haciendo clic en el siguiente [enlace](Images/Esquema electrónico.png)
+Haciendo clic en el siguiente [enlace](Images/Esquema_electrónico.png), podemos acceder al esquema electrónico de la primera versión de la placa. En un origen se escribió el código estableciendo el conexionado entre los pines del teclado y los pines del aruino, siguiendo la correlación numérica, es decir, el pin 1 del conector del teclado con el pin 1 de la placa etc. Esto generaba que, por la ubicación del conector del teclado y la posición del arduino, el cableado entre pines se cruzase. Esto ha sido corregido en código, generando un conexionado mucho más limpio. Adicionalmente, el esquema de la versión 2 incluye el bloque de conexiones de los transistores de control para el manejo de los led.
+
+Para este proyecto tuve que crear un nuevo elemento, el conector hembra de 13 pines. O bien no lo encontré entre las librerías pero existe, o bien no existe. Para su creación tomé como referencia uno de menor número de pines.
 
 
 De izquierda a derecha: capa superior, ubicación de los elementos; capa inferior, routeo de los elementos; capa de drill, mapa de perforación de los pad de los elementos.
