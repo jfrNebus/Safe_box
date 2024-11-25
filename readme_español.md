@@ -236,6 +236,7 @@ A continuación se muestra el esquema eléctrico, el diseño de la PCB, y el mod
 
 <br>
 
+Haciendo clic en el siguiente [enlace](Images/Esquema electrónico.png)
 
 
 De izquierda a derecha: capa superior, ubicación de los elementos; capa inferior, routeo de los elementos; capa de drill, mapa de perforación de los pad de los elementos.
