@@ -16,6 +16,6 @@ The following labels allow you to review all explanations, descriptions, and mat
 <br>
 
 > [!IMPORTANT]
-> Finalicé este proyecto hace bastante tiempo. No obstante, ahora quiero revisarlo. Quiero corregir aquellas partes que no sigan unas _buenas prácticas_, optimizarlo etc. He detectado, durante la realización de la presente documentación, varios fallos fruto que cometí cuando era más novato. Adicionalmente, ahora trabajo con un productor de placas electrónicas, por ello, quiero rediseñar el circuito, seleccionar un nuevo transistor, y enviar a producir la placa para obtener un resultado profesional.
+> Este proyecto se encuentra actualmente en su versión 2. Se han corregido algunas partes del código y se ha rediseñado la placa por completo. No obstante, siempre hay lugar para mejorar siguiendo unas buenas prácticas de forma efectiva.
 > 
-> I finished this project long ago, nevertheless, now I want to review it. I want to fix those parts that don't follow the _best practices_ code, I want to optimize everything etc. While writting the project's documentation, I could get some mistakes I did when I was more unexperienced. In addition, now I work with a electronics board producer, so I want to design a new circuit, to change the transistor, and to get the new board professionally produced.
+> This is the version 2 of this proyect. The code has been reviewed and some parts have been fixed. Aditionally, the board has been fully redesigned. However, it could still be improved by following some best practices.
