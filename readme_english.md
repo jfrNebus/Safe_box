@@ -148,11 +148,21 @@ Below are the operations needed to calculate the base resistance for all transis
 
 <hr>
 
+RBE = base-emitter resistance
+VB = Base voltage
+IB = Base current
+β = current gain for the transistor (also known as hFE).
+IC = collector current.
+
 RBE = VB / IB
 β = IC / IB  >> IB = IC / β
 
-•	Sin aplicar el factor de protección sobre Ib:
-  RBE = (Voltaje en base - 0.7) / (IC / β (También conocido como hFE) 
+VAS POR AQUÍ
+
+•	No protection factor applied over Ib:
+  RBE = (VB - 0.7) / (IC / β) 
+
+  HAS MODIFICADO VB ^
 
 •	Con factor de protección sobre Ib:
   RBE = (Voltaje en base - 0.7) / 3 * (IC / β (También conocido como hFE))
