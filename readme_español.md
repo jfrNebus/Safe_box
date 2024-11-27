@@ -143,7 +143,7 @@ En la versión uno del circuito, la gestión de los led se lograba por medio de 
 
 <br>
 
-### **Calculo de resistencias** 
+### **Cálculo de resistencias** 
 
 <br>
 
@@ -151,14 +151,22 @@ A continuación, se muestran todas las operaciones necesarias para el cálculo d
 
 <hr>
 
+RBE = Resistencia base-emisor.
+VB = Tensión en base.
+IB = Corriente en base.
+β = Ganancia de intensidad para el transistor, (also known as hFE).
+IC = Corriente en colector.
+
 RBE = VB / IB
 β = IC / IB  >> IB = IC / β
 
+0.7 = Caida de tensión en la únion base-emisor del transistor.
+
 •	Sin aplicar el factor de protección sobre Ib:
-  RBE = (Voltaje en base - 0.7) / (IC / β (También conocido como hFE) 
+  RBE = (VB - 0.7) / (IC / β)
 
 •	Con factor de protección sobre Ib:
-  RBE = (Voltaje en base - 0.7) / 3 * (IC / β (También conocido como hFE))
+  RBE = (VB - 0.7) / 3 * (IC / β)
   
   Este factor se usa para incrementar la intensidad en base, esto garantiza que el transistor entre en saturación profunda y funcione como un interruptor.
 
@@ -206,7 +214,7 @@ R = (12 – 1.9) / 0.02 = 505 Ohms
 •	Verde:
 R = (12 – 2.2) / 0.02 = 490 Ohms
 
-Finalmente se usan resistencias de 560Ω. Esto es debido a que el otro valor estándar inmediato es de 470Ω. Es preferible exceder el valor, antes que quedarse corto y forzar los leds. No obstante, el daño ocasionado por una resistencia de 470Ω sería prácticamente nulo.
+Finalmente, se usan resistencias de 560Ω. Esto es debido a que el otro valor estándar inmediato es de 470Ω. Es preferible exceder el valor, antes que quedarse corto y forzar los leds. No obstante, el daño ocasionado por una resistencia de 470Ω sería prácticamente nulo.
 
 <br>
 
@@ -219,7 +227,7 @@ Finalmente se usan resistencias de 560Ω. Esto es debido a que el otro valor es
 •	β según data sheet: 
   RBE = (5-0.7) / (3*(0.02/100)) = 4,3 / (3 * 0.0002) = 4,3 / 0.0006  = 7166,66
 
-Se usa un valor de resistencia común de 5,6k.
+Se usa un valor de resistencia común de 5,6kΩ.
 
 <br>
 
