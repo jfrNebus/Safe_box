@@ -163,14 +163,14 @@ IC = collector current.
 RBE = VB / IB
 <br>
 β = IC / IB  >> IB = IC / β
+<br>
+0.7 = voltage drop across the base-emitter junction of the transistor.
 
 <br>
 <br>
 
 •	No protection factor applied over Ib:
 
-  0.7 = voltage drop across the base-emitter junction of the transistor.
-  <br>
   RBE = (VB - 0.7) / (IC / β) 
 
   <br>
@@ -185,7 +185,7 @@ RBE = VB / IB
 <hr>
 
 <br>
-
+Sigue por aquí sigue por aquí sigue por aquí BORRA ESTA LÍNEA Y DEJA EL ESPACIO EN BLANCO
 #### - Base-emitter resistance for TIP31
 
 <br>
