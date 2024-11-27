@@ -147,7 +147,7 @@ En la versión uno del circuito, la gestión de los led se lograba por medio de 
 
 <br>
 
-A continuación, se muestran todos los cálculos necesarios para el cálculo de resistencias en base de los transistores de la placa.
+A continuación, se muestran todas las operaciones necesarias para el cálculo de resistencias en base de los transistores de la placa.
 
 <hr>
 
