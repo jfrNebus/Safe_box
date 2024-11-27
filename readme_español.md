@@ -143,29 +143,44 @@ En la versión uno del circuito, la gestión de los led se lograba por medio de 
 
 <br>
 
-### **Cálculo de resistencias** 
+### **Cálculo de resistencias :zap:** 
 
 <br>
 
 A continuación, se muestran todas las operaciones necesarias para el cálculo de resistencias en base de los transistores de la placa.
 
 <hr>
-
 RBE = Resistencia base-emisor.
+<br>
 VB = Tensión en base.
+<br>
 IB = Corriente en base.
+<br>
 β = Ganancia de intensidad para el transistor, (also known as hFE).
+<br>
 IC = Corriente en colector.
 
-RBE = VB / IB
-β = IC / IB  >> IB = IC / β
+<br>
+<br>
 
+RBE = VB / IB
+<br>
+β = IC / IB  >> IB = IC / β
+<br>
 0.7 = Caida de tensión en la únion base-emisor del transistor.
 
+<br>
+<br>
+
 •	Sin aplicar el factor de protección sobre Ib:
+
   RBE = (VB - 0.7) / (IC / β)
 
+<br>
+<br>
+
 •	Con factor de protección sobre Ib:
+
   RBE = (VB - 0.7) / 3 * (IC / β)
   
   Este factor se usa para incrementar la intensidad en base, esto garantiza que el transistor entre en saturación profunda y funcione como un interruptor.
