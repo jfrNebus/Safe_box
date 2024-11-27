@@ -5,6 +5,13 @@ This proyect was bornt to give a solution to a job need. I was in the need to pr
 This box is designed to be fixed to a surface, the lock gets locked by the bolt, because of the gravity force. In other words, if the coil where the bolt is placed, is out of power, the bolt stays on its position because of the gravity force, blocking the action of the key over the lock. When the circuit is powerred, and the password provided is right, the circuit powers de bolt's coil, lifting it, and freeing the lock.
 
 
+<br>
+<br>
+
+## Funcionamiento 🧰
+
+<br>
+
 <p align="center">
  <img src="Images/bolt_work.png" width="576" height="432"/> 
 </p>
@@ -15,7 +22,7 @@ The very first thing I had to do was to open the box. Luckily, the key was insid
 
 <br>
 
-**Original board**: 
+### **Original board**:
 
 <br>
 
@@ -41,7 +48,7 @@ This is the original board. There are few interesting elements:
 
 <br>
 
-**Electromagnetic bolt**
+### **Electromagnetic bolt**:
 
 <br>
 
@@ -55,7 +62,7 @@ We have already talked about this part before. This part is the one locking or f
 
 <br>
 
-**Keyboard**
+### **Keyboard**:
 
 <br>
 
@@ -78,7 +85,7 @@ It is easy to see that it is matrix keyboard. This keyboard has 12 conductive me
 <br>
 
 <p align="center">
- <img src="Images/matix_keyboard.png" width="767" height="432"/>
+ <img src="schematics/matix_keyboard.png" width="767" height="432"/>
 </p>
 
 <br>
@@ -95,20 +102,184 @@ It is really important to understand how a matrix keyboard works in order to opt
 <br>
 
 <p align="center">
- <img src="Images/actual_keyboard_layout.jpg"/>
+ <img src="schematics/actual_keyboard_layout.jpg"/>
 </p>
 
 <br>
 
 Now that we know what a matrix keyboard is, and how it works, we can see in the previous picture that the keyboard in our safe box is also a matrix keyboard. In the picture we can see two schematics, both of them quite more complex than the first example. Both of them represent the real connections in the keyboard. In the left schematic we see all the push buttons, set in 2 rows, and vertically oriented, close to the 3 LED lights. Some tracks have parts coloured in blue, those blue parts represent the tracks printed in the back face of the board; the wine colour tracks are the front face tracks. The tracks are drawn as they are in the real board, with light changes. The right schematic keeps the real connections between push buttons and pins, but I organized them in a different way, for everyone to easily understand the connections between rows and columns through the push buttons. The yellow tracks represent the columns, the green ones represent the rows. The button * is connected to two independent pins, just because that's how the board developer wanted it to be.
+Once everything about the hardware has been understood, the comments in the arduino files can be read in order to understand how the software part works.
+
+<br>
+
+<p align="center">
+    <a href="Keyboard_english_V2/Teclado/Teclado.ino"><img src="https://img.shields.io/badge/Keyboard%20File-773dd2?style=plastic"/></a>
+    <a href="Keyboard_english_V2/Teclado/Voids.ino"><img src="https://img.shields.io/badge/Voids%20File-44cb11?style=plastic"/></a>
+</p>
 
 <br>
 <br>
 
-Once everything about the way a matrix keyboard works is understood, we can read all the documentation written as comments in the code. While translating the comments I wrote in english to spanish, I could notice few parts of the code that must be fixed, replaced or removed. Those parts are marked in the spanish version for me to replace them in future.
+## Board developement :electron:
+
+<br>
 
 
+<p align="center"> 
+ <img src="Images/custom_front.jpg" width="417" height="313"/> 
+ <img src="Images/custom_back.jpg" width="417" height="313"/> 
+</p>
 
+The project is in the version two. As well as the code was edited in order to fix some parts to fit the whole code to the best practices, the board has been redesigned to implement the LED control through transistors.
+
+<br>
+
+The version one used a mosfet IRFP150 to control the electromagnetic bolt
+
+
+POR AQUI 
+
+
+para el control del perno electromagnético, porque era lo que tenía más a mano en mi taller, no obstante este mosfet esta sobredimensionado para este circuito. Recientemente, a la hora de rediseñar la placa, encontré un transistor TIP31 en el taller, el cual es más acorde a las necesidades del circuito. Donde el mosfet aguanta valores en drain-source de hasta 100V de tensión y 44A de corriente, el tip31 aguanta en colector-emisor de hasta 40V de tensión y 3A de corriente.
+
+En la versión uno del circuito, la gestión de los led se lograba por medio de un tipo de lógica de programación erronea; actualmente esa lógica se ha corregido y se han implementado 3 transistores para el control de los led. El transistor usado es el 2N3904, cuyos valores máximos en colector-emisor son 40V y 200mA, valores de sobra para controlar leds que trabajan en torno a los 2V y 20 miliamperios.
+
+<br>
+
+### **Calculo de resistencias** 
+
+<br>
+
+A continuación, se muestran todos los cálculos necesarios para el cálculo de resistencias en base de los transistores de la placa.
+
+<hr>
+
+RBE = VB / IB
+β = IC / IB  >> IB = IC / β
+
+•	Sin aplicar el factor de protección sobre Ib:
+  RBE = (Voltaje en base - 0.7) / (IC / β (También conocido como hFE) 
+
+•	Con factor de protección sobre Ib:
+  RBE = (Voltaje en base - 0.7) / 3 * (IC / β (También conocido como hFE))
+  
+  Este factor se usa para incrementar la intensidad en base, esto garantiza que el transistor entre en saturación profunda y funcione como un interruptor.
+
+<hr>
+
+<br>
+
+#### - Resistencia base-emisor TIP31
+
+<br>
+
+β mínima según datasheet = 25
+β mínima según polímetro = 25
+
+•	Sin aplicar el factor de protección sobre Ib:
+RBE = (5 – 0.7) / (1 / 25) = 107,51
+
+•	Con factor de protección sobre Ib:
+RBE = (5 – 0.7) / 3 * (1 / 25) = 35,8
+
+Al final se usa el cálculo con factor de protección para garantizar la saturación del transistor en su uso como interruptor. Se usa un valor de resistencia común de 22Ω.
+
+<br>
+
+#### - Resistencia base-emisor 2N3904 y resistencias de protección para los led.
+
+<br>
+
+**Resistencias de protección para los LEDs**
+
+Se trata de 3 led de 3mm.
+<br>
+•	Rojo: 20mA, 1.9-2.1V.
+<br>
+•	Amarillo: 20mA, 2V.
+<br>
+•	Verde: 20mA, 2.2-2.4V
+
+Calculo de la resistencia en serie para proteger el led:
+
+R = (Vfuente – VLED) / I
+
+•	Rojo y amarillo:
+R = (12 – 1.9) / 0.02 = 505 Ohms
+•	Verde:
+R = (12 – 2.2) / 0.02 = 490 Ohms
+
+Finalmente se usan resistencias de 560Ω. Esto es debido a que el otro valor estándar inmediato es de 470Ω. Es preferible exceder el valor, antes que quedarse corto y forzar los leds. No obstante, el daño ocasionado por una resistencia de 470Ω sería prácticamente nulo.
+
+<br>
+
+**Resistencias base-emisor**
+
+β según data sheet = 100
+<br>
+β según multímetro = 151
+
+•	β según data sheet: 
+  RBE = (5-0.7) / (3*(0.02/100)) = 4,3 / (3 * 0.0002) = 4,3 / 0.0006  = 7166,66
+
+Se usa un valor de resistencia común de 5,6k.
+
+<br>
+
+### **Desarrollo de la placa**
+
+A continuación se muestra el esquema eléctrico, el diseño de la PCB, y el modelo 3D de la misma.
+
+<br>
+<br>
+
+<p align="center"> 
+ <img src="schematics/board_schematic.jpg"/>
+</p>
+
+<br>
+
+Haciendo clic en el siguiente [enlace](Images/Esquema_electrónico.png), podemos acceder al esquema electrónico de la primera versión de la placa. En un origen se escribió el código estableciendo el conexionado entre los pines del teclado y los pines del aruino, siguiendo la correlación numérica, es decir, el pin 1 del conector del teclado con el pin 1 de la placa etc. Esto generaba que, por la ubicación del conector del teclado y la posición del arduino, el cableado entre pines se cruzase. Esto ha sido corregido en código, generando un conexionado mucho más limpio. Adicionalmente, el esquema de la versión 2 incluye el bloque de conexiones de los transistores de control para el manejo de los led.
+
+Para este proyecto tuve que crear un nuevo elemento, el conector hembra de 13 pines. O bien no lo encontré entre las librerías pero existe, o bien no existe. Para su creación tomé como referencia uno de menor número de pines.
+
+<br>
+
+<p align="center"> 
+ <img src="Images/female_header_13pin_device.png"/>
+ <img src="Images/female_header_13pin_footprint.png"/>
+</p>
+
+<br>
+
+
+De izquierda a derecha: capa superior, ubicación de los elementos; capa inferior, routeo de los elementos; capa de drill, mapa de perforación de los pad de los elementos.
+
+<br>
+
+<p align="center"> 
+ <img src="schematics/pcb_design_1.jpg" width="289" height="360"/>
+ &nbsp;
+ <img src="schematics/pcb_design_2.jpg" width="289" height="360"/>
+ &nbsp;
+ <img src="schematics/pcb_design_3.jpg" width="289" height="360"/>
+</p>
+
+<br>
+
+De izquierda a derecha: capa superior, capa mixta, capa inferior.
+
+<p align="center"> 
+ <img src="Images/3D_PCB_front_view.png" width="432" height="524"/>
+ &nbsp;
+ <img src="Images/3D_PCB_mixed_view.png" width="432" height="524"/>
+ &nbsp;
+ <img src="Images/3D_PCB_back_view.png" width="432" height="549"/>
+</p>
+
+**Nota:** El diseño 3D del arduino seleccionado presenta un error, se observa un integrado atravesando el arduino. 
+
+Algunos de los elementos seleccionados no tienen archivo 3D. En este proyecto no se ha prestado atención al elemento concreto seleccionado en la librería. La placa se solicitó sin los elementos incluidos ya que se iban a usar elementos própios.
 
 
 
