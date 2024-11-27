@@ -134,23 +134,17 @@ The project is in the version two. As well as the code was edited in order to fi
 
 <br>
 
-The version one used a mosfet IRFP150 to control the electromagnetic bolt
+The version one used a mosfet IRFP150 to control the electromagnetic bolt, it was the first one that I found in my workshop, however, this mosfest is oversized for the board requirements. Recently, while making the version two, I found a TIP31 transistor, which values are closer to the required. The mosfet's drain-source values are up to 100V for voltage and up to 44A for current, while the TIP31's collector-emitter voltage is up to 40V, and up to 3A for current.
 
-
-POR AQUI 
-
-
-para el control del perno electromagnético, porque era lo que tenía más a mano en mi taller, no obstante este mosfet esta sobredimensionado para este circuito. Recientemente, a la hora de rediseñar la placa, encontré un transistor TIP31 en el taller, el cual es más acorde a las necesidades del circuito. Donde el mosfet aguanta valores en drain-source de hasta 100V de tensión y 44A de corriente, el tip31 aguanta en colector-emisor de hasta 40V de tensión y 3A de corriente.
-
-En la versión uno del circuito, la gestión de los led se lograba por medio de un tipo de lógica de programación erronea; actualmente esa lógica se ha corregido y se han implementado 3 transistores para el control de los led. El transistor usado es el 2N3904, cuyos valores máximos en colector-emisor son 40V y 200mA, valores de sobra para controlar leds que trabajan en torno a los 2V y 20 miliamperios.
+The LED management was dealt by the board through a bloc of code which logic was based in bad practices; this logic has been fixed for the new board by implementing 3 transistors. The transistor used for this purpose is the 2N3904, which max collector-emitter values are 40V and 200mAh. This values are more than enough to control a LED, since the LEDs used work in the range of 2V and 20mAh.
 
 <br>
 
-### **Calculo de resistencias** 
+### **Resistance calculation** 
 
 <br>
 
-A continuación, se muestran todos los cálculos necesarios para el cálculo de resistencias en base de los transistores de la placa.
+Below are the operations needed to calculate the base resistance for all transistors in the board.
 
 <hr>
 
