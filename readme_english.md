@@ -140,31 +140,44 @@ The LED management was dealt by the board through a bloc of code which logic was
 
 <br>
 
-### **Resistance calculation** 
+### **Resistance calculation :zap:** 
 
 <br>
 
 Below are the operations needed to calculate the base resistance for all transistors in the board.
 
 <hr>
-
-RBE = base-emitter resistance
-VB = Base voltage
-IB = Base current
+RBE = base-emitter resistance.
+<br>
+VB = Base voltage.
+<br>
+IB = Base current.
+<br>
 β = current gain for the transistor (also known as hFE).
+<br>
 IC = collector current.
 
+<br>
+<br>
+
 RBE = VB / IB
+<br>
 β = IC / IB  >> IB = IC / β
+
+<br>
+<br>
 
 •	No protection factor applied over Ib:
 
   0.7 = voltage drop across the base-emitter junction of the transistor.
-  
+  <br>
   RBE = (VB - 0.7) / (IC / β) 
-  
 
+  <br>
+  <br>
+  
 •	With protection factor applied over Ib:
+
   RBE = (VB - 0.7) / 3 * (IC / β)
 
   The protection factor is applied to increase the base current. This ensures that the transistor goes into deep saturation, so it can work as a switch.
@@ -230,7 +243,7 @@ It was used a common 5,6kΩ value resistance.
 
 <br>
 
-### **Desarrollo de la placa**
+### **Desarrollo de la placa :electric_plug:**
 
 A continuación se muestra el esquema eléctrico, el diseño de la PCB, y el modelo 3D de la misma.
 
