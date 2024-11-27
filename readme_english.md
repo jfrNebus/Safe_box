@@ -157,76 +157,76 @@ IC = collector current.
 RBE = VB / IB
 β = IC / IB  >> IB = IC / β
 
-VAS POR AQUÍ
-
 •	No protection factor applied over Ib:
-  RBE = (VB - 0.7) / (IC / β) 
 
-  HAS MODIFICADO VB ^
-
-•	Con factor de protección sobre Ib:
-  RBE = (Voltaje en base - 0.7) / 3 * (IC / β (También conocido como hFE))
+  0.7 = voltage drop across the base-emitter junction of the transistor.
   
-  Este factor se usa para incrementar la intensidad en base, esto garantiza que el transistor entre en saturación profunda y funcione como un interruptor.
+  RBE = (VB - 0.7) / (IC / β) 
+  
 
+•	With protection factor applied over Ib:
+  RBE = (VB - 0.7) / 3 * (IC / β)
+
+  The protection factor is applied to increase the base current. This ensures that the transistor goes into deep saturation, so it can work as a switch.
+  
 <hr>
 
 <br>
 
-#### - Resistencia base-emisor TIP31
+#### - Base-emitter resistance for TIP31
 
 <br>
 
-β mínima según datasheet = 25
-β mínima según polímetro = 25
+Minimum β according to datasheet = 25
+Minimum β acording to multimeter = 25
 
-•	Sin aplicar el factor de protección sobre Ib:
+•	No protection factor applied over Ib:
 RBE = (5 – 0.7) / (1 / 25) = 107,51
 
-•	Con factor de protección sobre Ib:
+•	With protection factor applied over Ib:
 RBE = (5 – 0.7) / 3 * (1 / 25) = 35,8
 
-Al final se usa el cálculo con factor de protección para garantizar la saturación del transistor en su uso como interruptor. Se usa un valor de resistencia común de 22Ω.
+It was finally used the protection factor formula, with a common 22Ω value resistance.
 
 <br>
 
-#### - Resistencia base-emisor 2N3904 y resistencias de protección para los led.
+#### - Base-emisor resistance for 2N3904, and the resistences for the leds protection.
 
 <br>
 
-**Resistencias de protección para los LEDs**
+**LED resistance**
 
-Se trata de 3 led de 3mm.
+3 led de 3mm.
 <br>
-•	Rojo: 20mA, 1.9-2.1V.
+•	Red: 20mA, 1.9-2.1V.
 <br>
-•	Amarillo: 20mA, 2V.
+•	Yellow: 20mA, 2V.
 <br>
-•	Verde: 20mA, 2.2-2.4V
+•	Green: 20mA, 2.2-2.4V
 
-Calculo de la resistencia en serie para proteger el led:
+Series resistance calculation:
 
-R = (Vfuente – VLED) / I
+R = (Vsource – VLED) / I
 
-•	Rojo y amarillo:
+•	Red and yellow:
 R = (12 – 1.9) / 0.02 = 505 Ohms
-•	Verde:
+•	Green:
 R = (12 – 2.2) / 0.02 = 490 Ohms
 
-Finalmente se usan resistencias de 560Ω. Esto es debido a que el otro valor estándar inmediato es de 470Ω. Es preferible exceder el valor, antes que quedarse corto y forzar los leds. No obstante, el daño ocasionado por una resistencia de 470Ω sería prácticamente nulo.
+The final resistance in use is a common 560Ω value. The second closest common value is 470Ω. It is recommended to use a greater value instead of a lower one which could damage the LED in the long term. Nevertheless, the damage done in case using a 470Ω resistance is almost null.
 
 <br>
 
-**Resistencias base-emisor**
+**Base-emitter resistance**
 
-β según data sheet = 100
+Minimum β according to datasheet = 100
 <br>
-β según multímetro = 151
+Minimum β acording to multimeter = 151
 
-•	β según data sheet: 
+•	β according to datasheet: 
   RBE = (5-0.7) / (3*(0.02/100)) = 4,3 / (3 * 0.0002) = 4,3 / 0.0006  = 7166,66
 
-Se usa un valor de resistencia común de 5,6k.
+It was used a common 5,6kΩ value resistance.
 
 <br>
 
