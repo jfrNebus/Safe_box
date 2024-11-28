@@ -194,6 +194,7 @@ RBE = VB / IB
 <br>
 
 β mínima según datasheet = 25
+<br>
 β mínima según polímetro = 25
 
 •	Sin aplicar el factor de protección sobre Ib:
@@ -225,8 +226,11 @@ Calculo de la resistencia en serie para proteger el led:
 R = (Vfuente – VLED) / I
 
 •	Rojo y amarillo:
+<br>
 R = (12 – 1.9) / 0.02 = 505 Ohms
+<br>
 •	Verde:
+<br>
 R = (12 – 2.2) / 0.02 = 490 Ohms
 
 Finalmente, se usan resistencias de 560Ω. Esto es debido a que el otro valor estándar inmediato es de 470Ω. Es preferible exceder el valor, antes que quedarse corto y forzar los leds. No obstante, el daño ocasionado por una resistencia de 470Ω sería prácticamente nulo.
