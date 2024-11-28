@@ -195,7 +195,7 @@ RBE = VB / IB
 
 β mínima según datasheet = 25
 <br>
-β mínima según polímetro = 25
+β según polímetro = 25
 
 •	Sin aplicar el factor de protección sobre Ib:
 RBE = (5 – 0.7) / (1 / 25) = 107,51
