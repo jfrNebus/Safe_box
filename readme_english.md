@@ -185,13 +185,14 @@ RBE = VB / IB
 <hr>
 
 <br>
-Sigue por aquí sigue por aquí sigue por aquí BORRA ESTA LÍNEA Y DEJA EL ESPACIO EN BLANCO
+
 #### - Base-emitter resistance for TIP31
 
 <br>
 
 Minimum β according to datasheet = 25
-Minimum β acording to multimeter = 25
+<br>
+β acording to multimeter = 25
 
 •	No protection factor applied over Ib:
 RBE = (5 – 0.7) / (1 / 25) = 107,51
@@ -222,8 +223,11 @@ Series resistance calculation:
 R = (Vsource – VLED) / I
 
 •	Red and yellow:
+<br>
 R = (12 – 1.9) / 0.02 = 505 Ohms
+<br>
 •	Green:
+<br>
 R = (12 – 2.2) / 0.02 = 490 Ohms
 
 The final resistance in use is a common 560Ω value. The second closest common value is 470Ω. It is recommended to use a greater value instead of a lower one which could damage the LED in the long term. Nevertheless, the damage done in case using a 470Ω resistance is almost null.
@@ -232,9 +236,9 @@ The final resistance in use is a common 560Ω value. The second closest common 
 
 **Base-emitter resistance**
 
-Minimum β according to datasheet = 100
+β according to datasheet = 100
 <br>
-Minimum β acording to multimeter = 151
+β acording to multimeter = 151
 
 •	β according to datasheet: 
   RBE = (5-0.7) / (3*(0.02/100)) = 4,3 / (3 * 0.0002) = 4,3 / 0.0006  = 7166,66
