@@ -260,11 +260,9 @@ Below is the electrical schematic, the PCB design, and the 3D model.
 
 <br>
 
-In this [link](Images/Esquema_electrónico.png), you can find the electrical schematic of the first board that I did. The code for that board was written pairing the board pins and the keyboard pins according to their numerical order, that is, the first keyboard pin connected to the first board pin, and so on. 
+In this [link](Images/Esquema_electrónico.png), you can find the electrical schematic for the first board. The code for this board was written pairing the board pins and the keyboard pins, according to their numerical order. That is, the first keyboard pin connected to the first board pin, and so on. This is the reasson why the cables between pins are crossed. This has been fixed through code, which makes a cleaner board. Additionally, the new board includes the connection bloc for the transistors, to control the LED.
 
-Sigue por aquí------ La frase Esto generaba, va seguida al so on.
-
-Esto generaba que, por la ubicación del conector del teclado y la posición del arduino, el cableado entre pines se cruzase. Esto ha sido corregido en código, generando un conexionado mucho más limpio. Adicionalmente, el esquema de la versión 2 incluye el bloque de conexiones de los transistores de control para el manejo de los led.
+This new board required to make a new element, the 13 pin female connector. I could not find it  SIGUE POR AQUÍ SIGUE POR AQUÍ SIGUE POR AQUÍ SIGUE POR AQUÍ
 
 Para este proyecto tuve que crear un nuevo elemento, el conector hembra de 13 pines. O bien no lo encontré entre las librerías pero existe, o bien no existe. Para su creación tomé como referencia uno de menor número de pines.
 
