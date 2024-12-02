@@ -262,9 +262,7 @@ Below is the electrical schematic, the PCB design, and the 3D model.
 
 In this [link](Images/Esquema_electrónico.png), you can find the electrical schematic for the first board. The code for this board was written pairing the board pins and the keyboard pins, according to their numerical order. That is, the first keyboard pin connected to the first board pin, and so on. This is the reasson why the cables between pins are crossed. This has been fixed through code, which makes a cleaner board. Additionally, the new board includes the connection bloc for the transistors, to control the LED.
 
-This new board required to make a new element, the 13 pin female connector. I could not find it  SIGUE POR AQUÍ SIGUE POR AQUÍ SIGUE POR AQUÍ SIGUE POR AQUÍ
-
-Para este proyecto tuve que crear un nuevo elemento, el conector hembra de 13 pines. O bien no lo encontré entre las librerías pero existe, o bien no existe. Para su creación tomé como referencia uno de menor número de pines.
+I had to make a new element, the 13 pin female connector. I could not find it in any library, so I made a new one from a 4 pin one that I found in the library.
 
 <br>
 
@@ -275,8 +273,7 @@ Para este proyecto tuve que crear un nuevo elemento, el conector hembra de 13 pi
 
 <br>
 
-
-De izquierda a derecha: capa superior, ubicación de los elementos; capa inferior, routeo de los elementos; capa de drill, mapa de perforación de los pad de los elementos.
+From left to right: top level layer, components placement; bottom layer, routing; drilling layer.
 
 <br>
 
@@ -290,7 +287,7 @@ De izquierda a derecha: capa superior, ubicación de los elementos; capa inferio
 
 <br>
 
-De izquierda a derecha: capa superior, capa mixta, capa inferior.
+From left to right: top layer, mixed layer, bottom layer.
 
 <p align="center"> 
  <img src="Images/3D_PCB_front_view.png" width="432" height="524"/>
@@ -300,9 +297,9 @@ De izquierda a derecha: capa superior, capa mixta, capa inferior.
  <img src="Images/3D_PCB_back_view.png" width="432" height="549"/>
 </p>
 
-**Nota:** El diseño 3D del arduino seleccionado presenta un error, se observa un integrado atravesando el arduino. 
+**Note:** The 3D design of the arduino shows an element out of place. That's not something I can fix.
 
-Algunos de los elementos seleccionados no tienen archivo 3D. En este proyecto no se ha prestado atención al elemento concreto seleccionado en la librería. La placa se solicitó sin los elementos incluidos ya que se iban a usar elementos própios.
+Some of the components used don't have a 3D design. I didn't pay attention to the components in the library; I just needed the right drill hole sizes for each component, since the PCB was going to be ordered without the components.
 
 
 
