@@ -97,9 +97,9 @@ Once the main working principle of row 1 and its buttons is understood, we can e
 
 vas por aquí vas por aquí vas por aqui
 
-At this point, the read in all the rows is 0, so the system understands that the pressed button is either in column 2 or column 3. The action performed for the column 1 will be performed for the column 2. Columns 1 and 3 are set in a power off state, and the column 2 is powered. The reading process starts again. We start by reading the first row when the column 2 is powered, the result is a positive voltage read. The result is positive because in this example, the button pressed was the number 4, which is connected to the row 1 on its pin number 2, and to the column 2 on its pin number 1. When the button is pressed while the power in the column 2 is on, the circuit gets closed through the row 1, generating a positive read in the row 1. This is understood by the system as "button pressed", in this case, the one associated to row 1 and column 2. Once there is a button pressed, the analysis process is stopped, and the code keeps running.
+At this point, the readings in all the rows is 0, so the system understands that the pressed button is either in column 2 or column 3. The action performed for column 1 will be performed for column 2. Columns 1 and 3 are set in a power-off state, and column 2 is powered. The reading process starts again. We start by reading the first row when column 2 is powered, the result is a positive voltage read. The result is positive because in this example, the button pressed was number 4, which is connected to row 1 on its pin 2, and to column 2 on its pin 1. When the button is pressed while the power in column 2 is on, the circuit closes through row 1, generating a positive read in row 1. This is understood by the system as "button pressed", in this case, the one associated to row 1 and column 2. Once there is a button pressed, the analysis process is stopped, and the code keeps running.
 
-It is really important to understand how a matrix keyboard works in order to optimize resources. A 9 buttons keyboard would, usually, require at least 9 microcontroller inputs, and all the associated wiring. As we could see in the previous example, for a 9 buttons matrix keyboard we used just 6 connections and way less wiring. Tree of those connections are used as inputs to read the voltage values, and the other 3 contacts are used as outputs to send the high level voltage on each column.
+It is really important to understand how a matrix keyboard works in order to optimize resources. A 9-button keyboard would, usually, require at least 9 microcontroller inputs, and all the associated wiring. As we saw in the previous example, for a 9-button matrix keyboard we used just 6 connections and much less wiring. Three of those connections are used as inputs to read the voltage values, and the other 3 connections are used as outputs to send the high level voltage on each column.
 
 <br>
 
@@ -109,8 +109,8 @@ It is really important to understand how a matrix keyboard works in order to opt
 
 <br>
 
-Now that we know what a matrix keyboard is, and how it works, we can see in the previous picture that the keyboard in our safe box is also a matrix keyboard. In the picture we can see two schematics, both of them quite more complex than the first example. Both of them represent the real connections in the keyboard. In the left schematic we see all the push buttons, set in 2 rows, and vertically oriented, close to the 3 LED lights. Some tracks have parts coloured in blue, those blue parts represent the tracks printed in the back face of the board; the wine colour tracks are the front face tracks. The tracks are drawn as they are in the real board, with light changes. The right schematic keeps the real connections between push buttons and pins, but I organized them in a different way, for everyone to easily understand the connections between rows and columns through the push buttons. The yellow tracks represent the columns, the green ones represent the rows. The button * is connected to two independent pins, just because that's how the board developer wanted it to be.
-Once everything about the hardware has been understood, the comments in the arduino files can be read in order to understand how the software part works.
+Now that we know what a matrix keyboard is, and how it works, we can see in the previous picture that the keyboard in our safe box is also a matrix keyboard. In the picture we can see two schematics, both of them much more complex than the first example. Both of them represent the real connections in the keyboard. In the left-hand schematic we see all the push buttons, set in 2 rows, and vertically oriented, close to the 3 LED lights. Some tracks have parts colored in blue, those blue parts represent the tracks printed in the back face of the board; the wine-color tracks are the front face tracks. The tracks are drawn as they are in the real board, with light changes. The right-hand schematic keeps the real connections between push buttons and pins, but it is organized differently to make it easier for everyone to understand the connections between rows and columns through the push buttons. The yellow tracks represent the columns, the green ones represent the rows. The button * is connected to two independent pins, just because that's how the board developer wanted it to be.
+Once everything about the hardware has been understood, the comments in the Arduino files can be read in order to understand how the software part works.
 
 <br>
 
@@ -131,6 +131,8 @@ Once everything about the hardware has been understood, the comments in the ardu
  <img src="Images/custom_front.jpg" width="417" height="313"/> 
  <img src="Images/custom_back.jpg" width="417" height="313"/> 
 </p>
+
+Sigue por aquí sigue por aquí
 
 The project is in the version two. As well as the code was edited in order to fix some parts to fit the whole code to the best practices, the board has been redesigned to implement the LED control through transistors.
 
