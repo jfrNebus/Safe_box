@@ -250,7 +250,7 @@ Se usa un valor de resistencia común de 5,6kΩ.
 
 <br>
 
-### **Desarrollo de la placa**
+### **Desarrollo del PCB**
 
 A continuación se muestra el esquema eléctrico, el diseño de la PCB, y el modelo 3D de la misma.
 
