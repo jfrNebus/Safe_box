@@ -132,15 +132,13 @@ Once everything about the hardware has been understood, the comments in the Ardu
  <img src="Images/custom_back.jpg" width="417" height="313"/> 
 </p>
 
-Sigue por aquí sigue por aquí
-
-The project is in the version two. As well as the code was edited in order to fix some parts to fit the whole code to the best practices, the board has been redesigned to implement the LED control through transistors.
+The project is in version two. Just as the code was edited in order to fix some parts and addapt the whole code to follow the best practices, the board has been redesigned to implement LED control through transistors.
 
 <br>
 
-The version one used a mosfet IRFP150 to control the electromagnetic bolt, it was the first one that I found in my workshop, however, this mosfest is oversized for the board requirements. Recently, while making the version two, I found a TIP31 transistor, which values are closer to the required. The mosfet's drain-source values are up to 100V for voltage and up to 44A for current, while the TIP31's collector-emitter voltage is up to 40V, and up to 3A for current.
+The version one used a MOSFET IRFP150 to control the electromagnetic bolt, it was the first one that I found in my workshop; however, this MOSFET is oversized for the board requirements. Recently, while making version two, I found a TIP31 transistor, which values are closer to the requirements. The MOSFET's drain-source values are up to 100V for voltage and up to 44A for current, while the TIP31's collector-emitter voltage is up to 40V, and its current is up to 3A.
 
-The LED management was dealt by the board through a bloc of code which logic was based in bad practices; this logic has been fixed for the new board by implementing 3 transistors. The transistor used for this purpose is the 2N3904, which max collector-emitter values are 40V and 200mAh. This values are more than enough to control a LED, since the LEDs used work in the range of 2V and 20mAh.
+The LED management was handled by the board through a block of code whose logic was based on bad practices. This logic has been fixed in the new board by implementing 3 transistors. The transistor used for this purpose is the 2N3904, whose max collector-emitter values are 40V and 200mAh. These values are more than enough to control a LED, since the LEDs used work in the range of 2V and 20mAh.
 
 <br>
 
@@ -148,7 +146,7 @@ The LED management was dealt by the board through a bloc of code which logic was
 
 <br>
 
-Below are the operations needed to calculate the base resistance for all transistors in the board.
+Below are the operations needed to calculate the base resistance for all transistors on the board.
 
 <hr>
 RBE = base-emitter resistance.
@@ -184,7 +182,7 @@ RBE = VB / IB
 
   RBE = (VB - 0.7) / 3 * (IC / β)
 
-  The protection factor is applied to increase the base current. This ensures that the transistor goes into deep saturation, so it can work as a switch.
+  The protection factor is applied to increase the base current. This ensures that the transistor enters into deep saturation, so it can work as a switch.
   
 <hr>
 
@@ -204,11 +202,11 @@ RBE = (5 – 0.7) / (1 / 25) = 107,51
 •	With protection factor applied over Ib:
 RBE = (5 – 0.7) / 3 * (1 / 25) = 35,8
 
-It was finally used the protection factor formula, with a common 22Ω value resistance.
+It was finally used the protection factor formula, with a common 22Ω resistor.
 
 <br>
 
-#### - Base-emisor resistance for 2N3904, and the resistences for the leds protection.
+#### - Base-emitter resistance for 2N3904, and the resistences for LED protection.
 
 <br>
 
@@ -234,7 +232,10 @@ R = (12 – 1.9) / 0.02 = 505 Ohms
 <br>
 R = (12 – 2.2) / 0.02 = 490 Ohms
 
-The final resistance in use is a common 560Ω value. The second closest common value is 470Ω. It is recommended to use a greater value instead of a lower one which could damage the LED in the long term. Nevertheless, the damage done in case using a 470Ω resistance is almost null.
+The final resistance in use is a common 560Ω value. The second closest common value is 470Ω. It is recommended to use a greater value instead of a lower one which could damage the LED in the long term. Nevertheless, the damage caused by using a 470Ω resistor is almost negligible.
+
+
+Sigue por aquí Sigue por aquí Sigue por aquí Sigue por aquí 
 
 <br>
 
