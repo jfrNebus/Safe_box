@@ -252,7 +252,7 @@ It was used a common 5,6kΩ value resistance.
 
 <br>
 
-### **Board developement :electric_plug:**
+### **PCB developement :electric_plug:**
 
 Below is the electrical schematic, the PCB design, and the 3D model.
 
