@@ -305,17 +305,3 @@ From left to right: top layer, mixed layer, bottom layer.
 **Note:** The 3D design of the arduino shows an element out of place. That's not something I can fix.
 
 Some of the components used don't have a 3D design. I didn't pay attention to the components in the library; I just needed the right drill hole sizes for each component, since the PCB was going to be ordered without the components.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
