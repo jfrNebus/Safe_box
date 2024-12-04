@@ -29,9 +29,10 @@ int pin7 = 6;
 int pin8 = 5;
 int pin9 = 4;
 int bolt = A5;
-int green = A4;
+int red = A4;
 int orange = A3;
-int red = A2;
+int green = A2;
+
 
 int keyColumn;
 int keyRaw;
