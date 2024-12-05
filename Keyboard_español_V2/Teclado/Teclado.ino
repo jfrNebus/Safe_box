@@ -15,9 +15,9 @@ int bolt = A5;
 //-----------
 // Leds. Cada uno de estos pines se conecta a un transitor, en la base del mismo, para
 // controlar los led.
-int green = A4;
+int red = A4;
 int orange = A3;
-int red = A2;
+int green = A2;
 //-----------
 int keyColumn;                          //Establece el valor de la primera dimensión del array bidimensional.
 int keyRow;                             //Establece el valor de la segunda dimensión del array bidimensional.

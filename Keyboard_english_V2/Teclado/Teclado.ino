@@ -15,9 +15,9 @@ int bolt = A5;
 //-----------
 //Leds. Each one of these pins are connected to a transistor on its base, to control each
 //LED individually.
-int green = A4;
+int red = A4;
 int orange = A3;
-int red = A2;
+int green = A2;
 //-----------
 int keyColumn;                                       //Bound for first dimension in multidimensional array.
 int keyRow;                                          //Bound for second dimension in multidimensional array.

@@ -1,24 +1,5 @@
 #include <EEPROM.h>
 
-
-/*
-To be tested 
-
-Line 52
-Removed:
-  pinMode(pin9, INPUT);
-  digitalWrite(pin9, HIGH);
-Added:
-  pinMode(pin9, INPUT_PULLUP);
-
-
-
-*/
-
-
-
-
-
 int pin1 = 12;
 int pin2 = 11;
 int pin3 = 10;

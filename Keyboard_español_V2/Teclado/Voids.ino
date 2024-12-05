@@ -447,7 +447,7 @@ void startingLights() {
 //Método para gestionar la activación del perno electromagnético.
 void openClose() {
   /*Todo está basado en la variable "match". Si la variable "match" es igual a true
-  enviaremos una señal HIGH por el pin llamado "bolt", el pin A4, y el led verde
+  enviaremos una señal HIGH por el pin llamado "bolt", el pin A5, y el led verde
   se encenderá, ambos durante 2 segundos. Después, enviaremos una señal LOW por ambos
   pines. De esta forma, activaremos el perno electromagnético por 2 segundos, permitiendo 
   al usuario usar la llave para abrir la puerta. Por último, reestablecemos el valor de 
