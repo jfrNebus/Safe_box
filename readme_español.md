@@ -304,3 +304,23 @@ De izquierda a derecha: capa superior, capa mixta, capa inferior.
 **Nota:** El diseño 3D del arduino seleccionado presenta un error, se observa un integrado atravesando el arduino. 
 
 Algunos de los elementos seleccionados no tienen archivo 3D. En este proyecto no se ha prestado atención al elemento concreto seleccionado en la librería. La placa se solicitó sin los elementos incluidos ya que se iban a usar elementos própios.
+
+<br>
+
+### **Resultado final**
+
+Se envió a producir la placa el día 24 de noviembre de 2024 y se recibió el 4 de diciembre. Se realizó el pedido mínimo de 5 placas, sin incluir los componentes, por un valor de 4.29€. El método de envío solicitado fue el más económico, "Global Standard Direct Line", cuyo tiempo de entrega ronda entre los 12 a 16 días. El importe del envío fueron 1.69€. Adicionalmente, se añadió un pago por valor de 1.25€ en concepto de de impuestos y aduanas, y 50 céntimos más por usar paypal como forma de pago. En total, se pagó 7.73€ por 5 placas sin componentes.
+
+<br>
+
+<p align="center"> 
+ <img src="Images/no_arduino.jpg" width="386" height="351"/>
+ &nbsp;
+ <img src="Images/arduino.jpg" width="323" height="405"/>
+ &nbsp;
+ <img src="Images/tracks.jpg" width="371" height="467"/>
+</p>
+
+Como es habitual, el resultado obtenido es impecable. No se encuentra fallo alguno de fabricación en la placa. No obstante, si que se han cometido errores en el diseño de la misma. 
+* No se agregó la polaridad de cada entrada de las clemas, en la capa de serigrafía. Esto puede conducir a problemas cuando se alimenta la placa, o cuando se alimenta el perno electromagnético (el perno tiene un diodo de protección entre contactos, si se conecta de forma erronea se pueden producir daños en el transistor TIP31), 
+
