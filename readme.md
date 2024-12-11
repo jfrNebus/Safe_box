@@ -2,9 +2,9 @@
 
 ## HI! :wave:
 
-Las siguientes etiquetas te permiten acceder a una serie de explicaciones, descripciones, y demás aspectos relacionados con el proyecto.
+La siguiente etiqueta te permiten acceder a una serie de explicaciones, descripciones, y demás aspectos relacionados con el proyecto.
 
-The following labels allow you to review all explanations, descriptions, and matters related to the project.
+The following label guides you through the explanations, descriptions, and matters related to the project.
 
 <br>
 
