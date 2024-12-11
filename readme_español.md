@@ -322,5 +322,7 @@ Se envió a producir la placa el día 24 de noviembre de 2024 y se recibió el 4
 </p>
 
 Como es habitual, el resultado obtenido es impecable. No se encuentra fallo alguno de fabricación en la placa. No obstante, si que se han cometido errores en el diseño de la misma. 
-* No se agregó la polaridad de cada entrada de las clemas, en la capa de serigrafía. Esto puede conducir a problemas cuando se alimenta la placa, o cuando se alimenta el perno electromagnético (el perno tiene un diodo de protección entre contactos, si se conecta de forma erronea se pueden producir daños en el transistor TIP31), 
+* No se agregó la polaridad de cada entrada de las clemas, en la capa de serigrafía. Esto puede conducir a problemas cuando se alimenta la placa, o cuando se alimenta el perno electromagnético (el perno tiene un diodo de protección entre contactos, si se conecta de forma erronea se pueden producir daños en el transistor TIP31).
+* Los agujeros de fijación de la parte inferior de la placa, no se encuentran ubicados correctamente. Se cometió un error a la hora de establecer en el diseño del PCB, las medidas de los agujeros de fijación tomadas con un calibre.
+* Se cometió un error a la hora de establecer las etiquetas de identificación de red, de las conexiones de los led rojo y verde. El 
 
