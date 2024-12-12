@@ -250,7 +250,7 @@ Se usa un valor de resistencia común de 5,6kΩ.
 
 <br>
 
-### **Desarrollo del PCB**
+### **Desarrollo del PCB :mechanic:**
 
 A continuación se muestra el esquema eléctrico, el diseño de la PCB, y el modelo 3D de la misma.
 
@@ -307,7 +307,7 @@ Algunos de los elementos seleccionados no tienen archivo 3D. En este proyecto no
 
 <br>
 
-### **Resultado final**
+### **Resultado final :magic_wand:**
 
 Se envió a producir la placa el día 24 de noviembre de 2024 y se recibió el 4 de diciembre. Se realizó el pedido mínimo de 5 placas, sin incluir los componentes, por un valor de 4.29€. El método de envío solicitado fue el más económico, "Global Standard Direct Line", cuyo tiempo de entrega oscila entre los 12 a 16 días. El importe del envío fueron 1.69€. Adicionalmente, se añadió un pago por valor de 1.25€ en concepto de de impuestos y aduanas, y 50 céntimos más por usar paypal como forma de pago. En total, se pagó 7.73€ por 5 placas sin componentes.
 
@@ -323,9 +323,13 @@ Se envió a producir la placa el día 24 de noviembre de 2024 y se recibió el 4
 
 Como es habitual, el resultado obtenido es impecable. No se encuentra fallo alguno de fabricación en la placa. No obstante, si que se han cometido errores en el diseño de la misma. 
 * No se agregó la polaridad de cada entrada de las clemas, en la capa de serigrafía. Esto puede conducir a problemas cuando se alimenta la placa, o cuando se alimenta el perno electromagnético (el perno tiene un diodo de protección entre contactos, si se conecta de forma erronea se pueden producir daños en el transistor TIP31).
-* Los agujeros de fijación de la parte inferior de la placa, no se encuentran ubicados correctamente. Se cometió un error a la hora de establecer las medidas tomadas con un calibre, en el diseño del PCB.
-* Se diseñó y programó la parte de control de los led, siguiendo un análisis incorrecto del teclado. En el esquema de la versión 1 de la placa, [V1_schematic](Images/V1_schematic.png), se mostra la unión del cátodo del led verde con el pin 10 del conector, y el cátodo del led rojo con el pin 12. Esto es erroneo, dado que ocurre justamente al revés. Durante el proceso de prueba de la nueva placa, se observó que el led rojo realizaba las acciones asociadas al led verde, y al contrario. Para corregir este problema, se reasignaron las salidas analógicas A2 y A4, que originalmente estaban asociadas al led rojo y al led verde respectivamente. De esta forma, el led rojo pasa a estar asociado a la salida A4 y el verde a la salida A2. Adicionalmente, se han modificado los nombres de los transistores de control de cada led; y los nombres de las redes, asociadas a las uniones de ambos pines del conector, es decir, los pines 10 y 12, con las resistencias de protección R5 y R7, respectivamente, dentro del esquema eléctrico.
+* Los agujeros de fijación de la parte inferior de la placa, no se encuentran ubicados correctamente. Se cometió un error a la hora de establecer las medidas tomadas con un calibre, durante el diseño del PCB.
+* Se diseñó y programó la parte de control de los led, siguiendo un análisis incorrecto del teclado. En el esquema de la versión 1 de la placa, [V1_schematic](Images/V1_schematic.png), se mostra la unión del cátodo del led verde con el pin 10 del conector, y el cátodo del led rojo con el pin 12. Esto es erroneo, dado que ocurre justamente al revés. Durante el proceso de prueba de la nueva placa, se observó que el led rojo realizaba las acciones asociadas al led verde, y al contrario. Para corregir este problema, se reasignaron las salidas analógicas A2 y A4, que originalmente estaban asociadas al led rojo y al led verde respectivamente. De esta forma, el led rojo pasa a estar asociado a la salida A4 y el verde a la salida A2. Adicionalmente, se han modificado los nombres de los transistores de control de cada led; y los nombres de las redes asociadas a las uniones de ambos pines del conector, es decir, los pines 10 y 12, con las resistencias de protección R5 y R7, respectivamente, dentro del esquema eléctrico.
+Algunos componentes no han quedado bien soldados. La clema de alimentación en la parte superior izquierda de la placa, o el TIP31, han quedado ligeramente ladeados. Además, aunque en general las soldaduras tienen buena forma, están sucias, queda limpiarlas con alcohol isopropílico.
 
-Comprueba la correspondencia >>>>> pin 10 > rojo > A4 R5 pin 12 > verde > A2 R7, y modifica el esquema electrico de los treclados de schematics/actual_keyboard_layout.jpg
+<br>
 
+## **Conclusión :thinking:**
 
+La versión 2 de la placa ha supuesto una mejora considerable con respecto a la versión 1. Se han corregido múltiples fallos de código y se ha mejorado notablemente la parte de hardware. Además, el resultado profesional obtenido gracias a producir el pcb con una empresa profesional, ha sustituido a la producción del pcb con placas perforadas breadboard de soldar.
+Pese a estos cambios, la versión 2 se puede mejorar. En un futuro, la versión 3 corregirá los errores de diseño citados anteriormente. Además, actualmente estoy esperando a que me lleguen unos microcontroladores que he pedido, con la intención de intentar sustituir el arduino. De esta forma, la versión 3 sería más compacta.
