@@ -252,7 +252,7 @@ It was used a common 5,6kΩ value resistance.
 
 <br>
 
-### **PCB developement :electric_plug:**
+### **Desarrollo del PCB :mechanic:**
 
 Below is the electrical schematic, the PCB design, and the 3D model.
 
@@ -305,3 +305,36 @@ From left to right: top layer, mixed layer, bottom layer.
 **Note:** The 3D design of the arduino shows an element out of place. That's not something I can fix.
 
 Some of the components used don't have a 3D design. I didn't pay attention to the components in the library; I just needed the right drill hole sizes for each component, since the PCB was going to be ordered without the components.
+
+<br>
+
+### **Resultado final :magic_wand:**
+
+The board was sent to be produced on November 24th, and it was received on December 4th. The minimum order placed was 5 pcb, components not included, which priece is 4.29€. The shipping method used was the cheapest one, "Global Standard Direct Line" for 1.69€, which shipping time is about 12 to 16 days. Additionally, it was charged 1.25€ as taxes and customs, and 0.5€ as extra payment for paying using paypal as method. The final priece, everything included, is 7.73€ for 5 pcb without components.
+
+<br>
+
+<p align="center"> 
+ <img src="Images/no_arduino.jpg" width="386" height="351"/>
+ &nbsp;
+ <img src="Images/arduino.jpg" width="323" height="405"/>
+ &nbsp;
+ <img src="Images/tracks.jpg" width="371" height="467"/>
+</p>
+
+As always, the final result is absolutely perfect. There's no production error in the board. No se encuentra fallo alguno de fabricación en la placa. However, there are design mistakes.
+* The board is missing the polarity marks in the ink layer, close to both of screw terminal blocks.
+
+VAS POR AQUÍ>>>>
+
+ Esto puede conducir a problemas cuando se alimenta la placa, o cuando se alimenta el perno electromagnético (el perno tiene un diodo de protección entre contactos, si se conecta de forma erronea se pueden producir daños en el transistor TIP31).
+* Los agujeros de fijación de la parte inferior de la placa, no se encuentran ubicados correctamente. Se cometió un error a la hora de establecer las medidas tomadas con un calibre, durante el diseño del PCB.
+* Se diseñó y programó la parte de control de los led, siguiendo un análisis incorrecto del teclado. En el esquema de la versión 1 de la placa, [V1_schematic](Images/V1_schematic.png), se mostra la unión del cátodo del led verde con el pin 10 del conector, y el cátodo del led rojo con el pin 12. Esto es erroneo, dado que ocurre justamente al revés. Durante el proceso de prueba de la nueva placa, se observó que el led rojo realizaba las acciones asociadas al led verde, y al contrario. Para corregir este problema, se reasignaron las salidas analógicas A2 y A4, que originalmente estaban asociadas al led rojo y al led verde respectivamente. De esta forma, el led rojo pasa a estar asociado a la salida A4 y el verde a la salida A2. Adicionalmente, se han modificado los nombres de los transistores de control de cada led; y los nombres de las redes asociadas a las uniones de ambos pines del conector, es decir, los pines 10 y 12, con las resistencias de protección R5 y R7, respectivamente, dentro del esquema eléctrico.
+Algunos componentes no han quedado bien soldados. La clema de alimentación en la parte superior izquierda de la placa, o el TIP31, han quedado ligeramente ladeados. Además, aunque en general las soldaduras tienen buena forma, están sucias, queda limpiarlas con alcohol isopropílico.
+
+<br>
+
+## **Conclusión :thinking:**
+
+La versión 2 de la placa ha supuesto una mejora considerable con respecto a la versión 1. Se han corregido múltiples fallos de código y se ha mejorado notablemente la parte de hardware. Además, el resultado profesional obtenido gracias a producir el pcb con una empresa profesional, ha sustituido a la producción del pcb con placas perforadas breadboard de soldar.
+Pese a estos cambios, la versión 2 se puede mejorar. En un futuro, la versión 3 corregirá los errores de diseño citados anteriormente. Además, actualmente estoy esperando a que me lleguen unos microcontroladores que he pedido, con la intención de intentar sustituir el arduino. De esta forma, la versión 3 sería más compacta.
