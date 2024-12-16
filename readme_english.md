@@ -323,13 +323,14 @@ The board was sent to be produced on November 24th, and it was received on Decem
 </p>
 
 As always, the final result is absolutely perfect. There's no production error in the board. No se encuentra fallo alguno de fabricación en la placa. However, there are design mistakes.
-* The board is missing the polarity marks in the ink layer, close to both of screw terminal blocks.
+* The board is missing the polarity marks in the ink layer, close to both of screw terminal blocks. The lack of polarity marks can lead to problems when the pcb is connected to a power supply, or when the electromagnetic bolt is connected to the terminal (the bolt has a diode in parallel, if it is not connected correctly it could damage the TIP31 transistor).
+* The fastening holes on the bottom are missplaced. There measures, taken using a vernier caliper, were not set correctly, while the pcb design process.
+* The analysis followed to design and to code the led control block, was wrong, and therefore, the pcb and the code had to be modified. The first version, [V1_schematic](Images/V1_schematic.png), shows the green LED cathode junction with the pin number 10 in the connector, and the red LED cathode juntion with the pin number 12. This is wrong, as it occurs in reverse. During the testing process for the new pcb, the red LED was performing the actions associated to the green LED, and the other way arround. This problem fixed by reassigning the green and red LEDs variables to the A2 and A4 outputs. Aditionally, the names of the transistors which control each LED, as well as the names of those nets associated to these LEDs, were changed.
+* Some of the elements were not soldered correctly. The top left screw terminal block and the TIP31 are slightly tilted
 
-VAS POR AQUÍ>>>>
+Seguir por aquí
 
- Esto puede conducir a problemas cuando se alimenta la placa, o cuando se alimenta el perno electromagnético (el perno tiene un diodo de protección entre contactos, si se conecta de forma erronea se pueden producir daños en el transistor TIP31).
-* Los agujeros de fijación de la parte inferior de la placa, no se encuentran ubicados correctamente. Se cometió un error a la hora de establecer las medidas tomadas con un calibre, durante el diseño del PCB.
-* Se diseñó y programó la parte de control de los led, siguiendo un análisis incorrecto del teclado. En el esquema de la versión 1 de la placa, [V1_schematic](Images/V1_schematic.png), se mostra la unión del cátodo del led verde con el pin 10 del conector, y el cátodo del led rojo con el pin 12. Esto es erroneo, dado que ocurre justamente al revés. Durante el proceso de prueba de la nueva placa, se observó que el led rojo realizaba las acciones asociadas al led verde, y al contrario. Para corregir este problema, se reasignaron las salidas analógicas A2 y A4, que originalmente estaban asociadas al led rojo y al led verde respectivamente. De esta forma, el led rojo pasa a estar asociado a la salida A4 y el verde a la salida A2. Adicionalmente, se han modificado los nombres de los transistores de control de cada led; y los nombres de las redes asociadas a las uniones de ambos pines del conector, es decir, los pines 10 y 12, con las resistencias de protección R5 y R7, respectivamente, dentro del esquema eléctrico.
+
 Algunos componentes no han quedado bien soldados. La clema de alimentación en la parte superior izquierda de la placa, o el TIP31, han quedado ligeramente ladeados. Además, aunque en general las soldaduras tienen buena forma, están sucias, queda limpiarlas con alcohol isopropílico.
 
 <br>
