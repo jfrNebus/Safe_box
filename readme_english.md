@@ -326,16 +326,12 @@ As always, the final result is absolutely perfect. There's no production error i
 * The board is missing the polarity marks in the ink layer, close to both of screw terminal blocks. The lack of polarity marks can lead to problems when the pcb is connected to a power supply, or when the electromagnetic bolt is connected to the terminal (the bolt has a diode in parallel, if it is not connected correctly it could damage the TIP31 transistor).
 * The fastening holes on the bottom are missplaced. There measures, taken using a vernier caliper, were not set correctly, while the pcb design process.
 * The analysis followed to design and to code the led control block, was wrong, and therefore, the pcb and the code had to be modified. The first version, [V1_schematic](Images/V1_schematic.png), shows the green LED cathode junction with the pin number 10 in the connector, and the red LED cathode juntion with the pin number 12. This is wrong, as it occurs in reverse. During the testing process for the new pcb, the red LED was performing the actions associated to the green LED, and the other way arround. This problem fixed by reassigning the green and red LEDs variables to the A2 and A4 outputs. Aditionally, the names of the transistors which control each LED, as well as the names of those nets associated to these LEDs, were changed.
-* Some of the elements were not soldered correctly. The top left screw terminal block and the TIP31 are slightly tilted
-
+* Some of the elements were not soldered correctly. The top left screw terminal block and TIP31 are slightly tilted. Also, the welds are in good shape, but they are dirty. They must be clean them with isopropyl alcohol.
 Seguir por aquí
-
-
-Algunos componentes no han quedado bien soldados. La clema de alimentación en la parte superior izquierda de la placa, o el TIP31, han quedado ligeramente ladeados. Además, aunque en general las soldaduras tienen buena forma, están sucias, queda limpiarlas con alcohol isopropílico.
 
 <br>
 
-## **Conclusión :thinking:**
+## **Conclusion :thinking:**
 
-La versión 2 de la placa ha supuesto una mejora considerable con respecto a la versión 1. Se han corregido múltiples fallos de código y se ha mejorado notablemente la parte de hardware. Además, el resultado profesional obtenido gracias a producir el pcb con una empresa profesional, ha sustituido a la producción del pcb con placas perforadas breadboard de soldar.
-Pese a estos cambios, la versión 2 se puede mejorar. En un futuro, la versión 3 corregirá los errores de diseño citados anteriormente. Además, actualmente estoy esperando a que me lleguen unos microcontroladores que he pedido, con la intención de intentar sustituir el arduino. De esta forma, la versión 3 sería más compacta.
+Version 2 of the pcb has been a considerable improvement over version 1. The code and the hardware have been fixed. Aditionally, the professional result obtained thanks to producing the PCB with a professional company, has replaced the production of the PCB with perforated breadboard.
+Despite all these improvements, the version 2 can still be improved. The version 3 will fix the above mentioned mistakes. Furthermore, I am currently waiting for some microcontrollers that ordered, I will try to replace the Arduino board. This way, versuib 3 could be more compact.
