@@ -76,14 +76,12 @@ The password is provided through the keyboard, and the board evaluates it. If th
 
 <br>
 
-SIGUE POR AQUÍ SIGUE POR AQUÍ
-
 <p align="center">
  <img src="Images/keyboard_inside_front.jpg" width="370" height="278"/>
  <img src="Images/keyboard_inside_back.jpg" width="370" height="278"/>
 </p>
 
-It is easy to see that it is matrix keyboard. This keyboard has 12 conductive membrane push buttons. This kind of push buttons has two parts: the contacts printed on the board, the oval grey parts with a line in the middle; and the layer with the numbers, which is made in rubber with an small conductive surface under each button. When a button is pressed, its conductive part under the rubber layer connects both contacts in the oval part printed in the board, closing the circuit.
+It is easy to see that it is matrix keyboard. This keyboard has 12 conductive membrane push buttons. This kind of push button has two parts: the contacts printed on the board, the oval grey parts with a line in the middle; and the layer with the numbers, which is made in rubber with an small conductive surface under each button. When a button is pressed, its conductive part under the rubber layer connects both contacts in the oval part printed in the board, closing the circuit.
 
 <br>
 
@@ -93,16 +91,14 @@ It is easy to see that it is matrix keyboard. This keyboard has 12 conductive me
 
 <br>
 
-In a matrix keyboard, the connections of the buttons are made through columns and rows; each side of each button is connected to a column and a row. In the previous picture we have a matrix keyboard that i did to explain the main concept. The main point is to power one of the sides of the push buttons, and to read the voltage value on the other side. We can power the columns, and then we could read the value on each row.
+In a matrix keyboard, the connections of the buttons are made through columns and rows; each side of each button is connected to a column and a row. In the previous picture we have a matrix keyboard that I made to explain the main concept. The main point is to power one of the sides of the push buttons, and read the voltage value on the other side. We can power the columns, and then we could read the value on each row.
 
-Let's say that we pressed button 4. We start powering column number 1, so at this point columns 2 and 3 are powerless. Column 1, (columns 1), is connected with side 1 of button 1, with side 1 of button 2, and with side one of button 3 (SW1, SW2 y SW3). Therefore, these 3 buttons are set as powered on their side 1. Then, the system starts reading the voltage value on each row. It starts by reading the value of row 1. In row 1 we have side 2 of button 1, which was not pressed, which means that the circuit is not closed and the voltage sent through column 1 doesn’t reach side 2 of the button. This means that the voltage read in row 1 is 0V. This is understood by the board like button 1 was not pressed. Then we keep checking the behaviour of the other buttons in row 1. We meet button 4, which was pressed. Side 1 of button 4 is connected to column 2. This column is off at this point of the analysis, therefor, even if button 4 is pressed in this exact moment, the voltage read in row 1 is still 0. It happens the same with button 7. There is no voltage at all in row 1. It is guaranteed that button 1 was not pressed, because in order for it to be considered as pressed there must be a positive read in the row 1 while the column 1 is being powered.
-Once the main working principle of row 1 and its buttons is understood, we can easily go through rows 2 and 3. We keep reading the voltage value in row 2. The column we are working with right now is number 1, since button 2 was not pressed it is in the same situation than button 1, there is not a positive read in row 2 when column 1 is powered. It is guaranteed that button 2 was not pressed. Finally, we read row 3. Since button 3 was not pressed, the connection between column 1 and row 3 is not closed, there's no positive read in row 3 when column 1 is powered, therefor, button 3 was not pressed. 
+Let's say that we pressed button 4. We start powering column number 1, so at this point columns 2 and 3 are powerless. Column 1, (columns 1), is connected with side 1 of button 1, with side 1 of button 2, and with side one of button 3 (SW1, SW2 y SW3). Therefore, these 3 buttons are powered on their side 1. Then, the system starts reading the voltage value on each row. It starts by reading the value of row 1. In row 1, we have side 2 of button 1, which was not pressed, meaning that the circuit is not closed and the voltage sent through column 1 doesn’t reach side 2 of the button. This means that the voltage read in row 1 is 0V. This is understood by the board as button 1 not being pressed. Then we keep checking the behaviour of the other buttons in row 1. We meet button 4, which was pressed. Side 1 of button 4 is connected to column 2. This column is off at this point of the analysis, therefore, even if button 4 is pressed in this exact moment, the voltage read in row 1 is still 0. It happens the same with button 7. There is no voltage at all in row 1. It is guaranteed that button 1 was not pressed, because in order for it to be considered as pressed there must be a positive read in the row 1 while the column 1 is being powered.
+Once the main working principle of row 1 and its buttons is understood, we can easily go through rows 2 and 3. We keep reading the voltage value in row 2. The column we are working with right now is number 1, since button 2 was not pressed it is in the same situation than button 1, there is no positive read in row 2 when column 1 is powered. It is guaranteed that button 2 was not pressed. Finally, we read row 3. Since button 3 was not pressed, the connection between column 1 and row 3 is not closed, there's no positive read in row 3 when column 1 is powered, therefore, button 3 was not pressed. 
 
-vas por aquí vas por aquí vas por aqui
+At this point, the readings in all the rows is 0, so the system understands that the pressed button is either in column 2 or column 3. The action performed for column 1 will be performed for column 2. Columns 1 and 3 are set in a power-off state, and column 2 is powered. The reading process starts again. We start by reading the first row when column 2 is powered, the result is a positive voltage reading. The result is positive because in this example, the button pressed was number 4, which is connected to row 1 on its pin 2, and to column 2 on its pin 1. When the button is pressed while the power in column 2 is on, the circuit closes through row 1, generating a positive read in row 1. This is understood by the system as "button pressed", in this case, the one associated to row 1 and column 2. Once there is a button pressed, the analysis process is stopped, and the code keeps running.
 
-At this point, the readings in all the rows is 0, so the system understands that the pressed button is either in column 2 or column 3. The action performed for column 1 will be performed for column 2. Columns 1 and 3 are set in a power-off state, and column 2 is powered. The reading process starts again. We start by reading the first row when column 2 is powered, the result is a positive voltage read. The result is positive because in this example, the button pressed was number 4, which is connected to row 1 on its pin 2, and to column 2 on its pin 1. When the button is pressed while the power in column 2 is on, the circuit closes through row 1, generating a positive read in row 1. This is understood by the system as "button pressed", in this case, the one associated to row 1 and column 2. Once there is a button pressed, the analysis process is stopped, and the code keeps running.
-
-It is really important to understand how a matrix keyboard works in order to optimize resources. A 9-button keyboard would, usually, require at least 9 microcontroller inputs, and all the associated wiring. As we saw in the previous example, for a 9-button matrix keyboard we used just 6 connections and much less wiring. Three of those connections are used as inputs to read the voltage values, and the other 3 connections are used as outputs to send the high level voltage on each column.
+It is really important to understand how a matrix keyboard works in order to optimize resources. A 9-button keyboard would usually require at least 9 microcontroller inputs, and all the associated wiring. As we saw in the previous example, for a 9-button matrix keyboard we used just 6 connections and much less wiring. Three of those connections are used as inputs to read the voltage values, and the other 3 connections are used as outputs to send the high level voltage on each column.
 
 <br>
 
@@ -135,13 +131,13 @@ Once everything about the hardware has been understood, the comments in the Ardu
  <img src="Images/custom_back.jpg" width="417" height="313"/> 
 </p>
 
-The project is in version two. Just as the code was edited in order to fix some parts and addapt the whole code to follow the best practices, the board has been redesigned to implement LED control through transistors.
+The project is in version two. Same way the code was edited in order to fix some parts and adapt the whole code to follow the best practices, the board has been redesigned to implement LED control through transistors.
 
 <br>
 
-The version one used a MOSFET IRFP150 to control the electromagnetic bolt, it was the first one that I found in my workshop; however, this MOSFET is oversized for the board requirements. Recently, while making version two, I found a TIP31 transistor, which values are closer to the requirements. The MOSFET's drain-source values are up to 100V for voltage and up to 44A for current, while the TIP31's collector-emitter voltage is up to 40V, and its current is up to 3A.
+Version one used a MOSFET IRFP150 to control the electromagnetic bolt; it was the first one that I found in my workshop. However, this MOSFET is oversized for the board requirements. Recently, while making version two, I found a TIP31 transistor, whose values are closer to the requirements. The MOSFET's drain-source values are up to 100V for voltage and up to 44A for current, while the TIP31's collector-emitter voltage is up to 40V, and its current is up to 3A.
 
-The LED management was handled by the board through a block of code whose logic was based on bad practices. This logic has been fixed in the new board by implementing 3 transistors. The transistor used for this purpose is the 2N3904, whose max collector-emitter values are 40V and 200mAh. These values are more than enough to control a LED, since the LEDs used work in the range of 2V and 20mAh.
+The LED management was handled by the board through a block of code whose logic was based on bad practices. This logic has been fixed in the new board by implementing 3 transistors. The transistor used for this purpose is the 2N3904, whose max collector-emitter values are 40V and 200mA. These values are more than enough to control a LED, since the LEDs used work in the range of 2V and 20mA.
 
 <br>
 
@@ -174,18 +170,18 @@ RBE = VB / IB
 <br>
 <br>
 
-•	No protection factor applied over Ib:
+•	No protection factor applied to Ib:
 
   RBE = (VB - 0.7) / (IC / β) 
 
   <br>
   <br>
   
-•	With protection factor applied over Ib:
+•	With protection factor applied to Ib:
 
   RBE = (VB - 0.7) / 3 * (IC / β)
 
-  The protection factor is applied to increase the base current. This ensures that the transistor enters into deep saturation, so it can work as a switch.
+  The protection factor is applied to increase the base current. This ensures that the transistor enters deep saturation, so it can work as a switch.
   
 <hr>
 
@@ -199,17 +195,17 @@ Minimum β according to datasheet = 25
 <br>
 β acording to multimeter = 25
 
-•	No protection factor applied over Ib:
+•	No protection factor applied to Ib:
 RBE = (5 – 0.7) / (1 / 25) = 107,51
 
-•	With protection factor applied over Ib:
+•	With protection factor applied to Ib:
 RBE = (5 – 0.7) / 3 * (1 / 25) = 35,8
 
 It was finally used the protection factor formula, with a common 22Ω resistor.
 
 <br>
 
-#### - Base-emitter resistance for 2N3904, and the resistences for LED protection.
+#### - Base-emitter resistance for 2N3904, and the resistence for LED protection.
 
 <br>
 
@@ -236,9 +232,6 @@ R = (12 – 1.9) / 0.02 = 505 Ohms
 R = (12 – 2.2) / 0.02 = 490 Ohms
 
 The final resistance in use is a common 560Ω value. The second closest common value is 470Ω. It is recommended to use a greater value instead of a lower one which could damage the LED in the long term. Nevertheless, the damage caused by using a 470Ω resistor is almost negligible.
-
-
-Sigue por aquí Sigue por aquí Sigue por aquí Sigue por aquí 
 
 <br>
 
@@ -268,7 +261,7 @@ Below is the electrical schematic, the PCB design, and the 3D model.
 
 <br>
 
-In this [link](Images/Esquema_electrónico.png), you can find the electrical schematic for the first board. The code for this board was written pairing the board pins and the keyboard pins, according to their numerical order. That is, the first keyboard pin connected to the first board pin, and so on. This is the reasson why the cables between pins are crossed. This has been fixed through code, which makes a cleaner board. Additionally, the new board includes the connection bloc for the transistors, to control the LED.
+In this [link](Images/Esquema_electrónico.png), you can find the electrical schematic for the first board. The code for this board was written by pairing the board pins and the keyboard pins, according to their numerical order. That is, the first keyboard pin connected to the first board pin, and so on. This is the reason why the cables between pins are crossed. This has been fixed through code, which makes a cleaner board. Additionally, the new board includes the connection block for the transistors, to control the LED.
 
 I had to make a new element, the 13 pin female connector. I could not find it in any library, so I made a new one from a 4 pin one that I found in the library.
 
@@ -281,7 +274,7 @@ I had to make a new element, the 13 pin female connector. I could not find it in
 
 <br>
 
-From left to right: top level layer, components placement; bottom layer, routing; drilling layer.
+From left to right: top layer, components placement; bottom layer, routing; drill layer.
 
 <br>
 
@@ -313,7 +306,7 @@ Some of the components used don't have a 3D design. I didn't pay attention to th
 
 ### **Resultado final :magic_wand:**
 
-The board was sent to be produced on November 24th, and it was received on December 4th. The minimum order placed was 5 pcb, components not included, which priece is 4.29€. The shipping method used was the cheapest one, "Global Standard Direct Line" for 1.69€, which shipping time is about 12 to 16 days. Additionally, it was charged 1.25€ as taxes and customs, and 0.5€ as extra payment for paying using paypal as method. The final priece, everything included, is 7.73€ for 5 pcb without components.
+The board was sent to be produced on November 24th, and it was received on December 4th. The minimum order placed was 5 PCBs, components not included, which priece is 4.29€. The shipping method used was the cheapest one, "Global Standard Direct Line" for 1.69€, which shipping time is about 12 to 16 days. Additionally, it was charged 1.25€ as taxes and customs, and 0.5€ as extra payment for paying using paypal as method. The final priece, everything included, is 7.73€ for 5 PCBs without components.
 
 <br>
 
@@ -325,16 +318,15 @@ The board was sent to be produced on November 24th, and it was received on Decem
  <img src="Images/tracks.jpg" width="371" height="467"/>
 </p>
 
-As always, the final result is absolutely perfect. There's no production error in the board. No se encuentra fallo alguno de fabricación en la placa. However, there are design mistakes.
-* The board is missing the polarity marks in the ink layer, close to both of screw terminal blocks. The lack of polarity marks can lead to problems when the pcb is connected to a power supply, or when the electromagnetic bolt is connected to the terminal (the bolt has a diode in parallel, if it is not connected correctly it could damage the TIP31 transistor).
-* The fastening holes on the bottom are missplaced. There measures, taken using a vernier caliper, were not set correctly, while the pcb design process.
-* The analysis followed to design and to code the led control block, was wrong, and therefore, the pcb and the code had to be modified. The first version, [V1_schematic](Images/V1_schematic.png), shows the green LED cathode junction with the pin number 10 in the connector, and the red LED cathode juntion with the pin number 12. This is wrong, as it occurs in reverse. During the testing process for the new pcb, the red LED was performing the actions associated to the green LED, and the other way arround. This problem fixed by reassigning the green and red LEDs variables to the A2 and A4 outputs. Aditionally, the names of the transistors which control each LED, as well as the names of those nets associated to these LEDs, were changed.
-* Some of the elements were not soldered correctly. The top left screw terminal block and TIP31 are slightly tilted. Also, the welds are in good shape, but they are dirty. They must be clean them with isopropyl alcohol.
-Seguir por aquí
+As always, the final result is absolutely perfect. There's no production error in the board. No faults of manufacturing are found on the board. However, there are design mistakes.
+* The board is missing the polarity marks in the ink layer, close to both of screw terminal blocks. The lack of polarity marks can lead to problems when the PCB is connected to a power supply, or when the electromagnetic bolt is connected to the terminal (the bolt has a diode in parallel, if it is not connected correctly it could damage the TIP31 transistor).
+* The fastening holes on the bottom are misplaced. There measurements, taken using a vernier caliper, were not set correctly, while the PCB design process.
+* The analysis followed to design and to code the led control block, was wrong, and therefore, the PCB and the code had to be modified. The first version, [V1_schematic](Images/V1_schematic.png), shows the green LED cathode junction with the pin 10 in the connector, and the red LED cathode juntion with the pin 12. This is wrong, as it occurs in reverse. During the testing process for the new PCB, the red LED was performing the actions associated to the green LED, and the other way arround. This problem WAS fixed by reassigning the green and red LEDs variables to the A2 and A4 outputs. Additionally, the names of the transistors which control each LED, as well as the names of those nets associated to these LEDs, were changed.
+* Some of the elements were not soldered correctly. The top left screw terminal block and TIP31 are slightly tilted. Also, the welds are in good shape, but they are dirty. They must be cleaned them with isopropyl alcohol.
 
 <br>
 
 ## **Conclusion :thinking:**
 
-Version 2 of the pcb has been a considerable improvement over version 1. The code and the hardware have been fixed. Aditionally, the professional result obtained thanks to producing the PCB with a professional company, has replaced the production of the PCB with perforated breadboard.
-Despite all these improvements, the version 2 can still be improved. The version 3 will fix the above mentioned mistakes. Furthermore, I am currently waiting for some microcontrollers that ordered, I will try to replace the Arduino board. This way, versuib 3 could be more compact.
+Version 2 of the PCB has been a considerable improvement over version 1. The code and the hardware have been fixed. ADditionally, the professional result obtained thanks to producing the PCB with a professional company, has replaced the production of the PCB with perforated breadboard.
+Despite all these improvements, the version 2 can still be improved. The version 3 will fix the above mentioned mistakes. Furthermore, I am currently waiting for some microcontrollers that ordered, I will try to replace the Arduino board. This way, version 3 could be more compact.
