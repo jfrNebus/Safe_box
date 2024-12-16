@@ -1,8 +1,8 @@
 # Introducción :uk:
 
-This project was born to give a solution to a job need. I was in the need to protect some valuable goods, and a safe box was the best thing to do so. I was in the right place, at the right moment, when some partners removed from a customer, an old safe box, in order to place a new one. This kind of safe box is programmed to delay the opening; this means that even if you have the key and the password, the triggering of the electromagnetic bolt which unlocks the lock, won't happen until the programmed delay is over. This is meant to protect the goods inside, in case the intruder forces the owner of the safe box to open the box. Since the box won't open the door until the delay is over, the intruder has to either wait, and maybe get caught while waiting; or leave, leaving the goods safe. This box was left in a specific place where the things to be recycled are stored. In addition, the password was unknown.
+This project was born to give a solution to a job need. I was in the need to protect some valuable goods, and a safe box was the best option. I was in the right place, at the right moment, when some partners removed an old safe box from a customer, in order to place a new one. This kind of safe box is programmed to delay the opening; this means that even if you have the key and the password, the triggering of the electromagnetic bolt that unlocks the lock, won't happen until the programmed delay is over. This is meant to protect the goods inside, in case the intruder forces the owner of the safe box to open the box. Since the box won't unlock the door until the delay is over, the intruder has to either wait, and maybe get caught while waiting; or leave, leaving the goods safe. This box was left in a specific place where the items to be recycled are stored. In addition, the password was unknown.
 
-This box is designed to be fixed to a surface, the lock gets locked by the bolt, because of the gravitational force. In other words, if the coil where the bolt is placed is out of power, the bolt stays in its position because of the gravitational force, blocking the action of the key over the lock. When the circuit is powered, and the password provided is correct, the circuit powers the bolt's coil, lifting it, and freeing the lock.
+This box is designed to be fixed to a surface. The lock is secured by the bolt due to gravitational force. In other words, if the coil holding the bolt is out of power, the bolt stays in its position due to gravitational force, blocking the action of the key over the lock. When the circuit is powered, and the password provided is correct, the circuit powers the bolt's coil, lifting it, and freeing the lock.
 
 
 <br>
@@ -16,7 +16,7 @@ This box is designed to be fixed to a surface, the lock gets locked by the bolt,
  <img src="Images/bolt_work.png" width="576" height="432"/> 
 </p>
 
-In the picture above we have the control system. The first thing we can see is the control board, the one implemented by me as replacement for the previous one. We can also see the electromagnetic bolt, the yellowed piece with the "12 Ohms" mark; and finally, the whole lock system. The lock moves from left to right according to the the key movement. The blue and red arrows show the behavior of the bolt, according to the power supplied to the coil. If the coil, the yellowed rectangle shape piece, is powered, the bolt, the cylinder under / inside the coil, will get attracted to the coil, allowing the free movement of the lock. If the coil is not powered, the bolt falls by gravitational attraction, blocking the lock.
+In the picture above we have the control system. The first thing we can see is the control board, which was implemented by me as a replacement for the previous one. We can also see the electromagnetic bolt, the yellowed piece with the "12 Ohms" mark; and finally, the whole lock system. The lock moves from left to right according to the key's movement. The blue and red arrows show the behavior of the bolt, according to the power supplied to the coil. If the coil, represented by the yellowed rectangular piece, is powered, the bolt, the cylinder under / inside the coil, will be attracted to the coil, allowing the free movement of the lock. If the coil is not powered, the bolt falls due to gravitational force, blocking the lock.
 
 The very first thing I had to do was to open the box. Luckily, the key was inside the lock, the main problem was to deal with the bolt. Since it was not fixed to any surface, as soon as I placed the box upside down, the bolt fell inside the coil by gravitational force, allowing me to open the door. Once the box was opened, I could check each part. 
 
@@ -32,10 +32,10 @@ The very first thing I had to do was to open the box. Luckily, the key was insid
 
 <br>
 
-This is the original board. There are few interesting elements:
+This is the original board. There are afew interesting elements:
 
 - Microcontroller TSC80C31, with 32 inputs and outputs, and 128 bytes of RAM memory. 
-- EPROM memory M27C64A. This memory is ideal for long programs. Here comes an interesting detail of this memory: the window at the top of the memory is used to erase the saved data. It is done by pointing ultraviolet light at it. The following pictures show a closer view, through a microscope, of this window.
+- EPROM memory M27C64A. This memory is ideal for long programs. Here comes an interesting detail of this memory: the window at the top is used to erase the stored data. It is done by pointing ultraviolet light at it. The following pictures show a closer view of this window under a microscope.
 
 <br>
 
@@ -58,7 +58,7 @@ This is the original board. There are few interesting elements:
 
 <br>
 
-We have already talked about this part before. This part is the one responsible for locking or freeing the key. The printed value is the resistance of the coil, which in this case it is 12 Ohms. This value used to calculate the minimum amount of current needed for the coil to attract the bolt correctly. When the coil is powered through the cables, a magnetic field is created. This magnetic field attracts ferromagnetic elements, in this case, the bolt. When the power is lost, the magnetic field is also lost, freeing the bolt, which falls by the gravitational force, blocking the lock.
+We have already talked about this part before. This component is the one responsible for locking or freeing the key. The printed value is indicates the resistance of the coil, which in this case it is 12 Ohms. This value is used to calculate the minimum amount of current needed for the coil to attract the bolt correctly. When the coil is powered through the cables, a magnetic field is created. This magnetic field attracts ferromagnetic elements, in this case, the bolt. When the power is lost, the magnetic field is also lost, freeing the bolt, which falls due to gravitational force, blocking the lock.
 
 <br>
 
@@ -72,8 +72,11 @@ We have already talked about this part before. This part is the one responsible 
 
 <br>
 
-The password is provided through the keyboard, the board will be the one evaluating it. If the password entered matches the one burned on the board, then the bolt will be triggered.
+The password is provided through the keyboard, and the board evaluates it. If the password entered matches the one stored on the board, then the bolt will be triggered.
+
 <br>
+
+SIGUE POR AQUÍ SIGUE POR AQUÍ
 
 <p align="center">
  <img src="Images/keyboard_inside_front.jpg" width="370" height="278"/>
