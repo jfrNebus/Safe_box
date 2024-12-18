@@ -13,7 +13,7 @@ This box is designed to be fixed to a surface. The lock is secured by the bolt d
 <br>
 
 <p align="center">
- <img src="Images/bolt_work.png" width="576" height="432"/> 
+ <img src="Docs/Images/bolt_work.png" width="576" height="432"/> 
 </p>
 
 In the picture above we have the control system. The first thing we can see is the control board, which was implemented by me as a replacement for the previous one. We can also see the electromagnetic bolt, the yellowed piece with the "12 Ohms" mark; and finally, the whole lock system. The lock moves from left to right according to the key's movement. The blue and red arrows show the behavior of the bolt, according to the power supplied to the coil. If the coil, represented by the yellowed rectangular piece, is powered, the bolt, the cylinder under / inside the coil, will be attracted to the coil, allowing the free movement of the lock. If the coil is not powered, the bolt falls due to gravitational force, blocking the lock.
@@ -27,7 +27,7 @@ The very first thing I had to do was to open the box. Luckily, the key was insid
 <br>
 
 <p align="center">
- <img src="Images/main_board.jpg" width="576" height="432"/> 
+ <img src="Docs/Images/main_board.jpg" width="576" height="432"/> 
 </p>
 
 <br>
@@ -40,10 +40,10 @@ This is the original board. There are afew interesting elements:
 <br>
 
 <p align="center">
- <img src="Images/Microscope_images/1.jpg" width="400" height="225"/> 
- <img src="Images/Microscope_images/2.jpg" width="400" height="225"/> 
- <img src="Images/Microscope_images/3.jpg" width="400" height="225"/> 
- <img src="Images/Microscope_images/4.jpg" width="400" height="225"/>
+ <img src="Docs/Images/Microscope_images/1.jpg" width="400" height="225"/> 
+ <img src="Docs/Images/Microscope_images/2.jpg" width="400" height="225"/> 
+ <img src="Docs/Images/Microscope_images/3.jpg" width="400" height="225"/> 
+ <img src="Docs/Images/Microscope_images/4.jpg" width="400" height="225"/>
 </p>
 
 <br>
@@ -53,7 +53,7 @@ This is the original board. There are afew interesting elements:
 <br>
 
 <p align="center">
- <img src="Images/electromagnetic_detailed.jpg" width="410" height="425"/> 
+ <img src="Docs/Images/electromagnetic_detailed.jpg" width="410" height="425"/> 
 </p>
 
 <br>
@@ -67,7 +67,7 @@ We have already talked about this part before. This component is the one respons
 <br>
 
 <p align="center">
- <img src="Images/keyboard_front.jpg" width="740" height="555"/> 
+ <img src="Docs/Images/keyboard_front.jpg" width="740" height="555"/> 
 </p>
 
 <br>
@@ -77,8 +77,8 @@ The password is provided through the keyboard, and the board evaluates it. If th
 <br>
 
 <p align="center">
- <img src="Images/keyboard_inside_front.jpg" width="370" height="278"/>
- <img src="Images/keyboard_inside_back.jpg" width="370" height="278"/>
+ <img src="Docs/Images/keyboard_inside_front.jpg" width="370" height="278"/>
+ <img src="Docs/Images/keyboard_inside_back.jpg" width="370" height="278"/>
 </p>
 
 It is easy to see that it is matrix keyboard. This keyboard has 12 conductive membrane push buttons. This kind of push button has two parts: the contacts printed on the board, the oval grey parts with a line in the middle; and the layer with the numbers, which is made in rubber with an small conductive surface under each button. When a button is pressed, its conductive part under the rubber layer connects both contacts in the oval part printed in the board, closing the circuit.
@@ -86,7 +86,7 @@ It is easy to see that it is matrix keyboard. This keyboard has 12 conductive me
 <br>
 
 <p align="center">
- <img src="schematics/matix_keyboard.png" width="767" height="432"/>
+ <img src="Docs/Schematics/matix_keyboard.png" width="767" height="432"/>
 </p>
 
 <br>
@@ -103,7 +103,7 @@ It is really important to understand how a matrix keyboard works in order to opt
 <br>
 
 <p align="center">
- <img src="schematics/actual_keyboard_layout.jpg"/>
+ <img src="Docs/Schematics/actual_keyboard_layout.jpg"/>
 </p>
 
 <br>
@@ -127,8 +127,8 @@ Once everything about the hardware has been understood, the comments in the Ardu
 
 
 <p align="center"> 
- <img src="Images/custom_front.jpg" width="417" height="313"/> 
- <img src="Images/custom_back.jpg" width="417" height="313"/> 
+ <img src="Docs/Images/custom_front.jpg" width="417" height="313"/> 
+ <img src="Docs/Images/custom_back.jpg" width="417" height="313"/> 
 </p>
 
 The project is in version two. Same way the code was edited in order to fix some parts and adapt the whole code to follow the best practices, the board has been redesigned to implement LED control through transistors.
@@ -256,20 +256,20 @@ Below is the electrical schematic, the PCB design, and the 3D model.
 <br>
 
 <p align="center"> 
- <img src="schematics/board_schematic.jpg"/>
+ <img src="Docs/Schematics/board_schematic.jpg"/>
 </p>
 
 <br>
 
-In this [link](Images/Esquema_electrónico.png), you can find the electrical schematic for the first board. The code for this board was written by pairing the board pins and the keyboard pins, according to their numerical order. That is, the first keyboard pin connected to the first board pin, and so on. This is the reason why the cables between pins are crossed. This has been fixed through code, which makes a cleaner board. Additionally, the new board includes the connection block for the transistors, to control the LED.
+In this [link](Docs/Images/V1_schematic.png), you can find the electrical schematic for the first board. The code for this board was written by pairing the board pins and the keyboard pins, according to their numerical order. That is, the first keyboard pin connected to the first board pin, and so on. This is the reason why the cables between pins are crossed. This has been fixed through code, which makes a cleaner board. Additionally, the new board includes the connection block for the transistors, to control the LED.
 
 I had to make a new element, the 13 pin female connector. I could not find it in any library, so I made a new one from a 4 pin one that I found in the library.
 
 <br>
 
 <p align="center"> 
- <img src="Images/female_header_13pin_device.png"/>
- <img src="Images/female_header_13pin_footprint.png"/>
+ <img src="Docs/Images/female_header_13pin_device.png"/>
+ <img src="Docs/Images/female_header_13pin_footprint.png"/>
 </p>
 
 <br>
@@ -279,11 +279,11 @@ From left to right: top layer, components placement; bottom layer, routing; dril
 <br>
 
 <p align="center"> 
- <img src="schematics/pcb_design_1.jpg" width="289" height="360"/>
+ <img src="Docs/Schematics/pcb_design_1.jpg" width="289" height="360"/>
  &nbsp;
- <img src="schematics/pcb_design_2.jpg" width="289" height="360"/>
+ <img src="Docs/Schematics/pcb_design_2.jpg" width="289" height="360"/>
  &nbsp;
- <img src="schematics/pcb_design_3.jpg" width="289" height="360"/>
+ <img src="Docs/Schematics/pcb_design_3.jpg" width="289" height="360"/>
 </p>
 
 <br>
@@ -291,11 +291,11 @@ From left to right: top layer, components placement; bottom layer, routing; dril
 From left to right: top layer, mixed layer, bottom layer.
 
 <p align="center"> 
- <img src="Images/3D_PCB_front_view.png" width="432" height="524"/>
+ <img src="Docs/Images/3D_PCB_front_view.png" width="432" height="524"/>
  &nbsp;
- <img src="Images/3D_PCB_mixed_view.png" width="432" height="524"/>
+ <img src="Docs/Images/3D_PCB_mixed_view.png" width="432" height="524"/>
  &nbsp;
- <img src="Images/3D_PCB_back_view.png" width="432" height="549"/>
+ <img src="Docs/Images/3D_PCB_back_view.png" width="432" height="549"/>
 </p>
 
 **Note:** The 3D design of the arduino shows an element out of place. That's not something I can fix.
@@ -311,17 +311,17 @@ The board was sent to be produced on November 24th, and it was received on Decem
 <br>
 
 <p align="center"> 
- <img src="Images/no_arduino.jpg" width="386" height="351"/>
+ <img src="Docs/Images/no_arduino.jpg" width="386" height="351"/>
  &nbsp;
- <img src="Images/arduino.jpg" width="323" height="405"/>
+ <img src="Docs/Images/arduino.jpg" width="323" height="405"/>
  &nbsp;
- <img src="Images/tracks.jpg" width="371" height="467"/>
+ <img src="Docs/Images/tracks.jpg" width="371" height="467"/>
 </p>
 
 As always, the final result is absolutely perfect. There's no production error in the board. No faults of manufacturing are found on the board. However, there are design mistakes.
 * The board is missing the polarity marks in the ink layer, close to both of screw terminal blocks. The lack of polarity marks can lead to problems when the PCB is connected to a power supply, or when the electromagnetic bolt is connected to the terminal (the bolt has a diode in parallel, if it is not connected correctly it could damage the TIP31 transistor).
 * The fastening holes on the bottom are misplaced. There measurements, taken using a vernier caliper, were not set correctly, while the PCB design process.
-* The analysis followed to design and to code the led control block, was wrong, and therefore, the PCB and the code had to be modified. The first version, [V1_schematic](Images/V1_schematic.png), shows the green LED cathode junction with the pin 10 in the connector, and the red LED cathode juntion with the pin 12. This is wrong, as it occurs in reverse. During the testing process for the new PCB, the red LED was performing the actions associated to the green LED, and the other way arround. This problem WAS fixed by reassigning the green and red LEDs variables to the A2 and A4 outputs. Additionally, the names of the transistors which control each LED, as well as the names of those nets associated to these LEDs, were changed.
+* The analysis followed to design and to code the led control block, was wrong, and therefore, the PCB and the code had to be modified. The first version, [V1_schematic](Docs/Images/V1_schematic.png), shows the green LED cathode junction with the pin 10 in the connector, and the red LED cathode juntion with the pin 12. This is wrong, as it occurs in reverse. During the testing process for the new PCB, the red LED was performing the actions associated to the green LED, and the other way arround. This problem WAS fixed by reassigning the green and red LEDs variables to the A2 and A4 outputs. Additionally, the names of the transistors which control each LED, as well as the names of those nets associated to these LEDs, were changed.
 * Some of the elements were not soldered correctly. The top left screw terminal block and TIP31 are slightly tilted. Also, the welds are in good shape, but they are dirty. They must be cleaned them with isopropyl alcohol.
 
 <br>
