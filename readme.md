@@ -18,4 +18,4 @@ The following label guides you through the explanations, descriptions, and matte
 > [!IMPORTANT]
 > Este proyecto se encuentra actualmente en su versión 2. Se han corregido algunas partes del código y se ha rediseñado la placa por completo. No obstante, siempre hay lugar para mejorar siguiendo unas buenas prácticas de forma efectiva.
 > 
-> This is the version 2 of this proyect. The code has been reviewed and some parts have been fixed. Aditionally, the board has been fully redesigned. However, it could still be improved by following some best practices.
+> This is the version 2 of this proyect. The code has been reviewed and some parts have been fixed. Aditionally, the board has been fully redesigned. However, it could still be improved by following the best practices guidelines.
