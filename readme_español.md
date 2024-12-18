@@ -14,7 +14,7 @@ Estas cajas están pensadas para ser fijadas a una superficie debido a que el pe
 <br>
 
 <p align="center">
- <img src="Images/bolt_work.png" width="576" height="432"/> 
+ <img src="Docs/Images/bolt_work.png" width="576" height="432"/> 
 </p>
 
 En la imagen anterior tenemos el interior del sistema de control. Lo primero que se observa es la placa de control implementada por mi; el perno electromagnético, la pieza de color amarillento en la que está escrito “12 Ohms”; y por último, el cierre y la cara interior de la cerradura. El cierre se mueve de izquierda a derecha en función de la acción de la llave. Las flechas dibujadas muestran el comportamiento del cierre y del perno en función de la alimentación que reciba la bobina. Si la bobina, la pieza rectangular amarillenta recibe alimentación, el perno, la pieza cilíndrica ubicada justo debajo de la bobina, se verá atraída hacia la bobina, permitiendo el libre movimiento del cierre. Si la bobina no recibe alimentación, el perno cae por su propio peso, bloqueando el movimiento del cierre, impidiendo la acción de la llave.
@@ -28,7 +28,7 @@ Lo primero que hice fue descubrir la forma de abrir la caja. Por suerte la llave
 <br>
 
 <p align="center">
- <img src="Images/main_board.jpg" width="576" height="432"/> 
+ <img src="Docs/Images/main_board.jpg" width="576" height="432"/> 
 </p>
 
 <br>
@@ -41,10 +41,10 @@ Esta es la placa original de la caja. Se observan un par de elementos de interé
 <br>
 
 <p align="center">
- <img src="Images/Microscope_images/1.jpg" width="400" height="225"/> 
- <img src="Images/Microscope_images/2.jpg" width="400" height="225"/> 
- <img src="Images/Microscope_images/3.jpg" width="400" height="225"/> 
- <img src="Images/Microscope_images/4.jpg" width="400" height="225"/>
+ <img src="Docs/Images/Microscope_images/1.jpg" width="400" height="225"/> 
+ <img src="Docs/Images/Microscope_images/2.jpg" width="400" height="225"/> 
+ <img src="Docs/Images/Microscope_images/3.jpg" width="400" height="225"/> 
+ <img src="Docs/Images/Microscope_images/4.jpg" width="400" height="225"/>
 </p>
 
 <br>
@@ -54,7 +54,7 @@ Esta es la placa original de la caja. Se observan un par de elementos de interé
 <br>
 
 <p align="center">
- <img src="Images/electromagnetic_detailed.jpg" width="410" height="425"/> 
+ <img src="Docs/Images/electromagnetic_detailed.jpg" width="410" height="425"/> 
 </p>
 
 <br>
@@ -68,7 +68,7 @@ Ya hemos hablado de esta parte anteriormente. Es el encargado de bloquear o libe
 <br>
 
 <p align="center">
- <img src="Images/keyboard_front.jpg" width="740" height="555"/> 
+ <img src="Docs/Images/keyboard_front.jpg" width="740" height="555"/> 
 </p>
 
 <br>
@@ -78,8 +78,8 @@ A través del teclado se introduce la clave de acceso, que será recogida por la
 <br>
 
 <p align="center">
- <img src="Images/keyboard_inside_front.jpg" width="370" height="278"/>
- <img src="Images/keyboard_inside_back.jpg" width="370" height="278"/>
+ <img src="Docs/Images/keyboard_inside_front.jpg" width="370" height="278"/>
+ <img src="Docs/Images/keyboard_inside_back.jpg" width="370" height="278"/>
 </p>
 
 Resulta facil darse cuenta de que se trata de un teclado matricial en cuanto se observa la placa sin la capa de los números. Este teclado está compuesto por un total de 12 pulsadores de membrana conductiva. Este tipo de pulsadores están formados por dos partes: la parte de los contactos impresos en la placa, las partes ovaladas con una línea en el medio; y la capa de números, una superficie de goma con un material conductor debajo de cada botón. Cuando se presiona dicho botón de silicona, la parte conductora debajo del mismo toca los dos lados del óvalo impreso en la placa, cerrando el circuito.
@@ -87,7 +87,7 @@ Resulta facil darse cuenta de que se trata de un teclado matricial en cuanto se 
 <br>
 
 <p align="center">
- <img src="schematics/matix_keyboard.png" width="767" height="432"/>
+ <img src="Docs/Schematics/matix_keyboard.png" width="767" height="432"/>
 </p>
 
 <br>
@@ -105,7 +105,7 @@ Entender el funcionamiento de un teclado matricial es vital para la optimizació
 <br>
 
 <p align="center">
- <img src="schematics/actual_keyboard_layout.jpg"/>
+ <img src="Docs/Schematics/actual_keyboard_layout.jpg"/>
 </p>
 
 <br>
@@ -129,8 +129,8 @@ Teniendo claro todo lo explicado anteriormente, solo queda leerse las comentario
 
 
 <p align="center"> 
- <img src="Images/custom_front.jpg" width="417" height="313"/> 
- <img src="Images/custom_back.jpg" width="417" height="313"/> 
+ <img src="Docs/Images/custom_front.jpg" width="417" height="313"/> 
+ <img src="Docs/Images/custom_back.jpg" width="417" height="313"/> 
 </p>
 
 El proyecto se encuentra actualmente en la versión dos. Al igual que se han modificado varios bloques de código para corregir ciertas prácticas de programación, y para incorporar nuevos elementos de electrónica, se ha corregido y rediseñado la propia placa. En las anteriores fotos se pueden observar ambas caras de la placa correspondiente a la versión uno.
@@ -258,7 +258,7 @@ A continuación se muestra el esquema eléctrico, el diseño de la PCB, y el mod
 <br>
 
 <p align="center"> 
- <img src="schematics/board_schematic.jpg"/>
+ <img src="Docs/Schematics/board_schematic.jpg"/>
 </p>
 
 <br>
@@ -270,8 +270,8 @@ Para este proyecto tuve que crear un nuevo elemento, el conector hembra de 13 pi
 <br>
 
 <p align="center"> 
- <img src="Images/female_header_13pin_device.png"/>
- <img src="Images/female_header_13pin_footprint.png"/>
+ <img src="Docs/Images/female_header_13pin_device.png"/>
+ <img src="Docs/Images/female_header_13pin_footprint.png"/>
 </p>
 
 <br>
@@ -282,11 +282,11 @@ De izquierda a derecha: capa superior, ubicación de los elementos; capa inferio
 <br>
 
 <p align="center"> 
- <img src="schematics/pcb_design_1.jpg" width="289" height="360"/>
+ <img src="Docs/Schematics/pcb_design_1.jpg" width="289" height="360"/>
  &nbsp;
- <img src="schematics/pcb_design_2.jpg" width="289" height="360"/>
+ <img src="Docs/Schematics/pcb_design_2.jpg" width="289" height="360"/>
  &nbsp;
- <img src="schematics/pcb_design_3.jpg" width="289" height="360"/>
+ <img src="Docs/Schematics/pcb_design_3.jpg" width="289" height="360"/>
 </p>
 
 <br>
@@ -294,11 +294,11 @@ De izquierda a derecha: capa superior, ubicación de los elementos; capa inferio
 De izquierda a derecha: capa superior, capa mixta, capa inferior.
 
 <p align="center"> 
- <img src="Images/3D_PCB_front_view.png" width="432" height="524"/>
+ <img src="Docs/Images/3D_PCB_front_view.png" width="432" height="524"/>
  &nbsp;
- <img src="Images/3D_PCB_mixed_view.png" width="432" height="524"/>
+ <img src="Docs/Images/3D_PCB_mixed_view.png" width="432" height="524"/>
  &nbsp;
- <img src="Images/3D_PCB_back_view.png" width="432" height="549"/>
+ <img src="Docs/Images/3D_PCB_back_view.png" width="432" height="549"/>
 </p>
 
 **Nota:** El diseño 3D del arduino seleccionado presenta un error, se observa un integrado atravesando el arduino. 
@@ -314,11 +314,11 @@ Se envió a producir la placa el día 24 de noviembre de 2024 y se recibió el 4
 <br>
 
 <p align="center"> 
- <img src="Images/no_arduino.jpg" width="386" height="351"/>
+ <img src="Docs/Images/no_arduino.jpg" width="386" height="351"/>
  &nbsp;
- <img src="Images/arduino.jpg" width="323" height="405"/>
+ <img src="Docs/Images/arduino.jpg" width="323" height="405"/>
  &nbsp;
- <img src="Images/tracks.jpg" width="371" height="467"/>
+ <img src="Docs/Images/tracks.jpg" width="371" height="467"/>
 </p>
 
 Como es habitual, el resultado obtenido es impecable. No se encuentra fallo alguno de fabricación en la placa. No obstante, si que se han cometido errores en el diseño de la misma. 
