@@ -1,4 +1,4 @@
-# Introducción
+# Introduction
 
 This project was born to give a solution to a job need. I was in the need to protect some valuable goods, and a safe box was the best option. I was in the right place, at the right moment, when some partners removed an old safe box from a customer, in order to place a new one. This kind of safe box is programmed to delay the opening; this means that even if you have the key and the password, the triggering of the electromagnetic bolt that unlocks the lock, won't happen until the programmed delay is over. This is meant to protect the goods inside, in case the intruder forces the owner of the safe box to open the box. Since the box won't unlock the door until the delay is over, the intruder has to either wait, and maybe get caught while waiting; or leave, leaving the goods safe. This box was left in a specific place where the items to be recycled are stored. In addition, the password was unknown.
 
@@ -8,7 +8,7 @@ This box is designed to be fixed to a surface. The lock is secured by the bolt d
 <br>
 <br>
 
-## Funcionamiento 🧰
+## Working principle 🧰
 
 <br>
 
