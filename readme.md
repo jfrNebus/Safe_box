@@ -4,7 +4,7 @@
 
 La siguiente etiqueta te permiten acceder a una serie de explicaciones, descripciones, y demás aspectos relacionados con el proyecto.
 
-The following label guides you through the explanations, descriptions, and matters related to the project.
+The following label guides you through the explanations, descriptions, and matters related to the project. 
 
 <br>
 
